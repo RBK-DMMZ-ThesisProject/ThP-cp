@@ -1,0 +1,11 @@
+.Nav {
+    background-color: #63b8d4;
+}
+#title {
+    font-size: 35px;
+    margin-left: 10px;
+}
+#logo {
+    height: 50px;
+    width: 50px;
+}
