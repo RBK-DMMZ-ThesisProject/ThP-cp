@@ -31,7 +31,7 @@ const Nav: React.FC = () => {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Toolbar />
+        <Toolbar/>
         <div>
         <div id="side">
           <br></br>
@@ -49,61 +49,65 @@ const Nav: React.FC = () => {
         </div>
         <div id='profiles'>
           <table >
-            <tr>
-              <th>No.</th>
-              <th>Name</th>
-              <th>Show profile</th>
-            </tr>
-            <tr>
-              <td>1.</td>
-              <td>Maria Anders</td>
-              <Button variant="contained" className='tabs'>Show</Button>
-            </tr>
-            <tr>
-              <td>2.</td>
-              <td>Christina Berglund</td>
-              <Button variant="contained" className='tabs'>Show</Button>
-            </tr>
-            <tr>
-              <td>3.</td>
-              <td>Francisco Chang</td>
-              <Button variant="contained" className='tabs'>Show</Button>
-            </tr>
-            <tr>
-              <td>4.</td>
-              <td>Roland Mendel</td>
-              <Button variant="contained" className='tabs'>Show</Button>
-            </tr>
-            <tr>
-              <td>5.</td>
-              <td>Helen Bennett</td>
-              <Button variant="contained" className='tabs'>Show</Button>
-            </tr>
-            <tr>
-              <td>6.</td>
-              <td>Philip Cramer</td>
-              <Button variant="contained" className='tabs'>Show</Button>
-            </tr>
-            <tr>
-              <td>7.</td>
-              <td>Yoshi Tannamuri</td>
-              <Button variant="contained" className='tabs'>Show</Button>
-            </tr>
-            <tr>
-              <td>8.</td>
-              <td>Giovanni Rovelli</td>
-              <Button variant="contained" className='tabs'>Show</Button>
-            </tr>
-            <tr>
-              <td>9.</td>
-              <td>Simon Crowther</td>
-              <Button variant="contained" className='tabs'>Show</Button>
-            </tr>
-            <tr>
-              <td>10.</td>
-              <td>Marie Bertrand</td>
-              <Button variant="contained" className='tabs'>Show</Button>
-            </tr>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Show profile</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1.</td>
+                <td>Maria Anders</td>
+                <td><Button variant="contained" className='tabs'>Show</Button></td>
+              </tr>
+              <tr>
+                <td>2.</td>
+                <td>Christina Berglund</td>
+                <td><Button variant="contained" className='tabs'>Show</Button></td>
+              </tr>
+              <tr>
+                <td>3.</td>
+                <td>Francisco Chang</td>
+                <td><Button variant="contained" className='tabs'>Show</Button></td>
+              </tr>
+              <tr>
+                <td>4.</td>
+                <td>Roland Mendel</td>
+                <td><Button variant="contained" className='tabs'>Show</Button></td>
+                </tr>
+              <tr>
+                <td>5.</td>
+                <td>Helen Bennett</td>
+                <td><Button variant="contained" className='tabs'>Show</Button></td> 
+                </tr>
+              <tr>
+                <td>6.</td>
+                <td>Philip Cramer</td>
+                <td><Button variant="contained" className='tabs'>Show</Button></td>
+                </tr>
+              <tr>
+                <td>7.</td>
+                <td>Yoshi Tannamuri</td>
+                <td><Button variant="contained" className='tabs'>Show</Button></td>
+                </tr>
+              <tr>
+                <td>8.</td>
+                <td>Giovanni Rovelli</td>
+                <td><Button variant="contained" className='tabs'>Show</Button></td>
+                </tr>
+              <tr>
+                <td>9.</td>
+                <td>Simon Crowther</td>
+                <td><Button variant="contained" className='tabs'>Show</Button></td> 
+                </tr>
+              <tr>
+                <td>10.</td>
+                <td>Marie Bertrand</td>
+                <td><Button variant="contained" className='tabs'>Show</Button></td>
+                </tr>
+            </tbody>
           </table>
         </div>
       </div>
