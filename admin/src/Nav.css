@@ -2,10 +2,59 @@
     background-color: #63b8d4;
 }
 #title {
-    font-size: 35px;
+    font-size: 30px;
     margin-left: 10px;
 }
 #logo {
     height: 50px;
     width: 50px;
 }
+#side {
+    background-color: #91cde0;
+    float: left;
+    position: absolute;  height: 100%; width: 300px;
+
+}
+#content {
+    margin-left: 350px;
+}
+#buttons {
+    margin-left: 100px;
+    text-align: left;
+}
+#profiles {
+    margin-left: 100px;
+    margin-top: 50px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+#profiles td, #profiles th {
+    padding: 8px;
+}
+
+#profiles tr:nth-child(even){background-color: #f2f2f2;}
+
+#profiles tr:hover {background-color: #ddd;}
+
+#profiles th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    color: #63b8d4;
+    font-weight: bold;
+    font-size: 30px;
+}
+#profiles td {
+    color: #63b8d4;
+    font-size: 30px;
+}
+a:link {
+    text-decoration: none;
+    font-size: 30px;
+}
+a {
+    color: white;
+}
+
+
