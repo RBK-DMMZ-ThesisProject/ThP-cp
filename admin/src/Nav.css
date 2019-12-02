@@ -1,5 +1,6 @@
 .Nav {
     background-color: #63b8d4;
+    width: 1840px;
 }
 #title {
     font-size: 30px;
@@ -9,16 +10,36 @@
     height: 50px;
     width: 50px;
 }
+#main { 
+    display: grid;
+    grid-auto-columns: auto auto;
+    grid-auto-rows: auto ;
+}
 #content {
-    margin-left: 350px;
+    grid-area: 1 / 2 / span 1 / span 1;
+    width: 500px;
+    margin-right: 400px;
+}
+#list {
+    grid-area: 1 / 1 / span 1 / span 1;
+    width: 400px;
+}
+#tabs {
+    background-color: #c0e2ed;
+}
+.Tab {
+    color: #63b8d4;
+}
+.listText {
+    height: 10px;
 }
 #buttons {
     margin-left: 100px;
     text-align: left;
 }
 #profiles {
-    margin-left: 100px;
-    margin-top: 50px;
+    /* margin-left: 100px; */
+    /* margin-top: 50px; */
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     width: 100%;
 }
@@ -37,21 +58,9 @@
     text-align: left;
     color: #63b8d4;
     font-weight: bold;
-    font-size: 30px;
+    /* font-size: 30px; */
 }
 #profiles td {
     color: #63b8d4;
-    font-size: 30px;
+    /* font-size: 30px; */
 }
-a:link {
-    text-decoration: none;
-    font-size: 30px;
-}
-a {
-    color: white;
-}
-.listText {
-    font-weight: bold;
-}
-
-
