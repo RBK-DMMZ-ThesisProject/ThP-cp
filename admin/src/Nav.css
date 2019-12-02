@@ -9,12 +9,6 @@
     height: 50px;
     width: 50px;
 }
-#side {
-    background-color: #91cde0;
-    float: left;
-    position: absolute;  height: 100%; width: 300px;
-
-}
 #content {
     margin-left: 350px;
 }
@@ -55,6 +49,9 @@ a:link {
 }
 a {
     color: white;
+}
+.listText {
+    font-weight: bold;
 }
 
 

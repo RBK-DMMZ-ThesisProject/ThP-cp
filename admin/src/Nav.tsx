@@ -6,16 +6,31 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
 
 
 const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
+      maxWidth: 360,
+      backgroundColor: '#91cde0',
+      fontSize: '30px',
+      color: 'white',
+      fontWeight: 'bold',
       '& > *': {
         margin: theme.spacing(1),
       },
     },
   }));
+
+
+function ListItemLink(props : any) {
+  return <ListItem button component="a" {...props} />;
+}
+
 
 const Nav: React.FC = () => {
     const classes = useStyles();
@@ -32,14 +47,15 @@ const Nav: React.FC = () => {
           </Toolbar>
         </AppBar>
         <Toolbar/>
-        <div>
-        <div id="side">
-          <br></br>
-          <strong><a href='#'>Profiles</a></strong>
-          <br></br>
-          <br></br>
-          <strong><a href='#'>Users</a></strong>
-        </div>
+        <div className={classes.root}>
+          <List component="nav" aria-label="main mailbox folders" className="listText">
+            <ListItem button>
+              <ListItemText primary="Profiles"/>
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Users"/>
+            </ListItem>
+          </List>
       </div>
       <div id='content'>
         <div id='buttons'>

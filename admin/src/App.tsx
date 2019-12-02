@@ -7,7 +7,8 @@ import Profile from './Profile';
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Profile />
+      <Nav/>
+      {/* <Profile /> */}
     </div>
   );
 }
