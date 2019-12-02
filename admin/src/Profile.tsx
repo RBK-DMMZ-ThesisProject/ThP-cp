@@ -19,17 +19,6 @@ const Profile: React.FC = () => {
     const classes = useStyles();
   return (
     <div id='main'>
-        <div className={classes.root}>
-            <AppBar position="fixed">
-            <Toolbar className='Nav'>
-                <img id ='logo' src={serviceWorker}/>
-                <Typography id='title'>
-                Control Panel
-                </Typography>
-            </Toolbar>
-            </AppBar>
-            <Toolbar />
-        </div>
         <div>
           <h1 id='name'>Zinah Al Nabahin</h1>
           <hr></hr>

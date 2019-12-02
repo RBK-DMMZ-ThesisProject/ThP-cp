@@ -11,6 +11,25 @@ import ListItem from '@material-ui/core/ListItem';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
+import Modal from '@material-ui/core/Modal';
+import Profile from './Profile';
+
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 20;
+  const left = 20;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+
 
 
 function TabPanel(props : any) {
@@ -57,6 +76,14 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(1),
       },
     },
+    paper: {
+      position: 'absolute',
+      width: 1800,
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
   }));
 
 
@@ -71,6 +98,16 @@ const Nav: React.FC = () => {
 
     const handleChange = (event : any, newValue : any) => {
       setValue(newValue);
+    };
+    const [modalStyle] = React.useState(getModalStyle);
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => {
+      setOpen(true);
+    };
+
+    const handleClose = () => {
+      setOpen(false);
     };
 
   return (
@@ -99,9 +136,9 @@ const Nav: React.FC = () => {
         <div id='content'>
           <AppBar position="static" id="tabs">
             <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" className="Tab">
-              <Tab label="Item One" {...a11yProps(0)} />
-              <Tab label="Item Two" {...a11yProps(1)} />
-              <Tab label="Item Three" {...a11yProps(2)} />
+              <Tab label="New" {...a11yProps(0)} />
+              <Tab label="Accepted" {...a11yProps(1)} />
+              <Tab label="Under Checking" {...a11yProps(2)} />
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
@@ -117,52 +154,176 @@ const Nav: React.FC = () => {
                 <tr>
                   <td>1.</td>
                   <td>Maria Anders</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td>
+                    <Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal>
+                    </td>
                 </tr>
                 <tr>
                   <td>2.</td>
                   <td>Christina Berglund</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td>
+                    <Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal>
+                    </td>
                 </tr>
                 <tr>
                   <td>3.</td>
                   <td>Francisco Chang</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td>
                 </tr>
                 <tr>
                   <td>4.</td>
                   <td>Roland Mendel</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td>
                 </tr>
                 <tr>
                   <td>5.</td>
                   <td>Helen Bennett</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td> 
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td> 
                 </tr>
                 <tr>
                   <td>6.</td>
                   <td>Philip Cramer</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td>
                 </tr>
                 <tr>
                   <td>7.</td>
                   <td>Yoshi Tannamuri</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td>
                 </tr>
                 <tr>
                   <td>8.</td>
                   <td>Giovanni Rovelli</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td>
                 </tr>
                 <tr>
                   <td>9.</td>
                   <td>Simon Crowther</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td> 
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td> 
                 </tr>
                 <tr>
                   <td>10.</td>
                   <td>Marie Bertrand</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td>
                 </tr>
               </tbody>
             </table>
@@ -180,27 +341,87 @@ const Nav: React.FC = () => {
                 <tr>
                   <td>1.</td>
                   <td>Simon Crowther</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td>
                 </tr>
                 <tr>
                   <td>2.</td>
                   <td>Giovanni Rovelli</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td>
                 </tr>
                 <tr>
                   <td>3.</td>
                   <td>Francisco Chang</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td>
                 </tr>
                 <tr>
                   <td>4.</td>
                   <td>Roland Mendel</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td>
                 </tr>
                 <tr>
                   <td>5.</td>
                   <td>Helen Bennett</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td> 
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td> 
                 </tr>
               </tbody>
             </table>
@@ -218,17 +439,53 @@ const Nav: React.FC = () => {
                 <tr>
                   <td>1.</td>
                   <td>Roland Mendel</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td>
                 </tr>
                 <tr>
                   <td>2.</td>
                   <td>Francisco Chang</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td>
                 </tr>
                 <tr>
                   <td>3.</td>
                   <td>Francisco Chang</td>
-                  <td><Button variant="contained" className='tabs'>Show</Button></td>
+                  <td><Button type="button" onClick={handleOpen} id="modalBtn">
+                      Show
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Profile />
+                        </div>
+                      </Modal></td>
                 </tr>
               </tbody>
             </table>
