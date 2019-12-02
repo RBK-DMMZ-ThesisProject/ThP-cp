@@ -2,21 +2,55 @@ import React from 'react';
 import './Profile.css';
 import serviceWorker from './serviceWorker.png';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import WorkImg from './WorkImg.jpg';
 import Button from '@material-ui/core/Button';
+import Revise from './Revise';
+import Modal from '@material-ui/core/Modal';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-      flexGrow: 1,
+  root: {
+    flexGrow: 1,
+    maxWidth: 360,
+    backgroundColor: '#c0e2ed',
+    fontSize: '30px',
+    color: '#63b8d4',
+    fontWeight: 'bold',
+    '& > *': {
+      margin: theme.spacing(1),
     },
-  }));
+  },
+  paper: {
+    position: 'absolute',
+    width: 1800,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
+
+function getModalStyle() {
+  const top = 20;
+  const left = 20;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
 
 
 const Profile: React.FC = () => {
-    const classes = useStyles();
+  const classes = useStyles();
+  const [modalStyle] = React.useState(getModalStyle);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div id='main'>
         <div>
@@ -61,8 +95,20 @@ const Profile: React.FC = () => {
               <h2>Work Samples:</h2>
               <img id ='workImg' src={WorkImg}/>
               <div id="footerButtons">
-                <Button variant="contained">Accept</Button>
-                <Button variant="contained">Revise</Button>
+                <Button variant="contained" id="acceptBtn">Accept</Button><span></span>
+                <Button type="button" variant="contained" onClick={handleOpen} id="modalBtn">
+                      Revise
+                    </Button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      >
+                        <div style={modalStyle} className={classes.paper}>
+                          <Revise />
+                        </div>
+                      </Modal>
               </div>
             </div>
           </div>
