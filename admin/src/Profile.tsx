@@ -86,14 +86,14 @@ const Profile: React.FC = () => {
                 </tr>
                 <tr>
                   <td className="Keys">Image:</td>
-                  <td><img id ='serviceWorkerImg' src={serviceWorker}/></td>
+                  <td><img id ='serviceWorkerImg' src={serviceWorker} alt=""/></td>
                 </tr>
               </tbody>
             </table>
             <div className="vl"></div>
             <div id="Sample">
               <h2>Work Samples:</h2>
-              <img id ='workImg' src={WorkImg}/>
+              <img id ='workImg' src={WorkImg} alt=""/>
               <div id="footerButtons">
                 <Button variant="contained" id="acceptBtn">Accept</Button><span></span>
                 <Button type="button" variant="contained" onClick={handleOpen} id="modalBtn">
