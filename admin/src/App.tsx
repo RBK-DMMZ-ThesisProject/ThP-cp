@@ -5,10 +5,10 @@ import SignIn from './SignIn';
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Main />
+      {/* <Main /> */}
       {/* <Nav/> */}
       {/* <Profile /> */}
-      {/* <SignIn/> */}
+      <SignIn/>
     </div>
   );
 }
