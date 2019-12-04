@@ -5,23 +5,29 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import serviceWorker from "./serviceWorker.png";
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
+import $ from "jquery";
+import jwt_decode from "jwt-decode";
+class Copyright extends React.Component {
+  render() {
+    return (
+      <Typography variant="body2" color="textSecondary" align="center">
+        {"Copyright © "}
+        <Link color="inherit" href="https://material-ui.com/">
+          Your Website
+        </Link>{" "}
+        {new Date().getFullYear()}
+        {"."}
+      </Typography>
+    );
+  }
+}
+function test() {
+  console.log("hi here ");
 }
 
 const useStyles = makeStyles(theme => ({
@@ -44,7 +50,18 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignIn() {
   const classes = useStyles();
-
+  var password = "";
+  
+  // function getUser() {
+  //   const token = localStorage.usertoken;
+  //   const decoded = jwt_decode(token);
+  //   console.log(decoded.password);
+  //   if (decoded.password === password) {
+  //     window.open("http://localhost:3003/", "_self");
+  //   } else {
+  //     alert("Wrong password or email");
+  //   }
+  // }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -53,7 +70,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Handy
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={loginFun()}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -86,26 +103,37 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            //onClick={getUser()}
+            //onClick={test()}
           >
-            Sign In
+            Log in
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </div>
       <Box mt={8}>
         <Copyright />
       </Box>
     </Container>
+
   );
+  // function loginFun() {
+  //   //event.preventDefault();
+  //   var data = {
+  //     email: $("#email").val(),
+  //     password: $("#password").val()
+  //   };
+  //   var that = this;
+  //   $.ajax({
+  //     url: "/login",
+  //     type: "POST",
+  //     data: data,
+  //     datatype: "json",
+  //     success: function(res) {
+  //       localStorage.setItem("usertoken", res);
+  //       const decoded = jwt_decode(res);
+
+  //       password = decoded.password;
+  //     }
+  //   });
+  // }
 }
