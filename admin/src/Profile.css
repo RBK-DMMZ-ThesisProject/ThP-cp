@@ -1,0 +1,67 @@
+.Nav1 {
+    background-color: 	#91cde0;
+}
+#title {
+    font-size: 30px;
+    margin-left: 10px;
+}
+#logo {
+    height: 50px;
+    width: 50px;
+}
+#main {
+    background-color: #dff0f6;
+}
+#information {
+    display: grid;
+    grid-template-columns: 70rem 10rem 30rem;
+    grid-template-rows: auto ;
+}
+#name {
+    text-align: left;
+    color: 	#63b8d4;
+}
+table {
+    grid-area: 1 / 1 / span 1 / span 1;
+}
+.vl {
+    border-left: 2px solid gray;
+    height: 500px;
+    grid-area: 1 / 2 / span 1 / span 1;
+}
+#Sample {
+    grid-area: 1 / 3 / span 1 / span 1;
+}
+#workImg {
+    width: 300px;
+    height: 300px;
+}
+td {
+    padding: 15px;
+}
+#serviceWorkerImg {
+    width: 100px;
+    height: 100px;
+}
+.Keys {
+    color: 	#63b8d4;
+    font-weight: bold;
+}
+.values {
+    color: #63b8d4;
+}
+h2 {
+    color: #63b8d4;
+}
+#footerButtons {
+    margin-top: 80px;
+}
+#modalBtn {
+    color: #63b8d4;
+    font-weight: bold;
+}
+#acceptBtn {
+    color: #63b8d4;
+    font-weight: bold;
+    margin-right: 10px;
+}

@@ -1,0 +1,19 @@
+#reviseMain {
+    background-color: #63b8d4;
+}
+#reviseName {
+    text-align: left;
+    color: 	white;
+}
+::placeholder {
+    color: #91cde0;
+    font-size: 2em;
+}
+#btn {
+    border-radius: 8px;
+    background-color: white;
+    color:#63b8d4;
+}
+#textarea {
+    text-align: center;
+}
