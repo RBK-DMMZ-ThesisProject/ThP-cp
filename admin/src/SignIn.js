@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn() {
   const classes = useStyles();
   var password = "";
-  
+
   // function getUser() {
   //   const token = localStorage.usertoken;
   //   const decoded = jwt_decode(token);
@@ -70,7 +70,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Handy
         </Typography>
-        <form className={classes.form} noValidate onSubmit={loginFun()}>
+        <form className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -104,7 +104,7 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
             //onClick={getUser()}
-            //onClick={test()}
+            onClick={loginFun()}
           >
             Log in
           </Button>
@@ -114,26 +114,26 @@ export default function SignIn() {
         <Copyright />
       </Box>
     </Container>
-
   );
-  // function loginFun() {
-  //   //event.preventDefault();
-  //   var data = {
-  //     email: $("#email").val(),
-  //     password: $("#password").val()
-  //   };
-  //   var that = this;
-  //   $.ajax({
-  //     url: "/login",
-  //     type: "POST",
-  //     data: data,
-  //     datatype: "json",
-  //     success: function(res) {
-  //       localStorage.setItem("usertoken", res);
-  //       const decoded = jwt_decode(res);
+  function loginFun() {
+    //event.preventDefault();
+    var data = {
+      email: $("#email").val(),
+      password: $("#password").val()
+    };
 
-  //       password = decoded.password;
-  //     }
-  //   });
-  // }
+    console.log("email adderess", data);
+    $.ajax({
+      url: "/adminlogin",
+      type: "POST",
+      data: data,
+      datatype: "json",
+      success: function(res) {
+        localStorage.setItem("usertoken", res);
+        const decoded = jwt_decode(res);
+
+        password = decoded.password;
+      }
+    });
+  }
 }

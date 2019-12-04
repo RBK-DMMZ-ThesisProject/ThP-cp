@@ -1,6 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
-import Nav from './Nav';
+import Main from './Main.js';
 import './App.css';
 import Profile from './Profile';
 import SignIn from './SignIn';

@@ -1,4 +1,4 @@
-.Nav {
+.Nav1 {
     background-color: 	#91cde0;
 }
 #title {
@@ -55,4 +55,13 @@ h2 {
 }
 #footerButtons {
     margin-top: 80px;
+}
+#modalBtn {
+    color: #63b8d4;
+    font-weight: bold;
+}
+#acceptBtn {
+    color: #63b8d4;
+    font-weight: bold;
+    margin-right: 10px;
 }
