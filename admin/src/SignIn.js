@@ -12,7 +12,7 @@ import $ from "jquery";
 import jwt_decode from "jwt-decode";
 import serviceWorker from "./serviceWorker.png";
 import Main from "./Main.js";
-//const bcrypt = require("bcryptjs");
+
 class LoginForm extends React.Component {
   constructor() {
     super();
@@ -22,9 +22,8 @@ class LoginForm extends React.Component {
       showLogin: true
     };
   }
+  //sending the data (email & password) to the server
   loginFun() {
-    //console.log("here in log");
-    // event.preventDefault();
     var data = {
       email: $("#email").val(),
       password: $("#password").val()
@@ -37,7 +36,6 @@ class LoginForm extends React.Component {
       data: data,
       datatype: "json",
       success: function(res) {
-        //console.log("this is data  success", res);
         localStorage.setItem("usertoken", res);
         const decoded = jwt_decode(res);
         that.setState({
@@ -47,12 +45,12 @@ class LoginForm extends React.Component {
       }
     });
   }
+  //render the admin panel components
   getUser() {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
     console.log(decoded.email);
     if (decoded.password === this.state.password) {
-      //window.open("https://mail.google.com/mail/u/0/?tab=rm&ogbl", "_self");
       this.setState({
         showMain: true,
         showLogin: false
