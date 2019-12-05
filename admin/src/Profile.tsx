@@ -40,7 +40,11 @@ function getModalStyle() {
   };
 }
 
+<<<<<<< HEAD
+
+=======
 //Profile modal (when you click on show button from profiles list)
+>>>>>>> afac32b26b6eca8a38078f099c1e36b970e6514d
 const Profile: React.FC = () => {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
