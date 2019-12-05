@@ -66,3 +66,9 @@
     color: #63b8d4;
     font-weight: bold;
 }
+#addAdmin {
+    color: white;
+    font-weight: bold;
+    background-color: #63b8d4;
+    margin-top: 80px;
+}
