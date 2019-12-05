@@ -122,7 +122,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function ListItemLink(props) {
-  console.log(props)
   return <ListItem button component="a" {...props} />;
 }
 
@@ -374,12 +373,11 @@ const Main = () => {
   </div>
   )
   }
+  
   const url = window.location.href.substring(7);
-  console.log(url)
   var index = url.indexOf('/');
-  console.log(index)
   var listPath = url.substring(index + 1);
-  console.log(listPath)
+
   const users = () => {
     return (
       <div>
