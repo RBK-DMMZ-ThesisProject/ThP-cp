@@ -55,6 +55,7 @@ router.get("/acceptedProfils", (req, res) => {
     res.json(nameArr);
   });
 });
+
 //Api that gets the profil from the ServiceProvider table
 router.get("/profil", (req, res) => {
   db.ServiceProvider.find({ id: req.body.data }).then(profil => {
@@ -72,6 +73,7 @@ router.post("/updateState", (req, res) => {
     res.json(profile);
   });
 });
+
 //Api that updates the ProfileNotes in the  ServiceProvider
 router.post("/updateProfileNotes", (req, res) => {
   console.log(req.body.id);
@@ -83,7 +85,12 @@ router.post("/updateProfileNotes", (req, res) => {
   });
 });
 
-// //API for the log in authintecation
+//Api that adds a new profile the  ServiceProvider table
+router.post("/addNewProfile", (req, res) => {
+  db.ServiceProvider.saveNewProfile(req.body);
+});
+
+//API for the log in authintecation
 router.post("/adminLogin", (req, res) => {
   db.Admin.findOne({
     email: req.body.email

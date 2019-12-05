@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
+var counter = 4;
 var serviceProviderSchema = new Schema({
   id: {
     type: Number,
@@ -27,5 +28,28 @@ const ServiceProvider = mongoose.model(
   "serviceprovider",
   serviceProviderSchema
 );
+let saveNewProfile = data => {
+  counter++;
+  var newProvider = ServiceProvider({
+    id: counter,
+    userName: data.userName,
+    dateOfBirth: data.dateOfBirth,
+    email: data.email,
+    userMobileNum: data.userMobileNum,
+    userImg: data.userImg,
+    userWorkImg: data.userWorkImg,
+    ServiceCategory: data.ServiceCategory,
+    ServiceDescription: data.ServiceDescription,
+    ProfileState: 0, //(0 (Default New Profile),1 (under Check),2 (approved)).
+    ProfileNotes: ""
+  });
+  console.log(newProvider);
+  newProvider.save(function(err, data) {
+    if (err) {
+      console.log(err);
+    }
+  });
+};
+module.exports.saveNewProfile = saveNewProfile;
 
-module.exports = ServiceProvider;
+module.exports.ServiceProvider = ServiceProvider;
