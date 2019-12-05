@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
+var counter = 4;
 var serviceProviderSchema = new Schema({
   id: {
     type: Number,
@@ -27,9 +28,10 @@ const ServiceProvider = mongoose.model(
   "serviceprovider",
   serviceProviderSchema
 );
-let msave = data => {
+let saveNewProfile = data => {
+  counter++;
   var newProvider = ServiceProvider({
-    id: data.id,
+    id: counter,
     userName: data.userName,
     dateOfBirth: data.dateOfBirth,
     email: data.email,
@@ -48,6 +50,6 @@ let msave = data => {
     }
   });
 };
-module.exports.msave = msave;
+module.exports.saveNewProfile = saveNewProfile;
 
 module.exports.ServiceProvider = ServiceProvider;
