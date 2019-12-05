@@ -1,7 +1,7 @@
-import React from 'react';
-import Main from './Main.js';
-import './App.css';
-import SignIn from './SignIn';
+import React from "react";
+import Main from "./Main.js";
+import "./App.css";
+//import SignIn from './SignIn';
 const App: React.FC = () => {
   return (
     <div className="App">
@@ -11,6 +11,6 @@ const App: React.FC = () => {
       {/* <SignIn/> */}
     </div>
   );
-}
+};
 
 export default App;

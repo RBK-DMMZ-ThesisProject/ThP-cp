@@ -83,6 +83,11 @@ router.post("/updateProfileNotes", (req, res) => {
   });
 });
 
+//Api that adds a new profile the  ServiceProvider table
+router.post("/addNewProfile", (req, res) => {
+  db.ServiceProvider.msave(req.body);
+});
+
 // //API for the log in authintecation
 router.post("/adminLogin", (req, res) => {
   db.Admin.findOne({
