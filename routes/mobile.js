@@ -5,7 +5,7 @@ const cors = require("cors");
 mRouter.use(cors());
 //Api that adds a new profile the  ServiceProvider table
 mRouter.post("/addNewProfile", (req, res) => {
-    console.log({ msg: "hello" })
+    res.json({ msg: "hello" })
     //  db.saveNewProfile(req.body);
     // res.json(req.body);
 });
