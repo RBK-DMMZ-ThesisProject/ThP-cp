@@ -13,7 +13,7 @@ var serviceProviderSchema = new Schema({
   email: String,
   userMobileNum: String,
   userImg: String,
-  userWorkImg: [],
+  userWorkImg: Array,
   ServiceCategory: String,
   ServiceDescription: String,
   ProfileState: Number, //(0 (Default New Profile),1 (under Check),2 (approved)).
@@ -30,26 +30,26 @@ const ServiceProvider = mongoose.model(
 );
 let saveNewProfile = data => {
   counter++;
-  var newProvider = ServiceProvider({
+  var newProvider = new ServiceProvider({
     id: counter,
     userName: data.userName,
     dateOfBirth: data.dateOfBirth,
     email: data.email,
     userMobileNum: data.userMobileNum,
     userImg: data.userImg,
-    userWorkImg: data.userWorkImg,
+    userWorkImg: [data.userWorkImg],
     ServiceCategory: data.ServiceCategory,
     ServiceDescription: data.ServiceDescription,
     ProfileState: 0, //(0 (Default New Profile),1 (under Check),2 (approved)).
     ProfileNotes: ""
   });
   console.log(newProvider);
-  newProvider.save(function(err, data) {
+  newProvider.save(function (err, data) {
     if (err) {
-      console.log(err);
+      console.log('error saving', err);
     }
+    console.log('profile saved in db', data);
   });
 };
 module.exports.saveNewProfile = saveNewProfile;
-
 module.exports.ServiceProvider = ServiceProvider;
