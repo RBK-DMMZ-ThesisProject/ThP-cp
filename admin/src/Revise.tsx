@@ -4,6 +4,7 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Button from '@material-ui/core/Button';
 
 
+//Revise modal (when you click on Revise button in profile Modal)
 const Revise: React.FC = () => {
   return (
     <div id='reviseMain'>

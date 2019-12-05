@@ -1,3 +1,5 @@
+//This file is typescript version from Main.js file.
+
 import React from 'react';
 import './Nav.css';
 import $ from 'jquery';
@@ -105,6 +107,8 @@ function ListItemLink(props : any) {
 }
 
 
+
+//Main page for control panel (profiles section in sidebar list)
 const Nav: React.FC = () => {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);

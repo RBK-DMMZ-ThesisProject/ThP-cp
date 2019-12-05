@@ -15,6 +15,8 @@ import Box from "@material-ui/core/Box";
 import Modal from "@material-ui/core/Modal";
 import Profile from "./Profile";
 
+
+//Fetching new profiles added
 $.ajax({
   type: "GET",
   url: "/newprofils",
@@ -27,6 +29,8 @@ $.ajax({
   }
 });
 
+
+//Fetching profiles been under checking 
 $.ajax({
   type: "GET",
   url: "/profils",
@@ -39,6 +43,7 @@ $.ajax({
   }
 });
 
+//Fetching accepted profiles
 $.ajax({
   type: "GET",
   url: "/acceptedProfils",
@@ -62,6 +67,8 @@ function getModalStyle() {
   };
 }
 
+
+//Tabs in the control panel 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -114,6 +121,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+//Main page for control panel (profiles section in sidebar list)
 const Main = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -388,4 +396,3 @@ const Main = () => {
 };
 
 export default Main;
-//
