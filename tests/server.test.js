@@ -8,4 +8,3 @@ it("gets the test endpoint", async done => {
   expect(response.body.message).toBe("pass!");
   done();
 });
-//
