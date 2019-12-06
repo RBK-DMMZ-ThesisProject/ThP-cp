@@ -15,7 +15,7 @@ module.exports = {
   CustomerReviews: require("./models/customerReviews"),
   Customers: require("./models/customers"),
   Msges: require("./models/msges"),
-  ServiceProvider: require("./models/serviceProvider"),
+  ServiceProvider: require("./models/serviceProvider").ServiceProvider,
   SpHires: require("./models/spHires"),
   Favorites: require("./models/favorites")
 };

@@ -107,6 +107,10 @@ function ListItemLink(props : any) {
 }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature/deploying
 
 //Main page for control panel (profiles section in sidebar list)
 const Nav: React.FC = () => {
