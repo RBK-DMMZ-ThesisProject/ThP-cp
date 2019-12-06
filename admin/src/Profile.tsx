@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import './Profile.css';
 import serviceWorker from './serviceWorker.png';
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,6 +6,7 @@ import WorkImg from './WorkImg.jpg';
 import Button from '@material-ui/core/Button';
 import Revise from './Revise';
 import Modal from '@material-ui/core/Modal';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,16 +42,32 @@ function getModalStyle() {
 }
 
 //Profile modal (when you click on show button from profiles list)
-const Profile: React.FC = () => {
+const Profile: React.FC = (id : ) => {
   const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
+  const [modalStyle] = useState(getModalStyle);
+  const [open, setOpen] = useState(false);
+  const [profile, setProfile] = useState({});
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+  useEffect(() => {
+    axios
+    .get(
+      "profil", {
+        params: {
+          data: id
+        }
+      }
+    )
+    .then(({ profile : any }) => {
+      setProfile(profile[0]);
+    });
+  } , []);
+
+
   return (
     <div id='main'>
         <div>

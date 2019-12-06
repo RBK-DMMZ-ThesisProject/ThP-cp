@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Nav.css";
-import $ from "jquery";
 import serviceWorker from "./serviceWorker.png";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -14,47 +13,7 @@ import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import Modal from "@material-ui/core/Modal";
 import Profile from "./Profile";
-
-
-//Fetching new profiles added
-$.ajax({
-  type: "GET",
-  url: "/newprofils",
-  datatype: JSON,
-  success: function(data) {
-    console.log(data, "NewProfiles");
-  },
-  error: function(request, status, error) {
-    console.log(error);
-  }
-});
-
-
-//Fetching profiles been under checking 
-$.ajax({
-  type: "GET",
-  url: "/profils",
-  datatype: JSON,
-  success: function(data) {
-    console.log(data, "UnderChecked Profiles");
-  },
-  error: function(request, status, error) {
-    console.log(error);
-  }
-});
-
-//Fetching accepted profiles
-$.ajax({
-  type: "GET",
-  url: "/acceptedProfils",
-  datatype: JSON,
-  success: function(data) {
-    console.log(data, "Accepted Profiles");
-  },
-  error: function(request, status, error) {
-    console.log(error);
-  }
-});
+import axios from 'axios';
 
 function getModalStyle() {
   const top = 20;
@@ -85,12 +44,6 @@ function TabPanel(props) {
     </Typography>
   );
 }
-
-// TabPanel.propTypes = {
-//   children: PropTypes.node,
-//   index: PropTypes.any.isRequired,
-//   value: PropTypes.any.isRequired,
-// };
 
 function a11yProps(index) {
   return {
@@ -126,16 +79,22 @@ function ListItemLink(props) {
 }
 
 
+
 //Main page for control panel (profiles section in sidebar list)
 const Main = () => {
+
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [newProfiles, setNewProfiles] = useState([]);
+  const [acceptedProfiles, setAcceptedProfiles] = useState([]);
+  const [underCheckProfiles, setUnderCheckProfiles] = useState([]);
+  const [admins, setAdmins] = useState([]);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
+  const [modalStyle] = useState(getModalStyle);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -144,6 +103,39 @@ const Main = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+  axios
+  .get(
+    "newprofils"
+  )
+  .then(({ data }) => {
+    setNewProfiles(data);
+  });
+  axios
+  .get(
+    "acceptedProfils"
+  )
+  .then(({ data }) => {
+    setAcceptedProfiles(data);
+  });
+  axios
+  .get(
+    "profils"
+  )
+  .then(({ data }) => {
+    setUnderCheckProfiles(data);
+  });
+  axios
+  .get(
+    "admins"
+  )
+  .then(({ data }) => {
+    setAdmins(data);
+  });
+} , []);
+
+
   const profiles = () => {
     return (
       <div>
@@ -169,9 +161,9 @@ const Main = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1.</td>
-          <td>Maria Anders</td>
+      {newProfiles.map((newProfile, index) => <tr key={index}>
+          <td>{index + 1}</td>
+          <td>{newProfile.userName}</td>
           <td>
             <Button type="button" onClick={handleOpen} id="modalBtn">
               Show
@@ -183,11 +175,11 @@ const Main = () => {
               onClose={handleClose}
             >
               <div style={modalStyle} className={classes.paper}>
-                <Profile />
+                <Profile id={newProfile.id}/>
               </div>
             </Modal>
           </td>
-        </tr>
+        </tr>)}
       </tbody>
     </table>
   </TabPanel>
@@ -202,101 +194,25 @@ const Main = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1.</td>
-          <td>Simon Crowther</td>
-          <td>
-            <Button type="button" onClick={handleOpen} id="modalBtn">
-              Show
-            </Button>
-            <Modal
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              open={open}
-              onClose={handleClose}
-            >
-              <div style={modalStyle} className={classes.paper}>
-                <Profile />
-              </div>
-            </Modal>
-          </td>
-        </tr>
-        <tr>
-          <td>2.</td>
-          <td>Giovanni Rovelli</td>
-          <td>
-            <Button type="button" onClick={handleOpen} id="modalBtn">
-              Show
-            </Button>
-            <Modal
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              open={open}
-              onClose={handleClose}
-            >
-              <div style={modalStyle} className={classes.paper}>
-                <Profile />
-              </div>
-            </Modal>
-          </td>
-        </tr>
-        <tr>
-          <td>3.</td>
-          <td>Francisco Chang</td>
-          <td>
-            <Button type="button" onClick={handleOpen} id="modalBtn">
-              Show
-            </Button>
-            <Modal
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              open={open}
-              onClose={handleClose}
-            >
-              <div style={modalStyle} className={classes.paper}>
-                <Profile />
-              </div>
-            </Modal>
-          </td>
-        </tr>
-        <tr>
-          <td>4.</td>
-          <td>Roland Mendel</td>
-          <td>
-            <Button type="button" onClick={handleOpen} id="modalBtn">
-              Show
-            </Button>
-            <Modal
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              open={open}
-              onClose={handleClose}
-            >
-              <div style={modalStyle} className={classes.paper}>
-                <Profile />
-              </div>
-            </Modal>
-          </td>
-        </tr>
-        <tr>
-          <td>5.</td>
-          <td>Helen Bennett</td>
-          <td>
-            <Button type="button" onClick={handleOpen} id="modalBtn">
-              Show
-            </Button>
-            <Modal
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              open={open}
-              onClose={handleClose}
-            >
-              <div style={modalStyle} className={classes.paper}>
-                <Profile />
-              </div>
-            </Modal>
-          </td>
-        </tr>
+      {acceptedProfiles.map((acceptedProfile, index) => <tr key={index}>
+        <td>{index + 1}</td>
+        <td>{acceptedProfile.userName}</td>
+        <td>
+          <Button type="button" onClick={handleOpen} id="modalBtn">
+            Show
+          </Button>
+          <Modal
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={open}
+            onClose={handleClose}
+          >
+            <div style={modalStyle} className={classes.paper}>
+              <Profile />
+            </div>
+          </Modal>
+        </td>
+      </tr>)}
       </tbody>
     </table>
   </TabPanel>
@@ -310,9 +226,9 @@ const Main = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1.</td>
-          <td>Roland Mendel</td>
+      {underCheckProfiles.map((underCheckProfile, index) => <tr key={index}>
+          <td>{index + 1}</td>
+          <td>{underCheckProfile.userName}</td>
           <td>
             <Button type="button" onClick={handleOpen} id="modalBtn">
               Show
@@ -328,51 +244,14 @@ const Main = () => {
               </div>
             </Modal>
           </td>
-        </tr>
-        <tr>
-          <td>2.</td>
-          <td>Francisco Chang</td>
-          <td>
-            <Button type="button" onClick={handleOpen} id="modalBtn">
-              Show
-            </Button>
-            <Modal
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              open={open}
-              onClose={handleClose}
-            >
-              <div style={modalStyle} className={classes.paper}>
-                <Profile />
-              </div>
-            </Modal>
-          </td>
-        </tr>
-        <tr>
-          <td>3.</td>
-          <td>Francisco Chang</td>
-          <td>
-            <Button type="button" onClick={handleOpen} id="modalBtn">
-              Show
-            </Button>
-            <Modal
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              open={open}
-              onClose={handleClose}
-            >
-              <div style={modalStyle} className={classes.paper}>
-                <Profile />
-              </div>
-            </Modal>
-          </td>
-        </tr>
+        </tr>)}
       </tbody>
     </table>
   </TabPanel>
   </div>
   )
   }
+
   
   const url = window.location.href.substring(7);
   var index = url.indexOf('/');
@@ -390,31 +269,22 @@ const Main = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1.</td>
-            <td>Roland Mendel</td>
-            <td>
-              <Button type="button" onClick={handleOpen} id="modalBtn">
-                switch
-              </Button>
-            </td>
-          </tr>
-          <tr>
-            <td>2.</td>
-            <td>Francisco Chang</td>
-            <td>
-              <Button type="button" onClick={handleOpen} id="modalBtn">
-                switch
-              </Button>
-            </td>
-          </tr>
+        {admins.map((admin, index) => <tr key={index}>
+          <td>{index + 1}</td>
+          <td>{admin.adminName}</td>
+          <td>
+            <Button type="button" onClick={handleOpen} id="modalBtn">
+              Switch
+            </Button>
+          </td>
+        </tr>)}
         </tbody>
       </table>
       <Button id="addAdmin">ADD</Button>
     </div>
     )
-  }
-  if(listPath === 'profiles') {
+  };
+  if(listPath === 'profiles' || listPath === '') {
     return (
       <div id="main">
         <div className={classes.root}>
@@ -490,5 +360,6 @@ const Main = () => {
   }
 
 };
+
 
 export default Main;

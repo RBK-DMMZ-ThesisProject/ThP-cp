@@ -59,6 +59,7 @@ router.get("/acceptedProfils", (req, res) => {
 //Api that gets the profil from the ServiceProvider table
 router.get("/profil", (req, res) => {
   db.ServiceProvider.find({ id: req.body.data }).then(profil => {
+    console.log(req.body.data)
     res.json(profil);
   });
 });
@@ -116,6 +117,20 @@ router.post("/adminLogin", (req, res) => {
       }
     })
     .catch("error");
+});
+
+//Api that get admins profiles
+router.get("/admins", (req, res) => {
+  db.Admin.find({}).then(profils => {
+    var nameArr = [];
+    for (var i = 0; i < profils.length; i++) {
+      var temp = {
+        adminName: profils[i].adminName,
+      };
+      nameArr.push(temp);
+    }
+    res.json(nameArr);
+  });
 });
 
 // //Api that gits all the information from the favorites table dependding on the data sent
