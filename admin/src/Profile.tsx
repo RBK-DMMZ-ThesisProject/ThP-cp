@@ -43,13 +43,9 @@ function getModalStyle() {
 }
 
 //Profile modal (when you click on show button from profiles list)
-<<<<<<< HEAD
-const Profile: React.FC = () => {
-=======
 
 const Profile: React.FC = (props:any) => {
   console.log('properties of a profile',props.pid)
->>>>>>> feature/deploying
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
