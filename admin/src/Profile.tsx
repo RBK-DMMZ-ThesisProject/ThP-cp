@@ -136,20 +136,20 @@ const Profile: React.FC = (props:any) => {
                 <Button type="button" variant="contained" onClick={handleOpen} id="modalBtn">
                       Revise
                     </Button>
-                    <Modal
-                      aria-labelledby="simple-modal-title"
-                      aria-describedby="simple-modal-description"
-                      open={open}
-                      onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Revise />
-                        </div>
-                      </Modal>
-              </div>
+              <Modal
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+                open={open}
+                onClose={handleClose}
+              >
+                <div style={modalStyle} className={classes.paper}>
+                  <Revise />
+                </div>
+              </Modal>
             </div>
           </div>
         </div>
+      </div>
     </div>
   );
 }

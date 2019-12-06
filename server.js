@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 app.use(express.static(__dirname + "/"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use('/mobileApi ', require("./routes/mobile.js"));
 app.use(require("./routes"));
 
 const PORT = process.env.PORT || 8000;
@@ -17,7 +18,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('admin/build'));
   const path = require('path');
   app.get('*', (req, res) => {
-      res.sendFile(path.resolve(__dirname, 'admin', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'admin', 'build', 'index.html'));
   })
 }
 

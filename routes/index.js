@@ -11,7 +11,7 @@ router.get("/test", async (req, res) => {
   res.json({ message: "pass!" });
 });
 
-//Api that gets all the newprofils from the ServiceProvider table
+//Api that gets all the new profils from the ServiceProvider table
 router.get("/newprofils", (req, res) => {
   db.ServiceProvider.find({ ProfileState: 0 }).then(newprofils => {
     var nameArr = [];
@@ -84,11 +84,6 @@ router.post("/updateProfileNotes", (req, res) => {
   ).then(profile => {
     res.json(profile);
   });
-});
-
-//Api that adds a new profile the  ServiceProvider table
-router.post("/addNewProfile", (req, res) => {
-  db.ServiceProvider.saveNewProfile(req.body);
 });
 
 //API for the log in authintecation
