@@ -1,7 +1,6 @@
 
 //This file is typescript version from Main.js file.
 
-//This file is typescript version from Main.js file.
 import React from 'react';
 import './Nav.css';
 import $ from 'jquery';
@@ -49,7 +48,7 @@ function getModalStyle() {
 }
 
 
-function TabPanel(props : any) {
+function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -72,7 +71,7 @@ function TabPanel(props : any) {
 //   value: PropTypes.any.isRequired,
 // };
 
-function a11yProps(index : any) {
+function a11yProps(index: any) {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
@@ -82,75 +81,79 @@ function a11yProps(index : any) {
 
 
 const useStyles = makeStyles(theme => ({
-    root: {
-      flexGrow: 1,
-      maxWidth: 360,
-      backgroundColor: '#c0e2ed',
-      fontSize: '30px',
-      color: '#63b8d4',
-      fontWeight: 'bold',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
+  root: {
+    flexGrow: 1,
+    maxWidth: 360,
+    backgroundColor: '#c0e2ed',
+    fontSize: '30px',
+    color: '#63b8d4',
+    fontWeight: 'bold',
+    '& > *': {
+      margin: theme.spacing(1),
     },
-    paper: {
-      position: 'absolute',
-      width: 1800,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
-  }));
+  },
+  paper: {
+    position: 'absolute',
+    width: 1800,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 
 
-function ListItemLink(props : any) {
+function ListItemLink(props: any) {
   return <ListItem button component="a" {...props} />;
 }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a8115824ed71f294a485360930643090d876a2df
 
 //Main page for control panel (profiles section in sidebar list)
 const Nav: React.FC = () => {
-    const classes = useStyles();
-    const [value, setValue] = React.useState(0);
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
 
-    const handleChange = (event : any, newValue : any) => {
-      setValue(newValue);
-    };
-    const [modalStyle] = React.useState(getModalStyle);
-    const [open, setOpen] = React.useState(false);
+  const handleChange = (event: any, newValue: any) => {
+    setValue(newValue);
+  };
+  const [modalStyle] = React.useState(getModalStyle);
+  const [open, setOpen] = React.useState(false);
 
-    const handleOpen = () => {
-      setOpen(true);
-    };
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
-    const handleClose = () => {
-      setOpen(false);
-    };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div id='main'>
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar className='Nav'>
-            <img id ='logo' src={serviceWorker}/>
+            <img id='logo' src={serviceWorker} />
             <Typography id='title'>
               Control Panel
             </Typography>
           </Toolbar>
         </AppBar>
-        </div>
-        <div id="main">
-          <div className={classes.root} id="list">
-            <List component="nav" aria-label="main mailbox folders" className="listText">
-              <ListItem button className="listItem">
-                <h5>Profiles</h5>
-              </ListItem>
-              <ListItem button className="listItem">
-                <h5>Users</h5>
-              </ListItem>
-            </List>
+      </div>
+      <div id="main">
+        <div className={classes.root} id="list">
+          <List component="nav" aria-label="main mailbox folders" className="listText">
+            <ListItem button className="listItem">
+              <h5>Profiles</h5>
+            </ListItem>
+            <ListItem button className="listItem">
+              <h5>Users</h5>
+            </ListItem>
+          </List>
         </div>
         <div id='content'>
           <AppBar position="static" id="tabs">
@@ -182,12 +185,12 @@ const Nav: React.FC = () => {
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal>
-                    </td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal>
+                  </td>
                 </tr>
                 <tr>
                   <td>2.</td>
@@ -201,154 +204,154 @@ const Nav: React.FC = () => {
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal>
-                    </td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal>
+                  </td>
                 </tr>
                 <tr>
                   <td>3.</td>
                   <td>Francisco Chang</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
                 <tr>
                   <td>4.</td>
                   <td>Roland Mendel</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
                 <tr>
                   <td>5.</td>
                   <td>Helen Bennett</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td> 
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
                 <tr>
                   <td>6.</td>
                   <td>Philip Cramer</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
                 <tr>
                   <td>7.</td>
                   <td>Yoshi Tannamuri</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
                 <tr>
                   <td>8.</td>
                   <td>Giovanni Rovelli</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
                 <tr>
                   <td>9.</td>
                   <td>Simon Crowther</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td> 
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
                 <tr>
                   <td>10.</td>
                   <td>Marie Bertrand</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
               </tbody>
             </table>
           </TabPanel>
           <TabPanel value={value} index={1}>
-          <table id="profiles">
+            <table id="profiles">
               <thead>
                 <tr>
                   <th>No.</th>
@@ -361,92 +364,92 @@ const Nav: React.FC = () => {
                   <td>1.</td>
                   <td>Simon Crowther</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
                 <tr>
                   <td>2.</td>
                   <td>Giovanni Rovelli</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
                 <tr>
                   <td>3.</td>
                   <td>Francisco Chang</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
                 <tr>
                   <td>4.</td>
                   <td>Roland Mendel</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
                 <tr>
                   <td>5.</td>
                   <td>Helen Bennett</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td> 
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
               </tbody>
             </table>
           </TabPanel>
           <TabPanel value={value} index={2}>
-          <table id="profiles">
+            <table id="profiles">
               <thead>
                 <tr>
                   <th>No.</th>
@@ -459,52 +462,52 @@ const Nav: React.FC = () => {
                   <td>1.</td>
                   <td>Roland Mendel</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
                 <tr>
                   <td>2.</td>
                   <td>Francisco Chang</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
                 <tr>
                   <td>3.</td>
                   <td>Francisco Chang</td>
                   <td><Button type="button" onClick={handleOpen} id="modalBtn">
-                      Show
+                    Show
                     </Button>
                     <Modal
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                       open={open}
                       onClose={handleClose}
-                      >
-                        <div style={modalStyle} className={classes.paper}>
-                          <Profile />
-                        </div>
-                      </Modal></td>
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <Profile />
+                      </div>
+                    </Modal></td>
                 </tr>
               </tbody>
             </table>

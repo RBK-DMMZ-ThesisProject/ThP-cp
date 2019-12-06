@@ -4,6 +4,10 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Button from '@material-ui/core/Button';
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> f467ffa12c1872bf9f821089222803d43545267b
 //Revise modal (when you click on Revise button in profile Modal)
 const Revise: React.FC = () => {
   return (
@@ -11,7 +15,7 @@ const Revise: React.FC = () => {
       <h1 id='reviseName'>Reason For Revision</h1>
       <hr></hr>
       <div id="textareaDiv">
-        <TextareaAutosize aria-label="minimum height" rows={30} cols={100} placeholder="Write a reason for this to be sent to revision..."/>
+        <TextareaAutosize aria-label="minimum height" rows={30} cols={100} placeholder="Write a reason for this to be sent to revision..." />
         <br></br>
         <Button variant="contained" id="btn">OK</Button>
       </div>
