@@ -9,9 +9,10 @@ const bodyParser = require("body-parser");
 // app.use(express.static(__dirname + "/"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.post('/mobileApi/addNewProfile', (req, res) => {
-//   res.status(200).json({ msg: "hello mobile" });
-// })
+app.post('/mobileApi/addNewProfile', (req, res) => {
+
+  res.status(200).json(req.body);
+})
 app.use('/mobileApi ', require("./routes/mobile.js"));
 app.use(require("./routes"));
 
