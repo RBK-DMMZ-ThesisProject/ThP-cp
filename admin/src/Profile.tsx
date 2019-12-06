@@ -42,11 +42,11 @@ function getModalStyle() {
 }
 
 //Profile modal (when you click on show button from profiles list)
-const Profile: React.FC = (id : ) => {
+const Profile: React.FC = (id) => {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState([]);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -56,14 +56,15 @@ const Profile: React.FC = (id : ) => {
   useEffect(() => {
     axios
     .get(
-      "profil", {
-        params: {
-          data: id
-        }
-      }
+      "profil"
+      //, {
+        // params: {
+        //   id: id
+        // }
+      //}
     )
-    .then(({ profile : any }) => {
-      setProfile(profile[0]);
+    .then(( profile : any ) => {
+      setProfile(profile);
     });
   } , []);
 

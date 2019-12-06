@@ -58,8 +58,8 @@ router.get("/acceptedProfils", (req, res) => {
 
 //Api that gets the profil from the ServiceProvider table
 router.get("/profil", (req, res) => {
-  db.ServiceProvider.find({ id: req.body.data }).then(profil => {
-    console.log(req.body.data)
+  console.log("Hi")
+  db.ServiceProvider.find({}).then(profil => {
     res.json(profil);
   });
 });
