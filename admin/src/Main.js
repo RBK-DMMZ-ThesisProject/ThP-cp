@@ -88,6 +88,7 @@ const Main = () => {
   const [acceptedProfiles, setAcceptedProfiles] = useState([]);
   const [underCheckProfiles, setUnderCheckProfiles] = useState([]);
   const [admins, setAdmins] = useState([]);
+  const [profile, setProfile] = useState(null);
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -96,9 +97,11 @@ const Main = () => {
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => {
+  const handleOpen = (id) => {
+    setProfile(<Profile pid = {id}></Profile>)
     setOpen(true);
   };
+
 
   const handleClose = () => {
     setOpen(false);
@@ -161,27 +164,19 @@ const Main = () => {
         </tr>
       </thead>
       <tbody>
-      {newProfiles.map((newProfile, index) => <tr key={index}>
+      {newProfiles.map((newProfile, index) => 
+      {return (<tr key={index}>
           <td>{index + 1}</td>
           <td>{newProfile.userName}</td>
           <td>
-            <Button type="button" onClick={handleOpen} id="modalBtn">
+            <Button type="button" onClick={()=>handleOpen(newProfile.id)} id="modalBtn">
               Show
             </Button>
-            <Modal
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              open={open}
-              onClose={handleClose}
-            >
-              <div style={modalStyle} className={classes.paper}>
-                <Profile id={newProfile.id}/>
-              </div>
-            </Modal>
           </td>
-        </tr>)}
+      </tr>)})}
       </tbody>
     </table>
+   
   </TabPanel>
 
   <TabPanel value={value} index={1}>
@@ -198,19 +193,10 @@ const Main = () => {
         <td>{index + 1}</td>
         <td>{acceptedProfile.userName}</td>
         <td>
-          <Button type="button" onClick={handleOpen} id="modalBtn">
+          <Button type="button" onClick={()=>handleOpen(acceptedProfile.id)} id="modalBtn">
             Show
           </Button>
-          <Modal
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-            open={open}
-            onClose={handleClose}
-          >
-            <div style={modalStyle} className={classes.paper}>
-              <Profile />
-            </div>
-          </Modal>
+         
         </td>
       </tr>)}
       </tbody>
@@ -230,24 +216,25 @@ const Main = () => {
           <td>{index + 1}</td>
           <td>{underCheckProfile.userName}</td>
           <td>
-            <Button type="button" onClick={handleOpen} id="modalBtn">
+            <Button type="button" onClick={()=>handleOpen(underCheckProfile.id)} id="modalBtn">
               Show
             </Button>
-            <Modal
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              open={open}
-              onClose={handleClose}
-            >
-              <div style={modalStyle} className={classes.paper}>
-                <Profile />
-              </div>
-            </Modal>
+           
           </td>
         </tr>)}
       </tbody>
     </table>
   </TabPanel>
+  <Modal
+    aria-labelledby="simple-modal-title"
+    aria-describedby="simple-modal-description"
+    open={open}
+    onClose={handleClose}
+  >
+    <div style={modalStyle} className={classes.paper}>
+      {profile}
+    </div>
+  </Modal>
   </div>
   )
   }
