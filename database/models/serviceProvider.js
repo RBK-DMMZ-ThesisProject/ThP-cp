@@ -32,14 +32,14 @@ let saveNewProfile = data => {
   counter++;
   var newProvider = new ServiceProvider({
     id: counter,
-    userName: data.userName,
-    dateOfBirth: data.dateOfBirth,
+    userName: data.firstName + " " + data.familyName,
+    dateOfBirth: new Date(data.birthdate),
     email: data.email,
-    userMobileNum: data.userMobileNum,
-    userImg: data.userImg,
-    userWorkImg: [data.userWorkImg],
-    ServiceCategory: data.ServiceCategory,
-    ServiceDescription: data.ServiceDescription,
+    userMobileNum: data.phoneNum,
+    userImg: data.avatarSource,
+    userWorkImg: [data.sampleWorkImg],
+    ServiceCategory: data.category,
+    ServiceDescription: data.serverDesription,
     ProfileState: 0, //(0 (Default New Profile),1 (under Check),2 (approved)).
     ProfileNotes: ""
   });

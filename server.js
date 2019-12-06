@@ -10,7 +10,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.post('/mobileApi/addNewProfile', (req, res) => {
-  // db.saveNewProfile(req.body);
+  db.saveNewProfile(req.body);
   res.status(200).json(req.body);
 })
 app.use('/mobileApi ', require("./routes/mobile.js"));
