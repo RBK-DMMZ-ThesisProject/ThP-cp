@@ -53,6 +53,16 @@ const Profile: React.FC = (props:any) => {
   const handleOpen = () => {
     setOpen(true);
   };
+  const handleAccept = () => {
+    axios.post('updateState', {
+      id: props.pid
+    })
+    .then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
+  }
   const handleClose = () => {
     setOpen(false);
   };
@@ -122,7 +132,7 @@ const Profile: React.FC = (props:any) => {
               <h2>Work Samples:</h2>
               {profile.data[0].userWorkImg.map(image => {return (<img id ='workImg' src={image} alt=""/>)})}
               <div id="footerButtons">
-                <Button variant="contained" id="acceptBtn">Accept</Button><span></span>
+                <Button variant="contained" id="acceptBtn" onClick={()=>handleAccept()}>Accept</Button><span></span>
                 <Button type="button" variant="contained" onClick={handleOpen} id="modalBtn">
                       Revise
                     </Button>
