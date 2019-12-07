@@ -342,7 +342,7 @@ const Main = () => {
   } else if (listPath === 'users' ) {
     return users();
   }
- return profiles();;
+ return null;
 };
 
 
