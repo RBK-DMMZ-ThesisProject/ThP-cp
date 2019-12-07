@@ -15,6 +15,7 @@ import Modal from "@material-ui/core/Modal";
 import Profile from "./Profile";
 import axios from 'axios';
 
+
 function getModalStyle() {
   const top = 20;
   const left = 20;
@@ -141,7 +142,36 @@ const Main = () => {
 
   const profiles = () => {
     return (
-      <div>
+      <div id="main">
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Toolbar className="Nav">
+              <img id="logo" src={serviceWorker} alt="" />
+              <Typography id="title">Control Panel</Typography>
+            </Toolbar>
+          </AppBar>
+        </div>
+        <div id="main">
+          <div className={classes.root} id="list">
+            <List
+              component="nav"
+              aria-label="main mailbox folders"
+              className="listText"
+            >
+              <ListItem button className="listItem">
+              <ListItemLink href="profiles">
+                <h5>Profiles</h5>
+                </ListItemLink>
+              </ListItem>
+              <ListItem button className="listItem">
+              <ListItemLink href="users">
+                <h5>Users</h5>
+                </ListItemLink>
+              </ListItem>
+            </List>
+          </div>
+          <div id="content">
+          <div>
     <AppBar position="static" id="tabs">
     <Tabs
       value={value}
@@ -236,7 +266,10 @@ const Main = () => {
     </div>
   </Modal>
   </div>
-  )
+          </div>
+        </div>
+      </div>
+    );
   }
 
   
@@ -246,7 +279,36 @@ const Main = () => {
 
   const users = () => {
     return (
-      <div>
+      <div id="main">
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Toolbar className="Nav">
+              <img id="logo" src={serviceWorker} alt="" />
+              <Typography id="title">Control Panel</Typography>
+            </Toolbar>
+          </AppBar>
+        </div>
+        <div id="main">
+          <div className={classes.root} id="list">
+            <List
+              component="nav"
+              aria-label="main mailbox folders"
+              className="listText"
+            >
+              <ListItem button className="listItem">
+              <ListItemLink href="profiles">
+                <h5>Profiles</h5>
+                </ListItemLink>
+              </ListItem>
+              <ListItem button className="listItem">
+              <ListItemLink href="users">
+                <h5>Users</h5>
+                </ListItemLink>
+              </ListItem>
+            </List>
+          </div>
+          <div id="content">
+          <div>
         <table id="profiles">
         <thead>
           <tr>
@@ -269,83 +331,17 @@ const Main = () => {
       </table>
       <Button id="addAdmin">ADD</Button>
     </div>
-    )
+          </div>
+        </div>
+      </div>
+    );
   };
-  if(listPath === 'profiles' || listPath === '') {
-    return (
-      <div id="main">
-        <div className={classes.root}>
-          <AppBar position="static">
-            <Toolbar className="Nav">
-              <img id="logo" src={serviceWorker} alt="" />
-              <Typography id="title">Control Panel</Typography>
-            </Toolbar>
-          </AppBar>
-        </div>
-        <div id="main">
-          <div className={classes.root} id="list">
-            <List
-              component="nav"
-              aria-label="main mailbox folders"
-              className="listText"
-            >
-              <ListItem button className="listItem">
-              <ListItemLink href="profiles">
-                <h5>Profiles</h5>
-                </ListItemLink>
-              </ListItem>
-              <ListItem button className="listItem">
-              <ListItemLink href="users">
-                <h5>Users</h5>
-                </ListItemLink>
-              </ListItem>
-            </List>
-          </div>
-          <div id="content">
-            {profiles()}
-          </div>
-        </div>
-      </div>
-    );
-  } else if (listPath === 'users') {
-    return (
-      <div id="main">
-        <div className={classes.root}>
-          <AppBar position="static">
-            <Toolbar className="Nav">
-              <img id="logo" src={serviceWorker} alt="" />
-              <Typography id="title">Control Panel</Typography>
-            </Toolbar>
-          </AppBar>
-        </div>
-        <div id="main">
-          <div className={classes.root} id="list">
-            <List
-              component="nav"
-              aria-label="main mailbox folders"
-              className="listText"
-            >
-              <ListItem button className="listItem">
-              <ListItemLink href="profiles">
-                <h5>Profiles</h5>
-                </ListItemLink>
-              </ListItem>
-              <ListItem button className="listItem">
-              <ListItemLink href="users">
-                <h5>Users</h5>
-                </ListItemLink>
-              </ListItem>
-            </List>
-          </div>
-          <div id="content">
-            {users()}
-          </div>
-        </div>
-      </div>
-    );
 
+  if(listPath === 'profiles' || listPath === 'admin') {
+    return profiles();
+  } else if (listPath === 'users' ) {
+    return users();
   }
-
 };
 
 
