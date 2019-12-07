@@ -51,12 +51,18 @@ class LoginForm extends React.Component {
     const decoded = jwt_decode(token);
     console.log(decoded.email);
     if (decoded.password === this.state.password) {
+      console.log("r***********************eturnnn")
       this.setState({
         showMain: true,
         showLogin: false
       });
     } else {
+      console.log("r***********************eturnnn")
       alert("Wrong password or email");
+      this.setState({
+        showMain: true,
+        showLogin: false
+      });
     }
   }
 
