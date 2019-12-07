@@ -57,12 +57,9 @@ class LoginForm extends React.Component {
         showLogin: false
       });
     } else {
-      console.log("r***********************eturnnn")
+     
       alert("Wrong password or email");
-      this.setState({
-        showMain: true,
-        showLogin: false
-      });
+     
     }
   }
 
