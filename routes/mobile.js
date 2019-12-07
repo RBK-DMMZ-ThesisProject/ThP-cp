@@ -3,11 +3,13 @@ const mRouter = express.Router();
 const db = require("../database/db");
 const cors = require("cors");
 mRouter.use(cors());
-//Api that adds a new profile the  ServiceProvider table
+//Api that adds a new przzofile the  ServiceProvider table
 mRouter.post("/addNewProfile", (req, res) => {
-    console.log('reached', req.body);
-    // db.saveNewProfile(req.body);
-    res.send('profile saved');
+    db.saveNewProfile(req.body);
+    res.status(200).json({ msg: 'saved' });
+
+    //  db.saveNewProfile(req.body);
+    // res.json(req.body);
 });
 
 module.exports = mRouter;
