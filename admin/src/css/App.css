@@ -6,7 +6,7 @@ body{
 }
 .heading{
   /* background-color: #122951!important ; */
-  background-image: url('homeBg.jpg') !important;
+  background-image: url('../assets/homeBg.jpg') !important;
   background-size: cover !important;
  
   

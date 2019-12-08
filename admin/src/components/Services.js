@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
-import "./App.css";
-import ResponsiveContainer from "./Home";
+import "../css/App.css";
 import React, { Component } from "react";
 import {
   Card,
@@ -14,7 +13,8 @@ import {
   Icon,
   Segment
 } from "semantic-ui-react";
-import manImg from "./ma.png";
+import ResponsiveContainer from "./Home";
+import manImg from "../assets/ma.png";
 const HomepageLayout = () => (
   <ResponsiveContainer>
     <Segment

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.js';
+import Revise from '../components/Revise';
 
-it('renders without crashing', () => {
+it('renders Revise page without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<Revise />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
