@@ -1,4 +1,4 @@
-import "./App.css";
+import "./../css/App.css";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import {
@@ -13,7 +13,7 @@ import {
   Image,
   Visibility
 } from "semantic-ui-react";
-import logo from "./ma.png";
+import logo from "../assets/ma.png";
 const getWidth = () => {
   const isSSR = typeof window === "undefined";
 

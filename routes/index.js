@@ -1,15 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../database/db");
-const cors = require("cors");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-
-process.env.SECRET_KEY = "secret";
-
-router.get("/test", async (req, res) => {
-  res.json({ message: "pass!" });
-});
 
 //Api that gets all the new profils from the ServiceProvider table
 router.get("/newprofils", (req, res) => {
@@ -18,7 +9,8 @@ router.get("/newprofils", (req, res) => {
     for (var i = 0; i < newprofils.length; i++) {
       var temp = {
         userName: newprofils[i].userName,
-        id: newprofils[i].id
+        id: newprofils[i]._id,
+        ProfileState: newprofils[i].ProfileState
       };
       nameArr.push(temp);
     }
@@ -33,7 +25,8 @@ router.get("/profils", (req, res) => {
     for (var i = 0; i < profils.length; i++) {
       var temp = {
         userName: profils[i].userName,
-        id: profils[i].id
+        id: profils[i]._id,
+        ProfileState: profils[i].ProfileState
       };
       nameArr.push(temp);
     }
@@ -48,7 +41,8 @@ router.get("/acceptedProfils", (req, res) => {
     for (var i = 0; i < profils.length; i++) {
       var temp = {
         userName: profils[i].userName,
-        id: profils[i].id
+        id: profils[i]._id,
+        ProfileState: profils[i].ProfileState
       };
       nameArr.push(temp);
     }
@@ -58,7 +52,7 @@ router.get("/acceptedProfils", (req, res) => {
 
 //Api that gets the profil from the ServiceProvider table
 router.get("/profil", (req, res) => {
-  db.ServiceProvider.find({id : req.query.id}).then(profil => {
+  db.ServiceProvider.find({ _id: req.query.id }).then(profil => {
     console.log(profil)
     res.json(profil);
   });
@@ -68,7 +62,7 @@ router.get("/profil", (req, res) => {
 router.post("/updateState", (req, res) => {
   console.log(req.body.id);
   db.ServiceProvider.update(
-    { id: req.body.id },
+    { _id: req.body.id },
     { $set: { ProfileState: 2 } }
   ).then(profile => {
     res.json(profile);
@@ -79,40 +73,13 @@ router.post("/updateState", (req, res) => {
 router.post("/updateProfileNotes", (req, res) => {
   console.log(req.body.id);
   db.ServiceProvider.update(
-    { id: req.body.id },
-    { $set: { ProfileNotes: req.body.ProfileNotes } }
+    { _id: req.body.id },
+    { $set: { ProfileState: 1, ProfileNotes: req.body.ProfileNotes } }
   ).then(profile => {
     res.json(profile);
   });
 });
 
-//API for the log in authintecation
-router.post("/adminLogin", (req, res) => {
-  db.Admin.findOne({
-    email: req.body.email
-  })
-    .then(user => {
-      if (user) {
-        if (bcrypt.compareSync(req.body.password, user.password)) {
-          const payload = {
-            _id: user._id,
-            userName: user.userName,
-            email: user.email,
-            password: user.password
-          };
-          let token = jwt.sign(payload, process.env.SECRET_KEY, {
-            expiresIn: "24h"
-          });
-          res.send(token);
-        } else {
-          res.json({ error: "wrong password " });
-        }
-      } else {
-        res.json({ error: "user  not exist" });
-      }
-    })
-    .catch("error");
-});
 
 //Api that get admins profiles
 router.get("/admins", (req, res) => {

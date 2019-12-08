@@ -14,6 +14,8 @@ app.post('/test', (req, res) => {
   res.status(200).send('hello');
 })
 app.use('/mobileApi', require("./routes/mobile.js"));
+app.use('/auth', require("./routes/auth.js"));
+
 app.use(require("./routes"));
 
 const PORT = process.env.PORT || 8000;

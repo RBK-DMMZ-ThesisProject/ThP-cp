@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Nav from './Nav';
+import Profile from '../components/Profile';
 
-it('renders control panel main page without crashing', () => {
+it('renders profile page without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Nav />, div);
+  ReactDOM.render(<Profile />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
