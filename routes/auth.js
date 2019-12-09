@@ -44,9 +44,12 @@ router.post("/userSignUp", (req, res) => {
         .then(user => {
             if (!user) {
                 var userInfo = {
-                    // put data ????
+                    userName: req.body.userName,
+                    email: req.body.email,
+                    mobileNO: req.body.mobileNO,
                 };
-                bcrypt.hash(body.password, 10, (err, hash) => {
+
+                bcrypt.hash(req.body.password, 10, (err, hash) => {
                     if (err) {
                         res.json({ msg: 0, error: err });
                     }
