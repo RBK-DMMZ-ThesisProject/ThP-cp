@@ -13,7 +13,7 @@ smsRouter.post("/smsMessages", (req, res) => {
   res.header("Content-Type", "application/json");
   client.messages
     .create({
-      from: process.env.TWILIO_PHONE_NUMBER,,
+      from: process.env.TWILIO_PHONE_NUMBER,
       to: req.body.to,
       body: "Youre Profile was successfully add ^__^"
     })
