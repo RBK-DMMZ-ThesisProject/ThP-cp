@@ -8,7 +8,7 @@ const bcrypt = require("bcryptjs");
 process.env.SECRET_KEY = "secret";
 //API for the log in authintecation
 router.post("/adminLogin", (req, res) => {
-    db.Admin.findOne({
+    db.User.findOne({
         email: req.body.email
     })
         .then(user => {
@@ -36,4 +36,39 @@ router.post("/adminLogin", (req, res) => {
             res.json({ msg: "err", error: err });
         });
 });
+
+router.post("/userSignUp", (req, res) => {
+    db.User.findOne({
+        email: req.body.email
+    })
+        .then(user => {
+            if (!user) {
+                var userInfo = {
+                    // put data ????
+                };
+                bcrypt.hash(body.password, 10, (err, hash) => {
+                    if (err) {
+                        res.json({ msg: 0, error: err });
+                    }
+                    userInfo.password = hash;
+                    var user = new db.User(userInfo);
+                    user.save().then(user => {
+                        let token = jwt.sign(payload, process.env.SECRET_KEY, {
+                            expiresIn: "24h"
+                        });
+                        res.json({ token: token, msg: 1 });
+                    }).catch(err => {
+                        res.json({ msg: 0, error: err });
+                    });
+                });
+            } else {
+                res.json({ msg: 0, error: '' });
+            }
+        })
+        .catch(err => {
+            res.json({ msg: 0, error: err });
+        });
+
+});
+
 module.exports = router;

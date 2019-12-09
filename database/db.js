@@ -11,7 +11,7 @@ db.once("open", function () {
 });
 
 module.exports = {
-  Admin: require("./models/admin"),
+  User: require("./models/user"),
   CustomerReviews: require("./models/customerReviews"),
   Customers: require("./models/customers"),
   Msges: require("./models/msges"),

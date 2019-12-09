@@ -57,16 +57,26 @@ const Profile: React.FC = (props: any) => {
   };
 
   const handleAccept = () => {
+    console.log("mmmmmobile", props.mobile)
+    axios.post('messages/smsMessages', {
+      to: props.mobile,
+      text: "Your profile has been accepted"
+    })
+      .then((response) => {
+        console.log("here we kkkkkk", response);
+      }, (error) => {
+        console.log(error);
+      });
     axios.post('updateState', {
       id: props.pid
     })
       .then((response) => {
-        console.log(response);
         props.closemodal();
         // close modal
       }, (error) => {
         console.log(error);
       });
+
   }
   const handleClose = () => {
     props.closemodal();

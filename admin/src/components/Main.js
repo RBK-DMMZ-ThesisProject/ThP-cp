@@ -135,7 +135,7 @@ const Main = () => {
   const addUser = () => {
     // update state database
     axios.post('admins/addAdmin', {
-      adminName: adminName,
+      userName: adminName,
       mobileNO: mobileNO,
       email: email
     })
@@ -172,8 +172,9 @@ const Main = () => {
   };
 
 
-  const handleOpen = (id, state) => {
-    setProfile(<Profile pid={id} closemodal={handleClose} state={state}></Profile>)
+
+  const handleOpen = (id, state, mobile) => {
+    setProfile(<Profile pid={id} closemodal={handleClose} state={state} mobile={mobile}></Profile>)
     setOpen(true);
   };
   //@ logout the user by deleting the tocken
@@ -302,7 +303,7 @@ const Main = () => {
                         <td>{index + 1}</td>
                         <td>{newProfile.userName}</td>
                         <td>
-                          <Button type="button" onClick={() => handleOpen(newProfile.id, newProfile.ProfileState)} className="modalBtn">
+                          <Button type="button" onClick={() => handleOpen(newProfile.id, newProfile.ProfileState, newProfile.userMobileNum)} className="modalBtn">
                             Show
             </Button>
                         </td>
@@ -430,7 +431,7 @@ const Main = () => {
                   {admins.map((admin, index) =>
                     <tr key={index}>
                       <td>{index + 1}</td>
-                      <td>{admin.adminName}</td>
+                      <td>{admin.userName}</td>
                       <td>
                         <Switch
                           id={index + ""}

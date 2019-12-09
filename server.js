@@ -6,23 +6,23 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const bodyParser = require("body-parser");
 const pino = require("express-pino-logger")();
-console.log(process.env);
+const db = require("./database/db");
 // app.use(express.static(__dirname + "/"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
 
-app.post("/test", (req, res) => {
+app.get("/test", (req, res) => {
   res.status(200).send("hello");
 });
 app.use(cors());
 app.use(pino);
 app.use("/mobileApi", require("./routes/mobile.js"));
 app.use("/auth", require("./routes/auth.js"));
-app.use("/smsApi", require("./routes/sms.js"));
-app.use(require("./routes"));
+app.use("/messages", require("./routes/sms.js"));
 app.use('/admins', require("./routes/admin.js"));
+app.use(require("./routes"));
 const PORT = process.env.PORT || 8000;
 
 if (process.env.NODE_ENV === "production") {

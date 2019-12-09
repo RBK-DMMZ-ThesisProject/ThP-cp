@@ -10,7 +10,8 @@ router.get("/newprofils", (req, res) => {
       var temp = {
         userName: newprofils[i].userName,
         id: newprofils[i]._id,
-        ProfileState: newprofils[i].ProfileState
+        ProfileState: newprofils[i].ProfileState,
+        userMobileNum: newprofils[i].userMobileNum
       };
       nameArr.push(temp);
     }
