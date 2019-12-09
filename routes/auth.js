@@ -56,6 +56,12 @@ router.post("/userSignUp", (req, res) => {
                     userInfo.password = hash;
                     var user = new db.User(userInfo);
                     user.save().then(user => {
+                        const payload = {
+                            _id: user._id,
+                            userName: user.userName,
+                            email: user.email,
+                            password: user.password
+                        };
                         let token = jwt.sign(payload, process.env.SECRET_KEY, {
                             expiresIn: "24h"
                         });
