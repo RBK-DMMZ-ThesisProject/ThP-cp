@@ -12,18 +12,17 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import Modal from "@material-ui/core/Modal";
-import TextField from '@material-ui/core/TextField';
-import Switch from '@material-ui/core/Switch';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from "@material-ui/core/TextField";
+import Switch from "@material-ui/core/Switch";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 import Profile from "./Profile";
 import AddUser from "./AddUser";
-import axios from 'axios';
-
+import axios from "axios";
 
 function getModalStyle() {
   const top = 20;
@@ -36,8 +35,7 @@ function getModalStyle() {
   };
 }
 
-
-//Tabs in the control panel 
+//Tabs in the control panel
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -90,7 +88,6 @@ function ListItemLink(props) {
 
 //Main page for control panel (profiles section in sidebar list)
 const Main = () => {
-
   const classes = useStyles();
   const [newProfiles, setNewProfiles] = useState([]);
   const [acceptedProfiles, setAcceptedProfiles] = useState([]);
@@ -98,9 +95,9 @@ const Main = () => {
   const [admins, setAdmins] = useState([]);
   const [profile, setProfile] = useState(null);
   const [value, setValue] = useState(0);
-  const [adminName, setAdminName] = React.useState('');
-  const [mobileNO, setMobileNO] = React.useState('');
-  const [email, setEmail] = React.useState('');
+  const [adminName, setAdminName] = React.useState("");
+  const [mobileNO, setMobileNO] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
   const [openAddUser, setopenAddUser] = useState(false);
@@ -109,134 +106,103 @@ const Main = () => {
 
   const handleAddUserClose = () => {
     setopenAddUser(false);
-  }
+  };
   const openAddUserModal = () => {
     setopenAddUser(true);
-  }
+  };
   //@description change user state
   const changeUserSate = (event, id) => {
-
-
     var st = event.target.checked ? 1 : 0;
     var updatedAdmins = [...admins];
 
     updatedAdmins[parseInt(event.target.id)].state = st;
     setAdmins(updatedAdmins);
-    axios.post('admins/setAdminState', {
-      state: st,
-      id: id
-    })
-      .then((response) => {
-        console.log('state changed')
+    axios
+      .post("admins/setAdminState", {
+        state: st,
+        id: id
+      })
+      .then(response => {
+        console.log("state changed");
       })
       .catch(err => console.log(err));
-  }
+  };
   //@description adding user
   const addUser = () => {
     // update state database
-    axios.post('admins/addAdmin', {
-      adminName: adminName,
-      mobileNO: mobileNO,
-      email: email
-    })
-      .then((response) => {
-        console.log(response);
-        axios
-          .get(
-            "admins/getAdmins"
-          )
-          .then(({ data }) => {
+    axios
+      .post("admins/addAdmin", {
+        adminName: adminName,
+        mobileNO: mobileNO,
+        email: email
+      })
+      .then(
+        response => {
+          console.log(response);
+          axios.get("admins/getAdmins").then(({ data }) => {
             setAdmins(data);
           });
-        handleAddUserClose();
-      }, (error) => {
-        console.log(error);
-      });
-
-  }
-  const onAdminNameChange = (e) => {
-    setAdminName(e.target.value)
-  }
-  const onMobileNOChange = (e) => {
-    setMobileNO(e.target.value)
-  }
-  const onEmailChange = (e) => {
-    setEmail(e.target.value)
-  }
+          handleAddUserClose();
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  };
+  const onAdminNameChange = e => {
+    setAdminName(e.target.value);
+  };
+  const onMobileNOChange = e => {
+    setMobileNO(e.target.value);
+  };
+  const onEmailChange = e => {
+    setEmail(e.target.value);
+  };
 
   /** end of user operation */
-
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-
   const handleOpen = (id, state) => {
-    setProfile(<Profile pid={id} closemodal={handleClose} state={state}></Profile>)
+    setProfile(
+      <Profile pid={id} closemodal={handleClose} state={state}></Profile>
+    );
     setOpen(true);
   };
   //@ logout the user by deleting the tocken
   const logout = () => {
-    localStorage.removeItem('handyUserToken');
-  }
+    localStorage.removeItem("handyUserToken");
+  };
 
   const handleClose = () => {
     setOpen(false);
-    axios
-      .get(
-        "newprofils"
-      )
-      .then(({ data }) => {
-        setNewProfiles(data);
-      });
-    axios
-      .get(
-        "acceptedProfils"
-      )
-      .then(({ data }) => {
-        setAcceptedProfiles(data);
-      });
-    axios
-      .get(
-        "profils"
-      )
-      .then(({ data }) => {
-        setUnderCheckProfiles(data);
-      });
+    axios.get("newprofils").then(({ data }) => {
+      setNewProfiles(data);
+    });
+    axios.get("acceptedProfils").then(({ data }) => {
+      setAcceptedProfiles(data);
+    });
+    axios.get("profils").then(({ data }) => {
+      setUnderCheckProfiles(data);
+    });
   };
 
   useEffect(() => {
-    axios
-      .get(
-        "newprofils"
-      )
-      .then(({ data }) => {
-        setNewProfiles(data);
-      });
-    axios
-      .get(
-        "acceptedProfils"
-      )
-      .then(({ data }) => {
-        setAcceptedProfiles(data);
-      });
-    axios
-      .get(
-        "profils"
-      )
-      .then(({ data }) => {
-        setUnderCheckProfiles(data);
-      });
-    axios
-      .get(
-        "admins/getAdmins"
-      )
-      .then(({ data }) => {
-        setAdmins(data);
-      });
+    axios.get("newprofils").then(({ data }) => {
+      setNewProfiles(data);
+    });
+    axios.get("acceptedProfils").then(({ data }) => {
+      setAcceptedProfiles(data);
+    });
+    axios.get("profils").then(({ data }) => {
+      setUnderCheckProfiles(data);
+    });
+    axios.get("admins/getAdmins").then(({ data }) => {
+      setAdmins(data);
+    });
   }, []);
-
 
   const profiles = () => {
     return (
@@ -298,19 +264,29 @@ const Main = () => {
                   </thead>
                   <tbody>
                     {newProfiles.map((newProfile, index) => {
-                      return (<tr key={index}>
-                        <td>{index + 1}</td>
-                        <td>{newProfile.userName}</td>
-                        <td>
-                          <Button type="button" onClick={() => handleOpen(newProfile.id, newProfile.ProfileState)} className="modalBtn">
-                            Show
-            </Button>
-                        </td>
-                      </tr>)
+                      return (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>{newProfile.userName}</td>
+                          <td>
+                            <Button
+                              type="button"
+                              onClick={() =>
+                                handleOpen(
+                                  newProfile.id,
+                                  newProfile.ProfileState
+                                )
+                              }
+                              className="modalBtn"
+                            >
+                              Show
+                            </Button>
+                          </td>
+                        </tr>
+                      );
                     })}
                   </tbody>
                 </table>
-
               </TabPanel>
 
               <TabPanel value={value} index={1}>
@@ -323,16 +299,26 @@ const Main = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {acceptedProfiles.map((acceptedProfile, index) => <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{acceptedProfile.userName}</td>
-                      <td>
-                        <Button type="button" onClick={() => handleOpen(acceptedProfile.id, acceptedProfile.ProfileState)} id="modalBtn">
-                          Show
-          </Button>
-
-                      </td>
-                    </tr>)}
+                    {acceptedProfiles.map((acceptedProfile, index) => (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{acceptedProfile.userName}</td>
+                        <td>
+                          <Button
+                            type="button"
+                            onClick={() =>
+                              handleOpen(
+                                acceptedProfile.id,
+                                acceptedProfile.ProfileState
+                              )
+                            }
+                            id="modalBtn"
+                          >
+                            Show
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </TabPanel>
@@ -346,16 +332,26 @@ const Main = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {underCheckProfiles.map((underCheckProfile, index) => <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{underCheckProfile.userName}</td>
-                      <td>
-                        <Button type="button" onClick={() => handleOpen(underCheckProfile.id, underCheckProfile.ProfileState)} id="modalBtn">
-                          Show
-            </Button>
-
-                      </td>
-                    </tr>)}
+                    {underCheckProfiles.map((underCheckProfile, index) => (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{underCheckProfile.userName}</td>
+                        <td>
+                          <Button
+                            type="button"
+                            onClick={() =>
+                              handleOpen(
+                                underCheckProfile.id,
+                                underCheckProfile.ProfileState
+                              )
+                            }
+                            id="modalBtn"
+                          >
+                            Show
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </TabPanel>
@@ -374,11 +370,10 @@ const Main = () => {
         </div>
       </div>
     );
-  }
-
+  };
 
   const url = window.location.href.substring(7);
-  var index = url.indexOf('/');
+  var index = url.indexOf("/");
   var listPath = url.substring(index + 1);
 
   const users = () => {
@@ -427,67 +422,90 @@ const Main = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {admins.map((admin, index) =>
+                  {admins.map((admin, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{admin.adminName}</td>
                       <td>
                         <Switch
                           id={index + ""}
-                          checked={(!!admin.state)}
-                          onChange={(event) => changeUserSate(event, admin._id)}
+                          checked={!!admin.state}
+                          onChange={event => changeUserSate(event, admin._id)}
                           value={admin.state}
-                          inputProps={{ 'aria-label': 'Change State' }}
+                          inputProps={{ "aria-label": "Change State" }}
                           color="primary"
                         />
                       </td>
                     </tr>
-                  )}
+                  ))}
                 </tbody>
               </table>
-              <Button id="addAdmin" onClick={openAddUserModal}>ADD</Button>
+              <Button id="addAdmin" onClick={openAddUserModal}>
+                ADD
+              </Button>
             </div>
           </div>
         </div>
 
-        <Dialog open={openAddUser} onClose={handleAddUserClose} aria-labelledby="Add Admin">
+        <Dialog
+          open={openAddUser}
+          onClose={handleAddUserClose}
+          aria-labelledby="Add Admin"
+        >
           <DialogTitle id="form-dialog-title">Add Admin</DialogTitle>
           <DialogContent style={{ width: 500 }}>
             <form autoComplete="off">
-              <TextField margin="dense" fullWidth id="adminName" label="User Name:" onChange={onAdminNameChange} value={adminName} />
+              <TextField
+                margin="dense"
+                fullWidth
+                id="adminName"
+                label="User Name:"
+                onChange={onAdminNameChange}
+                value={adminName}
+              />
               <br />
-              <TextField margin="dense" fullWidth id="mobileNO" label="Mobile No.:" onChange={onMobileNOChange} value={mobileNO} />
+              <TextField
+                margin="dense"
+                fullWidth
+                id="mobileNO"
+                label="Mobile No.:"
+                onChange={onMobileNOChange}
+                value={mobileNO}
+              />
               <br />
-              <TextField id="email" label="Email"
+              <TextField
+                id="email"
+                label="Email"
                 margin="dense"
                 type="email"
-                fullWidth onChange={onEmailChange} value={email} helperText='please enter a correct email' />
+                fullWidth
+                onChange={onEmailChange}
+                value={email}
+                helperText="please enter a correct email"
+              />
               <br />
               <br />
             </form>
-
           </DialogContent>
           <DialogActions>
             <Button onClick={handleAddUserClose} color="primary">
               Cancel
-          </Button>
+            </Button>
             <Button onClick={addUser} color="primary">
               Add User
-          </Button>
+            </Button>
           </DialogActions>
         </Dialog>
-
       </div>
     );
   };
 
-  if (listPath === 'profiles' || listPath === 'admin') {
+  if (listPath === "profiles" || listPath === "admin") {
     return profiles();
-  } else if (listPath === 'users') {
+  } else if (listPath === "users") {
     return users();
   }
   return profiles();
 };
-
 
 export default Main;
