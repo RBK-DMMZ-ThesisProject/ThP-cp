@@ -1,38 +1,60 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
+
 
 interface Props {
     handleClose: () => void;
 }
 //Revise modal (when you click on Revise button in profile Modal)
 const AddUser: React.FC<Props> = (props) => {
-    const [profileNotes, setProfileNotes] = React.useState('');
-    const handleRevision = () => {
+    const [adminName, setAdminName] = React.useState('');
+    const [mobileNO, setMobileNO] = React.useState(0);
+    const [email, setEmail] = React.useState('');
+
+
+    const addUser = () => {
         // update state database
-        axios.post('addUser', {
-            ProfileNotes: profileNotes
+        axios.post('admins/addAdmin', {
+            adminName: adminName,
+            mobileNO: mobileNO,
+            email: email
         })
             .then((response) => {
                 console.log(response);
+                // refersh users?????????????
                 props.handleClose();
             }, (error) => {
                 console.log(error);
             });
 
     }
-    const onChange = (e: any) => {
-        setProfileNotes(e.target.value)
+    const onAdminNameChange = (e: any) => {
+        setAdminName(e.target.value)
+    }
+    const onMobileNOChange = (e: any) => {
+        setMobileNO(e.target.value)
+    }
+    const onEmailChange = (e: any) => {
+        setEmail(e.target.value)
     }
     return (
-        <div id='reviseMain'>
-            <h1 id='reviseName'>Reason For Revision</h1>
-            <hr></hr>
-            <div id="textareaDiv">
-                <br></br>
-                <Button variant="contained" id="btn" onClick={handleRevision}>Send Revision</Button>
-            </div>
-        </div>
+
+        <form autoComplete="off">
+            <TextField id="adminName" label="User Name:" onChange={onAdminNameChange} value={adminName} />
+            <br />
+            <TextField id="mobileNO" label="Mobile No.:" onChange={onMobileNOChange} value={mobileNO} />
+            <br />
+
+            <TextField id="email" label="Email" onChange={onEmailChange} value={email} />
+            <br />
+            <br />
+            <Button variant="contained" id="btn" onClick={addUser}>Add User</Button>
+        </form>
+
+
     );
 }
 

@@ -71,27 +71,11 @@ router.post("/updateState", (req, res) => {
 
 //Api that updates the ProfileNotes in the  ServiceProvider
 router.post("/updateProfileNotes", (req, res) => {
-  console.log(req.body.id);
   db.ServiceProvider.update(
     { _id: req.body.id },
     { $set: { ProfileState: 1, ProfileNotes: req.body.ProfileNotes } }
   ).then(profile => {
     res.json(profile);
-  });
-});
-
-
-//Api that get admins profiles
-router.get("/admins", (req, res) => {
-  db.Admin.find({}).then(profils => {
-    var nameArr = [];
-    for (var i = 0; i < profils.length; i++) {
-      var temp = {
-        adminName: profils[i].adminName,
-      };
-      nameArr.push(temp);
-    }
-    res.json(nameArr);
   });
 });
 

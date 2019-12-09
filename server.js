@@ -15,6 +15,8 @@ app.post('/test', (req, res) => {
 })
 app.use('/mobileApi', require("./routes/mobile.js"));
 app.use('/auth', require("./routes/auth.js"));
+app.use('/admins', require("./routes/admin.js"));
+
 
 app.use(require("./routes"));
 

@@ -5,12 +5,13 @@ var Schema = mongoose.Schema;
 
 var adminSchema = new Schema({
   id: {
-    type: Number,
-    required: true
+    type: Number
   },
   adminName: String,
+  mobileNO: Number,
   password: String,
   email: String,
+  state: { type: Number, default: 1 },
   dataAdded: {
     type: Date,
     default: Date.now
