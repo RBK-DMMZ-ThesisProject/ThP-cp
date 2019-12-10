@@ -24,6 +24,7 @@ router.get("/getAdmins", (req, res) => {
 // @Description: add admin users to the database
 router.post("/addAdmin", (req, res) => {
     var userInfo = req.body;
+    console.log(userInfo, "USSEERRR INNFOOO")
     var password = generatePassword.generate({
         length: 6,
         numbers: true
@@ -34,10 +35,11 @@ router.post("/addAdmin", (req, res) => {
         if (err) res.json({ msg: 'error while hashing password', error: err })
         userInfo.password = hash;
         userInfo.role = 2;
+        var mobile = userInfo.mobileNO;
         var user = new db.User(userInfo);
         user.save().then(result => {
             // send password to the user as an sms ????????
-            sendMessage(password);
+            sendMessage(password, mobile);
             res.json({ msg: 'user saved' });
         })
             .catch(err => res.json({ msg: 'error while saving', error: err }));

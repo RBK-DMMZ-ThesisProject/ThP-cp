@@ -8,7 +8,7 @@ var userSchema = new Schema({
     type: Number
   },
   userName: String,
-  mobileNO: Number,
+  mobileNO: String,
   password: String,
   email: String,
   state: { type: Number, default: 1 },

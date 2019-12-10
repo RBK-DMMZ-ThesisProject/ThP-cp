@@ -9,11 +9,11 @@ const client = require("twilio")(
 smsRouter.use(cors());
 
 
-const send = (pass) => {
+const send = (pass, mobile) => {
     client.messages
       .create({
         from: "+12015142340",
-        to: "+962790054364",
+        to: mobile,
         body: "You have become an Admin. Your password is " + pass
       })
       .then(() => {
@@ -27,8 +27,6 @@ const send = (pass) => {
 
 
 smsRouter.post("/smsMessages", (req, res) => {
-  // console.log(req.body.to, "TOOOOO")
-  // console.log(typeof(req.body.text), "TEEEXXXTTT")
   res.header("Content-Type", "application/json");
   client.messages
     .create({
