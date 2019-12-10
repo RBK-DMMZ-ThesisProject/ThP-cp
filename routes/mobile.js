@@ -10,7 +10,7 @@ mRouter.post("/addNewProfile", (req, res) => {
 });
 //Api that gets the useres for specific catogery
 mRouter.post("/getProfiles", (req, res) => {
-  db.ServiceProvider.find({ ServiceCategory: req.body.body })
+  db.ServiceProvider.find({ ServiceCategory: req.body.categoryName })
     .select("_id userName  userImg ")
     .then(profils => {
       res.send(profils);
