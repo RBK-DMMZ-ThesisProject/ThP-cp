@@ -15,7 +15,7 @@ const sendMessage = require("./sms").send;
 // @Description: get admin users from the database
 router.get("/getAdmins", (req, res) => {
     db.User.find({ role: 2 }).select(
-        "userName _id state "
+        "userName _id state"
     ).then(admins => {
         res.json(admins);
     });
@@ -35,11 +35,12 @@ router.post("/addAdmin", (req, res) => {
         if (err) res.json({ msg: 'error while hashing password', error: err })
         userInfo.password = hash;
         userInfo.role = 2;
-        var mobile = userInfo.mobileNO;
+        var num = userInfo.mobileNO;
+        var adminName = userInfo.userName
         var user = new db.User(userInfo);
         user.save().then(result => {
             // send password to the user as an sms ????????
-            sendMessage(password, mobile);
+            sendMessage(password, num, adminName);
             res.json({ msg: 'user saved' });
         })
             .catch(err => res.json({ msg: 'error while saving', error: err }));
@@ -59,7 +60,6 @@ router.get('/add', (req, res) => {
     bcrypt.hash('123456', 10, (err, hash) => {
         if (err) res.json({ msg: 'error while hashing password', error: err })
         console.log(hash);
-
     });
 })
 

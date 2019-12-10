@@ -9,19 +9,31 @@ const client = require("twilio")(
 smsRouter.use(cors());
 
 
-const send = (pass, mobile) => {
-    client.messages
-      .create({
-        from: "+12015142340",
-        to: mobile,
-        body: "You have become an Admin. Your password is " + pass
-      })
-      .then(() => {
-        console.log("success");
-      })
-      .catch(err => {
-        console.log(err);
-      });
+const send = (pass, num, adminName) => {
+  // console.log("Enter send")
+  // client.validationRequests
+  // .create({friendlyName: adminName, phoneNumber: num})
+  // .then(validation_request => {
+  //   console.log(validation_request);
+  //   console.log("HHIIIIII");
+  //     }
+  //   );
+  client.validationRequests
+  .create({friendlyName: adminName, phoneNumber: num})
+  .then(validation_request => console.log(validation_request));
+
+  client.messages
+    .create({
+      from: "+12015142340",
+      to: num,
+      body: "You have become an Admin. Your password is " + pass
+    })
+    .then(() => {
+      console.log("success");
+    })
+    .catch(err => {
+      console.log(err);
+    });
 
 }
 
