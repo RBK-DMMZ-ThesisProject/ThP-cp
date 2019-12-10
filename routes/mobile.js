@@ -13,7 +13,7 @@ mRouter.post("/getProfiles", (req, res) => {
   db.ServiceProvider.find({ ServiceCategory: req.body.categoryName })
     .select("_id userName  userImg ")
     .then(profils => {
-      res.send(profils);
+      res.json(profils);
     });
 });
 module.exports = mRouter;
