@@ -58,4 +58,17 @@ const AddUser: React.FC<Props> = (props) => {
     );
 }
 
+// const sendTheGeneratedPassword = (pass : any) => {
+//     axios.post('messages/smsMessages', {
+//         to: "+962790054364",
+//         msgText: pass
+//       })
+//         .then((response) => {
+//           console.log("Success");
+//         }, (error) => {
+//           console.log(error);
+//         });
+// }
+
 export default AddUser;
+
