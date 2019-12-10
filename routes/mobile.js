@@ -19,8 +19,8 @@ mRouter.post("/getProfiles", (req, res) => {
     });
 });
 
-//Api that gets the useres for specific catogery
-mRouter.post("/gitReview", (req, res) => {
+//Api that gets the rates for specific service provider
+mRouter.post("/getRate", (req, res) => {
   db.CustomerReviews.find({
     serviceproviderid: req.body.serviceproviderid
   })
@@ -31,6 +31,19 @@ mRouter.post("/gitReview", (req, res) => {
         sum += info[i].rate;
       }
       res.json(sum / info.length);
+    });
+});
+module.exports = mRouter;
+
+//Api that gets the reviews for specific service provider
+mRouter.post("/getReviews", (req, res) => {
+  console.log(req.body.review);
+  db.CustomerReviews.find({
+    serviceproviderid: req.body.serviceproviderid
+  })
+    .select("review dataAdded")
+    .then(info => {
+      res.json(info);
     });
 });
 module.exports = mRouter;
