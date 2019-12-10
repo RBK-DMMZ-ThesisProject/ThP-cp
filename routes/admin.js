@@ -5,6 +5,11 @@ const router = express.Router();
 const db = require("../database/db");
 const generatePassword = require('generate-password');
 const bcrypt = require("bcryptjs");
+const sendMessage = require("./sms").send;
+
+
+
+
 
 
 // @Description: get admin users from the database
@@ -32,7 +37,7 @@ router.post("/addAdmin", (req, res) => {
         var user = new db.User(userInfo);
         user.save().then(result => {
             // send password to the user as an sms ????????
-
+            sendMessage(password);
             res.json({ msg: 'user saved' });
         })
             .catch(err => res.json({ msg: 'error while saving', error: err }));

@@ -2,19 +2,39 @@ const express = require("express");
 const smsRouter = express.Router();
 const cors = require("cors");
 const client = require("twilio")(
-  "AC084f99ac4b6c70a1f38ba0d5a6a46dad",
-  "6d56a0e4fc0f623e1089a24ae247bfb1"
+  "AC7ed2326eddd691bf5a0e898b81920aac",
+  "c604964348432ec65408b3bfe7279079"
 );
 
 smsRouter.use(cors());
 
+
+const send = (pass) => {
+    client.messages
+      .create({
+        from: "+12015142340",
+        to: "+962790054364",
+        body: "You have become an Admin. Your password is " + pass
+      })
+      .then(() => {
+        console.log("success");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+}
+
+
 smsRouter.post("/smsMessages", (req, res) => {
+  // console.log(req.body.to, "TOOOOO")
+  // console.log(typeof(req.body.text), "TEEEXXXTTT")
   res.header("Content-Type", "application/json");
   client.messages
     .create({
-      from: "+19738162205",
+      from: "+12015142340",
       to: req.body.to,
-      body: req.body.text + ""
+      body: req.body.msgText
     })
     .then(() => {
       console.log("success");
@@ -23,4 +43,9 @@ smsRouter.post("/smsMessages", (req, res) => {
       console.log(err);
     });
 });
-module.exports = smsRouter;
+
+
+
+
+ module.exports.send = send;
+module.exports.smsRouter = smsRouter;
