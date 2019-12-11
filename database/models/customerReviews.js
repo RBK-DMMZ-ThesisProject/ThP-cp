@@ -4,11 +4,10 @@ var Schema = mongoose.Schema;
 
 var customerReviewsSchema = new Schema({
   id: {
-    type: Number,
-    required: true
+    type: Number
   },
   customerID: Number,
-  serviceProviderID: Number,
+  serviceproviderid: String,
   review: String,
   rate: Number, //from 1-5
   dataAdded: {
@@ -17,6 +16,6 @@ var customerReviewsSchema = new Schema({
   }
 });
 
-var CustomerReviews = mongoose.model("customerReview", customerReviewsSchema);
+var CustomerReviews = mongoose.model("customerreview", customerReviewsSchema);
 
 module.exports = CustomerReviews;
