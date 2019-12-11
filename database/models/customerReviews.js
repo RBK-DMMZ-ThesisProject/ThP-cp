@@ -4,8 +4,7 @@ var Schema = mongoose.Schema;
 
 var customerReviewsSchema = new Schema({
   id: {
-    type: Number,
-    required: true
+    type: Number
   },
   customerID: Number,
   serviceproviderid: String,

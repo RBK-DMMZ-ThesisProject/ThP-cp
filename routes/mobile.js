@@ -46,4 +46,18 @@ mRouter.post("/getReviews", (req, res) => {
       res.json(info);
     });
 });
+
+//Api that updatss the reviews for specific service provider
+mRouter.post("/addReviews", (req, res) => {
+  console.log(req.body.serviceproviderid);
+  var newReview = new db.CustomerReviews({
+    serviceproviderid: req.body.serviceproviderid,
+    review: req.body.review,
+    customerID: req.body.customerID
+  });
+  newReview.save().then(info => {
+    res.json(info);
+  });
+});
+
 module.exports = mRouter;
