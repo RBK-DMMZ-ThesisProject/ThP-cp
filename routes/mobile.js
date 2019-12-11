@@ -47,7 +47,7 @@ mRouter.post("/getReviews", (req, res) => {
     });
 });
 
-//Api that updatss the reviews for specific service provider
+//Api that adds new reviews for specific service provider
 mRouter.post("/addReviews", (req, res) => {
   console.log(req.body.serviceproviderid);
   var newReview = new db.CustomerReviews({
@@ -56,6 +56,17 @@ mRouter.post("/addReviews", (req, res) => {
     customerID: req.body.customerID
   });
   newReview.save().then(info => {
+    res.json(info);
+  });
+});
+
+//Api that updates the hire state for specific service provider
+mRouter.post("/addHiers", (req, res) => {
+  var newHire = new db.SpHires({
+    serviceproviderid: req.body.serviceproviderid,
+    customerID: req.body.customerID
+  });
+  newHire.save().then(info => {
     res.json(info);
   });
 });

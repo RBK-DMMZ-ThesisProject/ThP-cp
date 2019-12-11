@@ -4,8 +4,7 @@ var Schema = mongoose.Schema;
 
 var spHiresSchema = new Schema({
   id: {
-    type: Number,
-    required: true
+    type: Number
   },
   customerID: Number,
   serviceProviderID: Number,
@@ -15,6 +14,6 @@ var spHiresSchema = new Schema({
   }
 });
 
-var SpHires = mongoose.model("spHire", spHiresSchema);
+var SpHires = mongoose.model("sphire", spHiresSchema);
 
 module.exports = SpHires;
