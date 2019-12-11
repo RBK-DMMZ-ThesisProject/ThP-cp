@@ -14,7 +14,7 @@ module.exports = {
   User: require("./models/user"),
   CustomerReviews: require("./models/customerReviews"),
   Customers: require("./models/customers"),
-  Msges: require("./models/msges"),
+  Chats: require("./models/chats"),
   ServiceProvider: require("./models/serviceProvider").ServiceProvider,
   saveNewProfile: require("./models/serviceProvider").saveNewProfile,
   SpHires: require("./models/spHires"),

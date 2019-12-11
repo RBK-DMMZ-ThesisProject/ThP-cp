@@ -71,4 +71,44 @@ mRouter.post("/addHiers", (req, res) => {
   });
 });
 
+//Api that save new chates for specific service provider
+// mRouter.post("/addchats", (req, res) => {
+//   console.log(req.body.serviceProviderID);
+//   db.Chats.findOne({
+//     serviceProviderID: req.body.serviceProviderID
+//   }).then(chats => {
+//     if (!chats) {
+//       var newChat = new db.Chats({
+//         serviceProviderID: req.body.serviceProviderID,
+//         customerID: req.body.customerID,
+//         messages: [
+//           { text: req.body.messages.text, sendBuy: req.body.messages.sendBuy }
+//         ]
+//       });
+//       newChat.save();
+//     } else {
+//       for (var i = 0; i < chats.length; i++) {
+//         if (chats[i].customerID === req.body.customerID) {
+//           chats[i].messages.push({
+//             text: req.body.messages.text,
+//             sendBuy: req.body.messages.sendBuy
+//           });
+//         } else {
+//           var newChat = new db.Chats({
+//             serviceProviderID: req.body.serviceProviderID,
+//             customerID: req.body.customerID,
+//             messages: [
+//               {
+//                 text: req.body.messages.text,
+//                 sendBuy: req.body.messages.sendBuy
+//               }
+//             ]
+//           });
+//           newChat.save();
+//         }
+//       }
+//     }
+//   });
+// });
+
 module.exports = mRouter;
