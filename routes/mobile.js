@@ -11,8 +11,9 @@ mRouter.post("/addNewProfile", (req, res) => {
 });
 
 //Api that gets the profil from the ServiceProvider table
-router.post("/profil", (req, res) => {
-  db.ServiceProvider.find({ _id: req.query.id }).then(profil => {
+mRouter.post("/profil", (req, res) => {
+  console.log("helllooo");
+  db.ServiceProvider.find({ _id: req.body.id }).then(profil => {
     res.json(profil);
   });
 });
@@ -79,43 +80,43 @@ mRouter.post("/addHiers", (req, res) => {
 });
 
 //Api that save new chates for specific service provider
-// mRouter.post("/addchats", (req, res) => {
-//   console.log(req.body.serviceProviderID);
-//   db.Chats.findOne({
-//     serviceProviderID: req.body.serviceProviderID
-//   }).then(chats => {
-//     if (!chats) {
-//       var newChat = new db.Chats({
-//         serviceProviderID: req.body.serviceProviderID,
-//         customerID: req.body.customerID,
-//         messages: [
-//           { text: req.body.messages.text, sendBuy: req.body.messages.sendBuy }
-//         ]
-//       });
-//       newChat.save();
-//     } else {
-//       for (var i = 0; i < chats.length; i++) {
-//         if (chats[i].customerID === req.body.customerID) {
-//           chats[i].messages.push({
-//             text: req.body.messages.text,
-//             sendBuy: req.body.messages.sendBuy
-//           });
-//         } else {
-//           var newChat = new db.Chats({
-//             serviceProviderID: req.body.serviceProviderID,
-//             customerID: req.body.customerID,
-//             messages: [
-//               {
-//                 text: req.body.messages.text,
-//                 sendBuy: req.body.messages.sendBuy
-//               }
-//             ]
-//           });
-//           newChat.save();
-//         }
-//       }
-//     }
-//   });
-// });
+mRouter.post("/addchats", (req, res) => {
+  console.log(req.body.serviceProviderID);
+  db.Chats.findOne({
+    serviceProviderID: req.body.serviceProviderID
+  }).then(chats => {
+    if (!chats) {
+      var newChat = new db.Chats({
+        serviceProviderID: req.body.serviceProviderID,
+        customerID: req.body.customerID,
+        messages: [
+          { text: req.body.messages.text, sendBuy: req.body.messages.sendBuy }
+        ]
+      });
+      newChat.save();
+    } else {
+      for (var i = 0; i < chats.length; i++) {
+        if (chats[i].customerID === req.body.customerID) {
+          chats[i].messages.push({
+            text: req.body.messages.text,
+            sendBuy: req.body.messages.sendBuy
+          });
+        } else {
+          var newChat = new db.Chats({
+            serviceProviderID: req.body.serviceProviderID,
+            customerID: req.body.customerID,
+            messages: [
+              {
+                text: req.body.messages.text,
+                sendBuy: req.body.messages.sendBuy
+              }
+            ]
+          });
+          newChat.save();
+        }
+      }
+    }
+  });
+});
 
 module.exports = mRouter;
