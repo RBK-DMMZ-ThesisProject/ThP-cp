@@ -10,6 +10,13 @@ mRouter.post("/addNewProfile", (req, res) => {
   res.status(200).json({ msg: "saved" });
 });
 
+//Api that gets the profil from the ServiceProvider table
+router.post("/profil", (req, res) => {
+  db.ServiceProvider.find({ _id: req.query.id }).then(profil => {
+    res.json(profil);
+  });
+});
+
 //Api that gets the useres for specific catogery
 mRouter.post("/getProfiles", (req, res) => {
   db.ServiceProvider.find({ ServiceCategory: req.body.ServiceCategory })
