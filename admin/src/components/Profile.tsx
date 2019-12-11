@@ -59,11 +59,11 @@ const Profile: React.FC = (props: any) => {
   const handleAccept = () => {
     console.log("mmmmmobile", props.mobile)
     axios.post('messages/smsMessages', {
-      to: props.mobile,
-      text: "Your profile has been accepted"
+      to: "+962790054364",
+      msgText: "Your profile has been accepted"
     })
       .then((response) => {
-        console.log("here we kkkkkk", response);
+        console.log("Success");
       }, (error) => {
         console.log(error);
       });

@@ -13,6 +13,15 @@ const Revise: React.FC<Props> = (props) => {
   const [profileNotes, setProfileNotes] = React.useState('');
   const handleRevision = () => {
     // update state database
+    axios.post('messages/smsMessages', {
+      to: "+962790054364",
+      msgText: profileNotes
+    })
+      .then((response) => {
+        console.log("Success");
+      }, (error) => {
+        console.log(error);
+      });
     axios.post('updateProfileNotes', {
       id: props.pid,
       ProfileNotes: profileNotes

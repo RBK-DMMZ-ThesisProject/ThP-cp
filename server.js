@@ -20,7 +20,7 @@ app.use(cors());
 app.use(pino);
 app.use("/mobileApi", require("./routes/mobile.js"));
 app.use("/auth", require("./routes/auth.js"));
-app.use("/messages", require("./routes/sms.js"));
+app.use("/messages", require("./routes/sms.js").smsRouter);
 app.use('/admins', require("./routes/admin.js"));
 app.use(require("./routes"));
 const PORT = process.env.PORT || 8000;
