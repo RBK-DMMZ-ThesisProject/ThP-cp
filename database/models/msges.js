@@ -2,18 +2,20 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-var chatsSchema = new Schema({
+var MsgesSchema = new Schema({
   id: {
     type: Number
   },
   customerID: String,
   serviceProviderID: String,
+  type: Number, //0 for sender 1 for recseiver
+  message: String,
   dataAdded: {
     type: Date,
     default: Date.now
   }
 });
 
-var Chats = mongoose.model("chat", chatsSchema);
+var Msges = mongoose.model("msg", MsgesSchema);
 
-module.exports = Chats;
+module.exports = Msges;
