@@ -18,5 +18,6 @@ module.exports = {
   ServiceProvider: require("./models/serviceProvider").ServiceProvider,
   saveNewProfile: require("./models/serviceProvider").saveNewProfile,
   SpHires: require("./models/spHires"),
-  Favorites: require("./models/favorites")
+  Favorites: require("./models/favorites"),
+  Msges: require("./models/msges")
 };
