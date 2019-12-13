@@ -53,21 +53,6 @@ mRouter.post("/getProfiles", (req, res) => {
     });
 });
 
-//Api that gets the rates for specific service provider
-// mRouter.post("/getRate", (req, res) => {
-//   db.CustomerReviews.find({
-//     serviceproviderid: req.body.serviceproviderid
-//   })
-//     .select("rate")
-//     .then(info => {
-//       var sum = 0;
-//       for (var i = 0; i < info.length; i++) {
-//         sum += info[i].rate;
-//       }
-//       res.json(sum / info.length);
-//     });
-// });
-
 //Api that gets the reviews for specific service provider
 mRouter.post("/getReviews", (req, res) => {
   console.log(req.body.review);
@@ -95,15 +80,27 @@ mRouter.post("/addReviews", (req, res) => {
 
 //Api that updates the hire state for specific service provider
 mRouter.post("/addHiers", (req, res) => {
-  console.log("server  ", req.body.customerID);
   const decoded = jwt_decode(req.body.customerID);
-  console.log("decoded:", decoded._id);
   var newHire = new db.SpHires({
     serviceProviderID: req.body.serviceproviderid,
     customerID: decoded._id
   });
   newHire.save().then(info => {
     res.json(info);
+  });
+});
+
+//Api that updates the hire state for specific service provider
+mRouter.post("/hasProfile", (req, res) => {
+  var result = { result: false };
+  db.ServiceProvider.find({
+    email: req.body.email
+  }).then(sProvider => {
+    console.log("hhhhhhhhh", sProvider);
+    if (sProvider.length) {
+      result = { result: true };
+    }
+    res.json(result);
   });
 });
 
