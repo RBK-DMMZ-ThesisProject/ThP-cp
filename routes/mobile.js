@@ -2,6 +2,7 @@ const express = require("express");
 const mRouter = express.Router();
 const db = require("../database/db");
 const cors = require("cors");
+const jwt_decode = require("jwt-decode");
 mRouter.use(cors());
 
 //Api that adds a new profile to the  ServiceProvider table
@@ -94,9 +95,12 @@ mRouter.post("/addReviews", (req, res) => {
 
 //Api that updates the hire state for specific service provider
 mRouter.post("/addHiers", (req, res) => {
+  console.log("server  ", req.body.customerID);
+  const decoded = jwt_decode(req.body.customerID);
+  console.log("decoded:", decoded._id);
   var newHire = new db.SpHires({
-    serviceproviderid: req.body.serviceproviderid,
-    customerID: req.body.customerID
+    serviceProviderID: req.body.serviceproviderid,
+    customerID: decoded._id
   });
   newHire.save().then(info => {
     res.json(info);
