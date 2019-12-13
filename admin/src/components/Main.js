@@ -490,11 +490,14 @@ const Main = () => {
     );
   };
 
-  return (()=> {if (listPath === "profiles" || listPath === "admin") {
-    return profiles();
-  } else if (listPath === "users") {
-    return users();
-  }})
+  const render = () => {
+    if (listPath === "profiles" || listPath === "admin") {
+      return profiles();
+    } else if (listPath === "users") {
+      return users();
+    }
+  }
+  return (render());
 };
 
 export default Main;
