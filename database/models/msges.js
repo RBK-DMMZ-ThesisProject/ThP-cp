@@ -8,7 +8,8 @@ var MsgesSchema = new Schema({
   },
   customerID: String,
   serviceProviderID: String,
-  type: Number, //0 for sender 1 for recseiver
+  receverID: String,
+  senderID: String,
   message: String,
   dataAdded: {
     type: Date,
@@ -18,4 +19,22 @@ var MsgesSchema = new Schema({
 
 var Msges = mongoose.model("msg", MsgesSchema);
 
-module.exports = Msges;
+let saveNewMsg = msage => {
+  var newMassage = new Msges({
+    customerID: msage.customerID,
+    serviceProviderID: msage.serviceProviderID,
+    receverID: msage.receverID,
+    message: msage.message,
+    senderID: msage.senderID
+  });
+  console.log(newMassage);
+  newMassage.save(function(err, data) {
+    if (err) {
+      console.log("error saving", err);
+    }
+    console.log("profile saved in db", data);
+  });
+};
+
+module.exports.Msges = Msges;
+module.exports.saveNewMsg = saveNewMsg;
