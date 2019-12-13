@@ -2,8 +2,8 @@ const express = require("express");
 const smsRouter = express.Router();
 const cors = require("cors");
 const client = require("twilio")(
-  TWILIO_ACCOUNT_SID,
-  TWILIO_AUTH_TOKEN
+  "AC23e0e92198924bdc7a97fd0e07d26d25",
+  "e98e253b573927e3e765dcced41039e3"
 );
 
 smsRouter.use(cors());
@@ -24,7 +24,7 @@ const send = (pass, num, adminName) => {
 
   client.messages
     .create({
-      from: TWILIO_PHONE_NUMBER,
+      from: "+14259472026",
       to: num,
       body: "You have become an Admin. Your password is " + pass
     })
