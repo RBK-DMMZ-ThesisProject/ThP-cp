@@ -2,7 +2,7 @@ const express = require("express");
 const pRouter = express.Router();
 const db = require("../database/db");
 const cors = require("cors");
-const secret = reuire('../config.js');
+const secret = require('../config.js');
 pRouter.use(cors());
 const stripe = require('stripe')(secret.STRIPE_SECRET);
 
