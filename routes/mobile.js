@@ -91,12 +91,32 @@ mRouter.post("/addHiers", (req, res) => {
 });
 
 //Api that updates the hire state for specific service provider
+mRouter.post("/hiersHistory", (req, res) => {
+  //const decoded = jwt_decode(req.body.customerID);
+  db.SpHires.find({
+    customerID: req.body.customerID
+  }).then(async hiers => {
+    var sProviders = [];
+    for (var i = 0; i < hiers.length; i++) {
+      await db.ServiceProvider.find({
+        _id: hiers[i].serviceProviderID
+      })
+        .select("userName")
+        .then(sProvider => {
+          console.log(sProvider);
+          sProviders.push(sProvider[0].userName);
+        });
+    }
+    //console.log(sProviders);
+    res.json(sProviders);
+  });
+});
+//Api that updates the hire state for specific service provider
 mRouter.post("/hasProfile", (req, res) => {
   var result = { result: false };
   db.ServiceProvider.find({
     email: req.body.email
   }).then(sProvider => {
-    console.log("hhhhhhhhh", sProvider);
     if (sProvider.length) {
       result = { result: true };
     }
