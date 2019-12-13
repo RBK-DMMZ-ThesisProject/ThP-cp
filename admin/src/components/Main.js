@@ -489,15 +489,11 @@ const Main = () => {
       </div>
     );
   };
-
-  const render = () => {
     if (listPath === "profiles" || listPath === "admin") {
       return profiles();
     } else if (listPath === "users") {
       return users();
     }
-  }
-  return (render());
 };
 
 export default Main;
