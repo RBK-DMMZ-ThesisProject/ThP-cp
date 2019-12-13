@@ -31,6 +31,7 @@ mRouter.post("/getProfiles", (req, res) => {
         })
           .select("rate")
           .then(ratings => {
+            console.log(ratings);
             var sum = 0;
             var counter = 0;
             for (var j = 0; j < ratings.length; j++) {
