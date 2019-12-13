@@ -6,8 +6,8 @@ var spHiresSchema = new Schema({
   id: {
     type: Number
   },
-  customerID: Number,
-  serviceProviderID: Number,
+  customerID: String,
+  serviceProviderID: String,
   dataAdded: {
     type: Date,
     default: Date.now

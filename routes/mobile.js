@@ -2,6 +2,7 @@ const express = require("express");
 const mRouter = express.Router();
 const db = require("../database/db");
 const cors = require("cors");
+const jwt_decode = require("jwt-decode");
 mRouter.use(cors());
 
 //Api that adds a new profile to the  ServiceProvider table
@@ -19,11 +20,11 @@ mRouter.post("/profil", (req, res) => {
 
 //Api that gets the useres for specific catogery
 mRouter.post("/getProfiles", (req, res) => {
-  let profil, rate;
+  let profil;
+  let rates = [];
   db.ServiceProvider.find({ ServiceCategory: req.body.ServiceCategory })
     .select("_id userName  userImg")
     .then(async profils => {
-      console.log(profils);
       profil = profils;
       for (var i = 0; i < profil.length; i++) {
         await db.CustomerReviews.find({
@@ -31,6 +32,7 @@ mRouter.post("/getProfiles", (req, res) => {
         })
           .select("rate")
           .then(ratings => {
+            console.log(ratings);
             var sum = 0;
             var counter = 0;
             for (var j = 0; j < ratings.length; j++) {
@@ -39,32 +41,15 @@ mRouter.post("/getProfiles", (req, res) => {
                 sum += ratings[j].rate;
               }
             }
-            // notice not all ratings has rate key
             if (ratings.length !== 0) {
               rate = sum / counter;
-              profil[i]["rate"] = rate;
             } else {
-              profil[i]["rate"] = 0;
+              rate = 0;
             }
+            rates.push(rate);
           });
-        console.log("hhh", profil[0]["rate"]);
       }
-      res.json(profil);
-    });
-});
-
-//Api that gets the rates for specific service provider
-mRouter.post("/getRate", (req, res) => {
-  db.CustomerReviews.find({
-    serviceproviderid: req.body.serviceproviderid
-  })
-    .select("rate")
-    .then(info => {
-      var sum = 0;
-      for (var i = 0; i < info.length; i++) {
-        sum += info[i].rate;
-      }
-      res.json(sum / info.length);
+      res.json({ profil: profil, rates: rates });
     });
 });
 
@@ -95,31 +80,47 @@ mRouter.post("/addReviews", (req, res) => {
 
 //Api that updates the hire state for specific service provider
 mRouter.post("/addHiers", (req, res) => {
+  const decoded = jwt_decode(req.body.customerID);
   var newHire = new db.SpHires({
-    serviceproviderid: req.body.serviceproviderid,
-    customerID: req.body.customerID
+    serviceProviderID: req.body.serviceproviderid,
+    customerID: decoded._id
   });
   newHire.save().then(info => {
     res.json(info);
   });
 });
 
-//Api that save new chates for specific service provider
-mRouter.post("/addchats", (req, res) => {
-  console.log(req.body);
-  console.log(req.body.serviceProviderID);
-  db.Chats.findOne({
-    serviceProviderID: req.body.serviceProviderID
-  }).then(chats => {
-    if (!chats) {
-      var newChat = new db.Chats({
-        serviceProviderID: req.body.serviceProviderID,
-        customerID: req.body.customerID
-      });
-      console.log(newChat);
-      newChat.save();
+//Api that updates the hire state for specific service provider
+mRouter.post("/hasProfile", (req, res) => {
+  var result = { result: false };
+  db.ServiceProvider.find({
+    email: req.body.email
+  }).then(sProvider => {
+    console.log("hhhhhhhhh", sProvider);
+    if (sProvider.length) {
+      result = { result: true };
     }
+    res.json(result);
   });
 });
+
+//Api that save new chates for specific service provider
+// mRouter.post("/addchats", (req, res) => {
+//   console.log(req.body);
+//   db.Chats.find({
+//     serviceProviderID: req.body.serviceProviderID
+//   }).then(chats => {
+//     if (!chats) {
+//       db.Chats.saveNewMsg(req.body);
+//       db.Chats.saveNewChat(req.body);
+//     } else {
+//       db.Chats.saveNewMsg(req.body); //i want to return the msg id
+//       for (var i = 0; i < chats.length; i++) {
+//         if (chats[i].customerID === req.body.customerID) {
+//         }
+//       }
+//     }
+//   });
+// });
 
 module.exports = mRouter;
