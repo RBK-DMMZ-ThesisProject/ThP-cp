@@ -145,6 +145,7 @@ const Users = () => {
           ADD
         </Button>
       </div>
+      <div id="dilog">
       <Dialog
       open={openAddUser}
       onClose={handleAddUserClose}
@@ -194,6 +195,7 @@ const Users = () => {
         </Button>
       </DialogActions>
     </Dialog>
+    </div>
     </div>
     )
   };
