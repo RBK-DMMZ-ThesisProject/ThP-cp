@@ -92,9 +92,9 @@ mRouter.post("/addHiers", (req, res) => {
 
 //Api that updates the hire state for specific service provider
 mRouter.post("/hiersHistory", (req, res) => {
-  //const decoded = jwt_decode(req.body.customerID);
+  const decoded = jwt_decode(req.body.customerID);
   db.SpHires.find({
-    customerID: req.body.customerID
+    customerID: decoded._id
   }).then(async hiers => {
     var sProviders = [];
     for (var i = 0; i < hiers.length; i++) {
