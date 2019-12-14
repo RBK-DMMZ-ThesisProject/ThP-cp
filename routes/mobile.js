@@ -137,6 +137,30 @@ mRouter.post("/customersHistory", (req, res) => {
 });
 
 //Api that updates the hire state for specific service provider
+mRouter.post("/favorites", (req, res) => {
+  //const decoded = jwt_decode(req.body.customerID);
+  db.Favorites.find({
+    customerID: req.body.customerID
+  }).then(async faves => {
+    console.log(faves);
+    var favorites = [];
+    for (var i = 0; i < faves.length; i++) {
+      await db.ServiceProvider.find({
+        _id: faves[i].serviceProviderID
+      })
+        .select("userName userImg")
+        .then(sProvider => {
+          favorites.push({
+            userName: sProvider[0].userName,
+            userImg: sProvider[0].userImg
+          });
+        });
+    }
+    res.json(favorites);
+  });
+});
+
+//Api that updates the hire state for specific service provider
 mRouter.post("/hasProfile", (req, res) => {
   var result = { result: false };
   db.ServiceProvider.find({
