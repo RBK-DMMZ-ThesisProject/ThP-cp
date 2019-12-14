@@ -9,7 +9,7 @@
     height: 50px;
     width: 50px;
 }
-#main {
+#main1 {
     background-color: #dff0f6;
 }
 #information {
@@ -20,6 +20,7 @@
 #name {
     text-align: left;
     color: 	#63b8d4;
+    margin-top: 0px;
 }
 table {
     grid-area: 1 / 1 / span 1 / span 1;
@@ -64,4 +65,13 @@ h2 {
     color: #63b8d4;
     font-weight: bold;
     margin-right: 10px;
+}
+#closeBtn {
+    color: white;
+    font-weight: bold;
+    float: right;
+    width: 0.05px;
+    height: 40px;
+    font-size: 20px;
+    background-color: #63b8d4;
 }
