@@ -67,11 +67,11 @@ mRouter.post("/getReviews", (req, res) => {
 
 //Api that adds new reviews for specific service provider
 mRouter.post("/addReviews", (req, res) => {
-  console.log(req.body.serviceproviderid);
+  const decoded = jwt_decode(req.body.customerID);
   var newReview = new db.CustomerReviews({
     serviceproviderid: req.body.serviceproviderid,
     review: req.body.review,
-    customerID: req.body.customerID
+    customerID: decoded._id
   });
   newReview.save().then(info => {
     res.json(info);
