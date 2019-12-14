@@ -39,6 +39,9 @@ const Revise: React.FC<Props> = (props) => {
   }
   return (
     <div id='reviseMain'>
+      <Button type="button" variant="contained" onClick={() => props.handleClose()} id="modalBtn">
+                X
+      </Button>
       <h1 id='reviseName'>Reason For Revision</h1>
       <hr></hr>
       <div id="textareaDiv">

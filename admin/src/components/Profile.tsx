@@ -106,6 +106,9 @@ const Profile: React.FC = (props: any) => {
   return (
     <div id='main'>
       <div>
+        <Button type="button" variant="contained" onClick={() => handleClose()} id="modalBtn">
+                X
+        </Button>
         <h1 id='name'>{profile.data[0].userName}</h1>
         <hr></hr>
         <div id="information">
@@ -170,3 +173,6 @@ const Profile: React.FC = (props: any) => {
 }
 
 export default Profile;
+
+
+
