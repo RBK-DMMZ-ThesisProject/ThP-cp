@@ -91,12 +91,81 @@ mRouter.post("/addHiers", (req, res) => {
 });
 
 //Api that updates the hire state for specific service provider
+mRouter.post("/hiersHistory", (req, res) => {
+  //const decoded = jwt_decode(req.body.customerID);
+  db.SpHires.find({
+    customerID: req.body.customerID
+  }).then(async hiers => {
+    var sProviders = [];
+    for (var i = 0; i < hiers.length; i++) {
+      await db.ServiceProvider.find({
+        _id: hiers[i].serviceProviderID
+      })
+        .select("userName userImg")
+        .then(sProvider => {
+          sProviders.push({
+            userName: sProvider[0].userName,
+            userImg: sProvider[0].userImg
+          });
+        });
+    }
+    //console.log(sProviders);
+    res.json(sProviders);
+  });
+});
+
+mRouter.post("/customersHistory", (req, res) => {
+  //const decoded = jwt_decode(req.body.customerID);
+  db.SpHires.find({
+    serviceProviderID: req.body.serviceProviderID
+  }).then(async hiers => {
+    console.log("hiers", hiers);
+    var customers = [];
+    for (var i = 0; i < hiers.length; i++) {
+      await db.User.find({
+        _id: hiers[i].customerID
+      })
+        .select("userName")
+        .then(user => {
+          console.log("user", user);
+          customers.push(user[0].userName);
+        });
+    }
+    console.log("customers", customers);
+    res.json(customers);
+  });
+});
+
+//Api that updates the hire state for specific service provider
+mRouter.post("/favorites", (req, res) => {
+  //const decoded = jwt_decode(req.body.customerID);
+  db.Favorites.find({
+    customerID: req.body.customerID
+  }).then(async faves => {
+    console.log(faves);
+    var favorites = [];
+    for (var i = 0; i < faves.length; i++) {
+      await db.ServiceProvider.find({
+        _id: faves[i].serviceProviderID
+      })
+        .select("userName userImg")
+        .then(sProvider => {
+          favorites.push({
+            userName: sProvider[0].userName,
+            userImg: sProvider[0].userImg
+          });
+        });
+    }
+    res.json(favorites);
+  });
+});
+
+//Api that updates the hire state for specific service provider
 mRouter.post("/hasProfile", (req, res) => {
   var result = { result: false };
   db.ServiceProvider.find({
     email: req.body.email
   }).then(sProvider => {
-    console.log("hhhhhhhhh", sProvider);
     if (sProvider.length) {
       result = { result: true };
     }

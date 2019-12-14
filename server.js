@@ -8,20 +8,19 @@ const bodyParser = require("body-parser");
 const pino = require("express-pino-logger")();
 const db = require("./database/db");
 // app.use(express.static(__dirname + "/"));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-
 
 app.get("/test", (req, res) => {
   res.status(200).send("hello");
 });
 app.use(cors());
 app.use(pino);
+//app.use("/payApi", require("./routes/payments.js"));
 app.use("/mobileApi", require("./routes/mobile.js"));
 app.use("/auth", require("./routes/auth.js"));
 app.use("/messages", require("./routes/sms.js").smsRouter);
-app.use('/admins', require("./routes/admin.js"));
+app.use("/admins", require("./routes/admin.js"));
 app.use(require("./routes"));
 const PORT = process.env.PORT || 8000;
 
