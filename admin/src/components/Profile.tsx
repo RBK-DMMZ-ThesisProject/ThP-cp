@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import Revise from './Revise';
 import Modal from '@material-ui/core/Modal';
 import axios from 'axios';
+import Dialog from '@material-ui/core/Dialog';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -104,12 +106,14 @@ const Profile: React.FC = (props: any) => {
   var age = currentYear - yearBirth;
 
   return (
-    <div id='main'>
+    <div id='main1'>
       <div>
-        <Button type="button" variant="contained" onClick={() => handleClose()} id="modalBtn">
+        <div>        
+          <Button type="button" variant="contained" onClick={() => handleClose()} id="closeBtn">
                 X
         </Button>
-        <h1 id='name'>{profile.data[0].userName}</h1>
+        <h1 id='name'>{profile.data[0].userName}</h1></div>
+
         <hr></hr>
         <div id="information">
           <table>
@@ -157,7 +161,20 @@ const Profile: React.FC = (props: any) => {
           </div>
         </div>
       </div>
-      <Modal
+      <div >
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                maxWidth="xl"
+              >
+                <div >
+                  {revise}
+                </div>
+              </Dialog>
+              </div>
+      {/* <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={open}
@@ -166,7 +183,7 @@ const Profile: React.FC = (props: any) => {
         <div style={modalStyle} className={classes.paper}>
           {revise}
         </div>
-      </Modal>
+      </Modal> */}
     </div>
 
   );
