@@ -7,10 +7,10 @@ import Button from "@material-ui/core/Button";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
-import Modal from "@material-ui/core/Modal";
 import Profile from "./Profile";
-import AddUser from "./AddUser";
 import axios from "axios";
+import Dialog from '@material-ui/core/Dialog';
+
 
 
 function getModalStyle() {
@@ -225,16 +225,19 @@ const Profiles = () => {
                   </tbody>
                 </table>
               </TabPanel>
-              <Modal
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
+              <div id="dilog">
+              <Dialog
                 open={open}
                 onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                maxWidth="xl"
               >
-                <div style={modalStyle} className={classes.paper}>
+                <div>
                   {profile}
                 </div>
-              </Modal>
+              </Dialog>
+              </div>
             </div>
     );
   };

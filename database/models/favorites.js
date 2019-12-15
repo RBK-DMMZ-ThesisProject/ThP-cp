@@ -4,11 +4,10 @@ var Schema = mongoose.Schema;
 
 var favoritesSchema = new Schema({
   id: {
-    type: Number,
-    required: true
+    type: Number
   },
-  customerID: Number,
-  serviceProviderID: Number,
+  customerID: String,
+  serviceProviderID: String,
   dataAdded: {
     type: Date,
     default: Date.now

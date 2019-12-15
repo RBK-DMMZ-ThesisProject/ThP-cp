@@ -69,11 +69,11 @@ mRouter.post("/getReviews", (req, res) => {
 
 //Api that adds new reviews for specific service provider
 mRouter.post("/addReviews", (req, res) => {
-  console.log(req.body.serviceproviderid);
+  const decoded = jwt_decode(req.body.customerID);
   var newReview = new db.CustomerReviews({
     serviceproviderid: req.body.serviceproviderid,
     review: req.body.review,
-    customerID: req.body.customerID
+    customerID: decoded._id
   });
   newReview.save().then(info => {
     res.json(info);
@@ -93,6 +93,86 @@ mRouter.post("/addHiers", (req, res) => {
 });
 
 //Api that updates the hire state for specific service provider
+mRouter.post("/hiersHistory", (req, res) => {
+  const decoded = jwt_decode(req.body.customerID);
+  db.SpHires.find({
+    customerID: decoded._id
+  }).then(async hiers => {
+    var sProviders = [];
+    for (var i = 0; i < hiers.length; i++) {
+      await db.ServiceProvider.find({
+        _id: hiers[i].serviceProviderID
+      })
+        .select("userName userImg")
+        .then(sProvider => {
+          sProviders.push({
+            userName: sProvider[0].userName,
+            userImg: sProvider[0].userImg
+          });
+        });
+    }
+    res.json(sProviders);
+  });
+});
+
+mRouter.post("/customersHistory", (req, res) => {
+  //const decoded = jwt_decode(req.body.customerID);
+  db.SpHires.find({
+    serviceProviderID: req.body.serviceProviderID
+  }).then(async hiers => {
+    console.log("hiers", hiers);
+    var customers = [];
+    for (var i = 0; i < hiers.length; i++) {
+      await db.User.find({
+        _id: hiers[i].customerID
+      })
+        .select("userName")
+        .then(user => {
+          console.log("user", user);
+          customers.push(user[0].userName);
+        });
+    }
+    console.log("customers", customers);
+    res.json(customers);
+  });
+});
+//Api that adds new favorite for specific user
+mRouter.post("/addfavorite", (req, res) => {
+  //const decoded = jwt_decode(req.body.customerID);
+  var newfavorite = new db.Favorites({
+    serviceProviderID: req.body.serviceproviderid,
+    customerID: req.body.customerID
+  });
+  newfavorite.save().then(faves => {
+    res.json(faves);
+  });
+});
+
+//Api that returns alist of  the favorites for specific user
+mRouter.post("/favorites", (req, res) => {
+  const decoded = jwt_decode(req.body.customerID);
+  db.Favorites.find({
+    customerID: decoded._id
+  }).then(async faves => {
+    console.log(faves);
+    var favorites = [];
+    for (var i = 0; i < faves.length; i++) {
+      await db.ServiceProvider.find({
+        _id: faves[i].serviceProviderID
+      })
+        .select("userName userImg")
+        .then(sProvider => {
+          favorites.push({
+            userName: sProvider[0].userName,
+            userImg: sProvider[0].userImg
+          });
+        });
+    }
+    res.json(favorites);
+  });
+});
+
+//Api that updates the hire state for specific service provider
 mRouter.post("/hasProfile", (req, res) => {
   var result = { result: false };
   var decoded = jwt.verify(req.body.userToken, process.env.SECRET_KEY);
@@ -100,7 +180,6 @@ mRouter.post("/hasProfile", (req, res) => {
   db.ServiceProvider.find({
     email: decoded.email
   }).then(sProvider => {
-    console.log("hhhhhhhhh", sProvider);
     if (sProvider.length) {
       result = { result: true };
     }
