@@ -179,7 +179,7 @@ mRouter.post("/hasProfile", (req, res) => {
   db.ServiceProvider.find({
     email: decoded.email
   }).then(sProvider => {
-    if (sProvider.length) {
+    if (sProvider.length > 0) {
       result.result = true;
     }
     res.json(result);
