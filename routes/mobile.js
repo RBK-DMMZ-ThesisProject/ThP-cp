@@ -5,7 +5,8 @@ const cors = require("cors");
 const jwt_decode = require("jwt-decode");
 mRouter.use(cors());
 const jwt = require("jsonwebtoken");
-const config = require('../config');
+const config = require("../config");
+
 //Api that adds a new profile to the  ServiceProvider table
 mRouter.post("/addNewProfile", (req, res) => {
   db.saveNewProfile(req.body, function (err, user) {
@@ -72,7 +73,7 @@ mRouter.post("/getReviews", (req, res) => {
 
 //Api that adds new reviews for specific service provider
 mRouter.post("/addReviews", (req, res) => {
-  const decoded = jwt_decode(req.body.customerID);
+  var decoded = jwt.verify(req.body.customerID, config.JWT_SECRET);
   var newReview = new db.CustomerReviews({
     serviceproviderid: req.body.serviceproviderid,
     review: req.body.review,
@@ -85,7 +86,7 @@ mRouter.post("/addReviews", (req, res) => {
 
 //Api that updates the hire state for specific service provider
 mRouter.post("/addHiers", (req, res) => {
-  const decoded = jwt_decode(req.body.customerID);
+  var decoded = jwt.verify(req.body.customerID, config.JWT_SECRET);
   var newHire = new db.SpHires({
     serviceProviderID: req.body.serviceproviderid,
     customerID: decoded._id
@@ -97,7 +98,7 @@ mRouter.post("/addHiers", (req, res) => {
 
 //Api that updates the hire state for specific service provider
 mRouter.post("/hiersHistory", (req, res) => {
-  const decoded = jwt_decode(req.body.customerID);
+  var decoded = jwt.verify(req.body.customerID, config.JWT_SECRET);
   db.SpHires.find({
     customerID: decoded._id
   }).then(async hiers => {
@@ -119,7 +120,6 @@ mRouter.post("/hiersHistory", (req, res) => {
 });
 
 mRouter.post("/customersHistory", (req, res) => {
-  //const decoded = jwt_decode(req.body.customerID);
   db.SpHires.find({
     serviceProviderID: req.body.serviceProviderID
   }).then(async hiers => {
@@ -139,12 +139,13 @@ mRouter.post("/customersHistory", (req, res) => {
     res.json(customers);
   });
 });
+
 //Api that adds new favorite for specific user
 mRouter.post("/addfavorite", (req, res) => {
-  //const decoded = jwt_decode(req.body.customerID);
+  var decoded = jwt.verify(req.body.customerID, config.JWT_SECRET);
   var newfavorite = new db.Favorites({
     serviceProviderID: req.body.serviceproviderid,
-    customerID: req.body.customerID
+    customerID: decoded._id
   });
   newfavorite.save().then(faves => {
     res.json(faves);
@@ -153,7 +154,7 @@ mRouter.post("/addfavorite", (req, res) => {
 
 //Api that returns alist of  the favorites for specific user
 mRouter.post("/favorites", (req, res) => {
-  const decoded = jwt_decode(req.body.customerID);
+  var decoded = jwt.verify(req.body.customerID, config.JWT_SECRET);
   db.Favorites.find({
     customerID: decoded._id
   }).then(async faves => {
@@ -189,24 +190,5 @@ mRouter.post("/hasProfile", (req, res) => {
     res.json(result);
   });
 });
-
-//Api that save new chates for specific service provider
-// mRouter.post("/addchats", (req, res) => {
-//   console.log(req.body);
-//   db.Chats.find({
-//     serviceProviderID: req.body.serviceProviderID
-//   }).then(chats => {
-//     if (!chats) {
-//       db.Chats.saveNewMsg(req.body);
-//       db.Chats.saveNewChat(req.body);
-//     } else {
-//       db.Chats.saveNewMsg(req.body); //i want to return the msg id
-//       for (var i = 0; i < chats.length; i++) {
-//         if (chats[i].customerID === req.body.customerID) {
-//         }
-//       }
-//     }
-//   });
-// });
 
 module.exports = mRouter;
