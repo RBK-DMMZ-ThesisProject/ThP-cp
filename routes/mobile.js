@@ -155,7 +155,7 @@ mRouter.post("/addfavorite", (req, res) => {
 //Api that delete from favorite for specific user
 mRouter.post("/deletefavorite", (req, res) => {
   var decoded = jwt.verify(req.body.customerID, config.JWT_SECRET);
-  db.Favorites.deleteOne({
+  db.Favorites.delete({
     serviceProviderID: dreq.body.serviceproviderid,
     customerID: decoded._id
   }).then(deleted => {
