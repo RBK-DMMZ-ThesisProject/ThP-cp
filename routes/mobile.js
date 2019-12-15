@@ -4,7 +4,9 @@ const db = require("../database/db");
 const cors = require("cors");
 const jwt_decode = require("jwt-decode");
 mRouter.use(cors());
+const jwt = require("jsonwebtoken");
 
+process.env.SECRET_KEY = "secret";
 //Api that adds a new profile to the  ServiceProvider table
 mRouter.post("/addNewProfile", (req, res) => {
   db.saveNewProfile(req.body);
@@ -93,8 +95,10 @@ mRouter.post("/addHiers", (req, res) => {
 //Api that updates the hire state for specific service provider
 mRouter.post("/hasProfile", (req, res) => {
   var result = { result: false };
+  var decoded = jwt.verify(req.body.userToken, process.env.SECRET_KEY);
+
   db.ServiceProvider.find({
-    email: req.body.email
+    email: decoded.email
   }).then(sProvider => {
     console.log("hhhhhhhhh", sProvider);
     if (sProvider.length) {
