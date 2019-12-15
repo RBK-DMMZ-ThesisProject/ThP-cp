@@ -186,6 +186,7 @@ mRouter.post("/hasProfile", (req, res) => {
   }).then(sProvider => {
     if (sProvider.length > 0) {
       result.result = true;
+      result.profileId = sProvider[0]._id;
     }
     res.json(result);
   });
