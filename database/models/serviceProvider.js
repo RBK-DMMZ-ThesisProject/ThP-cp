@@ -5,7 +5,6 @@ var Schema = mongoose.Schema;
 var serviceProviderSchema = new Schema({
   id: {
     type: Number,
-    required: true
   },
   userName: String,
   dateOfBirth: Date,
