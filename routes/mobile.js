@@ -9,8 +9,12 @@ const config = require("../config");
 
 //Api that adds a new profile to the  ServiceProvider table
 mRouter.post("/addNewProfile", (req, res) => {
-  db.saveNewProfile(req.body);
-  res.status(200).json({ msg: "saved" });
+  db.saveNewProfile(req.body, function (err, user) {
+    if (err) {
+      res.status(200).json({ msg: 'not saved', err: err });
+    }
+    res.status(200).json({ msg: "saved" });
+  });
 });
 
 //Api that gets the profil from the ServiceProvider table
@@ -180,7 +184,7 @@ mRouter.post("/hasProfile", (req, res) => {
   db.ServiceProvider.find({
     email: decoded.email
   }).then(sProvider => {
-    if (sProvider.length) {
+    if (sProvider.length > 0) {
       result.result = true;
     }
     res.json(result);

@@ -5,7 +5,6 @@ var Schema = mongoose.Schema;
 var serviceProviderSchema = new Schema({
   id: {
     type: Number,
-    required: true
   },
   userName: String,
   dateOfBirth: Date,
@@ -28,7 +27,7 @@ const ServiceProvider = mongoose.model(
   "serviceprovider",
   serviceProviderSchema
 );
-let saveNewProfile = data => {
+let saveNewProfile = (data, callback) => {
   var newProvider = new ServiceProvider({
     userName: data.firstName + " " + data.familyName,
     dateOfBirth: new Date(data.birthdate),
@@ -42,11 +41,13 @@ let saveNewProfile = data => {
     ProfileNotes: ""
   });
   console.log(newProvider);
-  newProvider.save(function(err, data) {
+  newProvider.save(function (err, data) {
     if (err) {
       console.log("error saving", err);
+      callback(err, null);
     }
     console.log("profile saved in db", data);
+    callback(null, data);
   });
 };
 module.exports.saveNewProfile = saveNewProfile;
