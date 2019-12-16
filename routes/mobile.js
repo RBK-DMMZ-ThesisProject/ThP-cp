@@ -9,9 +9,9 @@ const config = require("../config");
 
 //Api that adds a new profile to the  ServiceProvider table
 mRouter.post("/addNewProfile", (req, res) => {
-  db.saveNewProfile(req.body, function (err, user) {
+  db.saveNewProfile(req.body, function(err, user) {
     if (err) {
-      res.status(200).json({ msg: 'not saved', err: err });
+      res.status(200).json({ msg: "not saved", err: err });
     }
     res.status(200).json({ msg: "saved" });
   });
@@ -19,9 +19,27 @@ mRouter.post("/addNewProfile", (req, res) => {
 
 //Api that gets the profil from the ServiceProvider table
 mRouter.post("/profil", (req, res) => {
-  db.ServiceProvider.find({ _id: req.body.id }).then(profil => {
-    res.json(profil);
-  });
+  var response = {};
+  if (req.body.token) {
+    var decoded = jwt.verify(req.body.token, config.JWT_SECRET);
+    db.ServiceProvider.find({ _id: req.body.serviceproviderid }).then(
+      profil => {
+        response.profile = profil[0];
+        db.Favorites.find({
+          customerID: decoded._id
+        }).then(favs => {
+          response.favs = favs[0];
+          res.json(response);
+        });
+      }
+    );
+  } else {
+    db.ServiceProvider.find({ _id: req.body.serviceproviderid }).then(
+      profil => {
+        res.json(profil);
+      }
+    );
+  }
 });
 
 //Api that gets the useres for specific catogery
@@ -61,7 +79,6 @@ mRouter.post("/getProfiles", (req, res) => {
 
 //Api that gets the reviews for specific service provider
 mRouter.post("/getReviews", (req, res) => {
-  console.log(req.body.review);
   db.CustomerReviews.find({
     serviceproviderid: req.body.serviceproviderid
   })
@@ -149,6 +166,18 @@ mRouter.post("/addfavorite", (req, res) => {
   });
   newfavorite.save().then(faves => {
     res.json(faves);
+  });
+});
+
+//Api that delete from favorite for specific user
+mRouter.post("/deletefavorite", (req, res) => {
+  var decoded = jwt.verify(req.body.customerID, config.JWT_SECRET);
+  console.log(decoded);
+  db.Favorites.deleteOne({
+    serviceProviderID: req.body.serviceproviderid,
+    customerID: decoded._id
+  }).then(deleted => {
+    res.json(deleted);
   });
 });
 
