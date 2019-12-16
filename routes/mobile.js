@@ -143,6 +143,10 @@ mRouter.post("/customersHistory", (req, res) => {
 //Api that adds new favorite for specific user
 mRouter.post("/addfavorite", (req, res) => {
   var decoded = jwt.verify(req.body.customerID, config.JWT_SECRET);
+  // db.Favorites.find({
+  //   customerID: decoded._id
+  // })
+  // if()
   var newfavorite = new db.Favorites({
     serviceProviderID: req.body.serviceproviderid,
     customerID: decoded._id
@@ -156,7 +160,7 @@ mRouter.post("/addfavorite", (req, res) => {
 mRouter.post("/deletefavorite", (req, res) => {
   var decoded = jwt.verify(req.body.customerID, config.JWT_SECRET);
   db.Favorites.delete({
-    serviceProviderID: dreq.body.serviceproviderid,
+    serviceProviderID: req.body.serviceproviderid,
     customerID: decoded._id
   }).then(deleted => {
     res.json(deleted);
