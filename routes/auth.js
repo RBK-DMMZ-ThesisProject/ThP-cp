@@ -51,7 +51,7 @@ router.post("/userSignUp", (req, res) => {
 
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     if (err) {
-                        res.json({ msg: 0, error: err });
+                        res.json({ msg: 'Try another password', error: err });
                     }
                     userInfo.password = hash;
                     var user = new db.User(userInfo);
@@ -65,17 +65,17 @@ router.post("/userSignUp", (req, res) => {
                         let token = jwt.sign(payload, process.env.SECRET_KEY, {
                             expiresIn: "24h"
                         });
-                        res.json({ token: token, msg: 1 });
+                        res.json({ token: token, msg: 'Signed up successfully' });
                     }).catch(err => {
-                        res.json({ msg: 0, error: err });
+                        res.json({ msg: "An Error Ocuured , Please Try again later", error: err });
                     });
                 });
             } else {
-                res.json({ msg: 0, error: '' });
+                res.json({ msg: "Email already exists", error: '' });
             }
         })
         .catch(err => {
-            res.json({ msg: 0, error: err });
+            res.json({ msg: "An Error Ocuured , Please Try again later", error: err });
         });
 
 });
