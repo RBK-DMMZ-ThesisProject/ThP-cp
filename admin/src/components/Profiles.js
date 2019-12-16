@@ -149,7 +149,7 @@ const Profiles = () => {
                         <td>{index + 1}</td>
                         <td>{newProfile.userName}</td>
                         <td>
-                          <Button type="button" onClick={() => handleOpen(newProfile.id, newProfile.ProfileState, newProfile.userMobileNum)} className="modalBtn">
+                          <Button type="button" onClick={() => handleOpen(newProfile.id, newProfile.ProfileState, newProfile.userMobileNum)} id="modalBtn">
                             Show
             </Button>
                         </td>
