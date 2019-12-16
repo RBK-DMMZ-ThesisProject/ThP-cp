@@ -28,7 +28,7 @@ mRouter.post("/profil", (req, res) => {
         db.Favorites.find({
           customerID: decoded._id
         }).then(favs => {
-          response.favs = favs[0];
+          response.favs = favs;
           res.json(response);
         });
       }
