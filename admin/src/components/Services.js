@@ -43,11 +43,11 @@ const HomepageLayout = () => (
           <Image avatar src={logo} size="massive" />
           Handy
         </Header>
-        <Menu borderless compact inverted>
+        {/* <Menu borderless compact inverted>
           <Menu.Item active>Home</Menu.Item>
           <Menu.Item>Feature</Menu.Item>
           <Menu.Item>Contact</Menu.Item>
-        </Menu>
+        </Menu> */}
       </Container>
       <Container className="content">
         <Header inverted as="h1">
@@ -63,10 +63,10 @@ const HomepageLayout = () => (
           Get it On Google Play <Icon name="right arrow" />
         </Button>
       </Container>
-      <Segment inverted vertical as="footer">
+      {/* <Segment inverted vertical as="footer">
         Cover template for <a href="http://semantic-ui.com">Semantic-UI</a>, by{" "}
         <a href="https://github.com/semantic-ui-forest">@Semantic-UI-Forest</a>.
-      </Segment>
+      </Segment> */}
     </Segment>
 
     <Segment
