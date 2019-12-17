@@ -4,16 +4,37 @@
 #reviseName {
     text-align: left;
     color: 	white;
+    margin-left: 20px;
 }
 ::placeholder {
-    color: #91cde0;
-    font-size: 2em;
+    color: #63b8d4;
+    font-size: 1.5em;
 }
 #btn {
     border-radius: 8px;
     background-color: white;
     color:#63b8d4;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 #textarea {
     text-align: center;
 }
+
+#closeBtn1 {
+    color: #63b8d4;
+    font-weight: bold;
+    float: right;
+    width: 0.05px;
+    height: 40px;
+    font-size: 20px;
+    background-color: white;
+    margin-top: 10px;
+}
+
+#textareaDiv {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
