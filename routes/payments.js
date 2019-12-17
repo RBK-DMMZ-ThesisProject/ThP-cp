@@ -14,6 +14,7 @@ pRouter.post("/doPayment/", (req, res) => {
             source: req.body.tokenId,
             description: "Test payment"
         })
-        .then(result => res.status(200).json(result));
+        .then(result => res.status(200).send({ msg: 'success' }))
+        .catch(err => res.status(200).send({ msg: 'fail' }));
 });
 module.exports = pRouter;
