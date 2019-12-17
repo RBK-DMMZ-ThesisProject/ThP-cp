@@ -16,7 +16,7 @@ app.get("/test", (req, res) => {
 });
 app.use(cors());
 app.use(pino);
-//app.use("/payApi", require("./routes/payments.js"));
+app.use("/payApi", require("./routes/payments.js"));
 app.use("/mobileApi", require("./routes/mobile.js"));
 app.use("/auth", require("./routes/auth.js"));
 app.use("/messages", require("./routes/sms.js").smsRouter);
