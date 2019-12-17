@@ -40,11 +40,10 @@ const Revise: React.FC<Props> = (props) => {
   }
   return (
     <div id='reviseMain'>
-      <Button type="button" variant="contained" onClick={() => props.handleClose()} id="modalBtn">
+      <Button type="button" variant="contained" onClick={() => props.handleClose()} id="closeBtn1">
                 X
       </Button>
       <h1 id='reviseName'>Reason For Revision</h1>
-      <hr></hr>
       <div id="textareaDiv">
         <TextareaAutosize aria-label="minimum height" onChange={onChange} rows={30} cols={100} placeholder="Write a reason for this to be sent to revision..." />
         <br></br>
