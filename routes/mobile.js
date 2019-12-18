@@ -11,12 +11,15 @@ const config = require("../config");
 mRouter.post("/addNewProfile", (req, res) => {
   db.saveNewProfile(req.body, function (err, user) {
     if (err) {
-      res.status(200).json({ msg: "not saved", err: err });
+      console.log("error");
     }
-    res.status(200).json({ msg: "saved" });
+    res.status(200).json({ userId: user._id });
   });
+  // console.log("heloooo data", req.body.email);
+  //  db.ServiceProvider.find({ email: req.body.email }).then(user => {
+  //   res.status(200).json(user[0]._id);
+  // });
 });
-
 //Api that gets the profil from the ServiceProvider table
 mRouter.post("/profil", (req, res) => {
   var response = {};
