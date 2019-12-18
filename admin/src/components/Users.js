@@ -10,16 +10,10 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import axios from "axios";
 
-function getModalStyle() {
-    const top = 20;
-    const left = 20;
-  
-    return {
-      top: `${top}%`,
-      left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`
-    };
-  }
+import { withStyles } from '@material-ui/core/styles';
+import { purple } from '@material-ui/core/colors';
+// import { black } from '@material-ui/core/colors';
+
 
   const useStyles = makeStyles(theme => ({
     root: {
@@ -43,7 +37,19 @@ function getModalStyle() {
     }
   }));
 
-
+  const BlueSwitch = withStyles({
+    switchBase: {
+      color: 'lightgrey',
+      '&$checked': {
+        color: '#078CA9'
+      },
+      '&$checked + $track': {
+        backgroundColor: '#078CA9',
+      },
+    },
+    checked: {},
+    track: {},
+  })(Switch);
 
 const Users = () => {
     const [admins, setAdmins] = useState([]);
@@ -114,6 +120,7 @@ const Users = () => {
     return (
         <div>
     <div>
+
         <table id="profiles">
           <thead>
             <tr>
@@ -128,7 +135,7 @@ const Users = () => {
                 <td>{index + 1}</td>
                 <td>{admin.userName}</td>
                 <td>
-                  <Switch
+                  <BlueSwitch
                     id={index + ""}
                     checked={!!admin.state}
                     onChange={event => changeUserSate(event, admin._id)}
@@ -190,7 +197,7 @@ const Users = () => {
         <Button onClick={handleAddUserClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={addUser} color="primary">
+        <Button onClick={addUser} color="primary" >
           Add User
         </Button>
       </DialogActions>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/main.css";
-import serviceWorker from "../assets/ma.png";
+// import serviceWorker from "../assets/ma.png";
+import serviceWorker from "./../assets/Handy.png";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -16,9 +17,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     maxWidth: 360,
-    backgroundColor: "#c0e2ed",
+    backgroundColor: "lightgrey",
     fontSize: "30px",
-    color: "#63b8d4",
+    color: "black",
     fontWeight: "bold",
     "& > *": {
       margin: theme.spacing(1)
@@ -52,7 +53,7 @@ const Main = () => {
     return (
       <div id="main">
         <div className={classes.root}>
-          <AppBar position="static">
+          <AppBar position="static" >
             <Toolbar className="Nav">
               <img id="logo" src={serviceWorker} alt="" />
               <Typography id="title">Control Panel</Typography>

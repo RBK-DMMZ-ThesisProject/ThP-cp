@@ -10,16 +10,17 @@
     width: 50px;
 }
 #main1 {
-    background-color: #dff0f6;
+    background-color: white;
 }
 #information {
+    margin-left: 30px;
     display: grid;
     grid-template-columns: 70rem 10rem 30rem;
     grid-template-rows: auto ;
 }
 #name {
-    text-align: left;
-    color: 	#63b8d4;
+    margin-left: 47px;
+    color: 	#078CA9;
     margin-top: 0px;
 }
 table {
@@ -29,6 +30,7 @@ table {
     border-left: 2px solid gray;
     height: 500px;
     grid-area: 1 / 2 / span 1 / span 1;
+    margin-bottom: 9px;
 }
 #Sample {
     grid-area: 1 / 3 / span 1 / span 1;
@@ -45,33 +47,33 @@ td {
     height: 100px;
 }
 .Keys {
-    color: 	#63b8d4;
+    color: 	black;
     font-weight: bold;
 }
 .values {
-    color: #63b8d4;
+    color: grey;
 }
 h2 {
     color: #63b8d4;
 }
 #footerButtons {
     margin-top: 80px;
+    margin-left: 70px;
 }
 #modalBtn {
-    color: mediumseagreen;
+    color: #078CA9;
     font-weight: bold;
 }
 #reviseBtn {
-    color: #63b8d4;
+    color: black; 
     font-weight: bold;
     margin-right: 10px;
 }
 #closeBtn {
-    color: white;
+    color: #078CA9;
     font-weight: bold;
     float: right;
-    width: 0.05px;
     height: 40px;
     font-size: 20px;
-    background-color: #63b8d4;
+    background-color: white;
 }
