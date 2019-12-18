@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var serviceProviderSchema = new Schema({
   id: {
-    type: Number,
+    type: Number
   },
   userName: String,
   dateOfBirth: Date,
@@ -40,8 +40,7 @@ let saveNewProfile = (data, callback) => {
     ProfileState: 0, //(0 (Default New Profile),1 (under Check),2 (approved)).
     ProfileNotes: ""
   });
-  console.log(newProvider);
-  newProvider.save(function (err, data) {
+  newProvider.save(function(err, data) {
     if (err) {
       console.log("error saving", err);
       callback(err, null);
