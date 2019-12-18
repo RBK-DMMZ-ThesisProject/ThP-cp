@@ -10,8 +10,10 @@ import {
 } from "semantic-ui-react";
 import $ from "jquery";
 // import jwt_decode from "jwt-decode";
-import serviceWorker from "./../assets/ma.png";
+// import serviceWorker from "./../assets/ma.png";
+import serviceWorker from "./../assets/Handy.png";
 import Main from "./Main";
+import '../css/signIn.css'
 
 class LoginForm extends React.Component {
   constructor() {
@@ -95,7 +97,8 @@ class LoginForm extends React.Component {
     >
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h1" color="blue" textAlign="center">
-          <Image src={serviceWorker} /> Log-in to your account
+          <Image src={serviceWorker} id="logoImg"/> 
+          <h1 id="logText">Log-in to your account</h1>
           </Header>
         <Form size="large" onSubmit={this.loginFun.bind(this)}>
           <Segment stacked>
@@ -117,14 +120,13 @@ class LoginForm extends React.Component {
             {this.state.errorState ? <Message negative visible>
               {this.state.logMessage}
             </Message> : ""}
-
-            <Button
-              type="submit"
-              color="blue"
-              fluid
-              size="large"
-
-            >
+              <Button
+                type="submit"
+                color="blue"
+                fluid
+                size="large"
+                id="loginBtn"
+              >
               Login
               </Button>
           </Segment>
