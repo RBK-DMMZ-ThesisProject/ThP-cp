@@ -109,7 +109,7 @@ const Profile: React.FC = (props: any) => {
     <div id='main1'>
       <div>
         <div>        
-          <Button type="button" variant="contained" onClick={() => handleClose()} id="closeBtn">
+          <Button type="button" variant='text' onClick={() => handleClose()} id="closeBtn">
                 X
         </Button>
         <h1 id='name'>{profile.data[0].userName}</h1></div>

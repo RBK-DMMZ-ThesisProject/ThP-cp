@@ -1,0 +1,20 @@
+input,
+input::-webkit-input-placeholder {
+    font-size: 15px;
+    line-height: 3;
+}
+
+
+
+#logText {
+    color: #078CA9;
+}
+
+#logoImg {
+    width: 130px;
+    height: 130px;
+}
+
+#loginBtn {
+    background-color: #078CA9;
+}

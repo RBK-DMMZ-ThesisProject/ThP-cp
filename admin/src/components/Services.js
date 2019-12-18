@@ -16,8 +16,16 @@ import {
 // import React, { Component } from "react";
 import { Card, Divider, Grid, Image, List, Icon } from "semantic-ui-react";
 import manImg from "../assets/ma.png";
-import provider from "../assets/provider.jpeg";
+import provider from "../assets/provider.png";
 import customer from "../assets/customer.jpg";
+import Electricalmaintanance from "../assets/elc.png";
+import cleaning from "../assets/cleaning.png";
+import Plumming from "../assets/plumber.png";
+import homea from "../assets/homea.png";
+import MovingServices1 from "../assets/ca.png";
+import ac from "../assets/ac.png";
+import satellite from "../assets/satellite.png";
+import more from "../assets/more.png";
 
 class HomepageLayout extends React.Component {
   state = { activeItem: "home" };
@@ -146,8 +154,6 @@ class HomepageLayout extends React.Component {
           Join Us as a service provider or customer
         </Header>
         <Segment id={"features"}>
-          {/* <Container verticalAlign="middle"> */}
-
           <Grid columns={2}>
             <Divider vertical>Or</Divider>
             <Grid.Row>
@@ -194,83 +200,87 @@ class HomepageLayout extends React.Component {
           >
             Our Services
           </Divider>
-          <List verticalAlign="middle">
-            <Grid container stackable verticalAlign="middle">
-              <Grid.Row>
-                <Grid.Column width={6}>
-                  <List.Item>
-                    <Icon avatar name="bolt" />
-                    Electrical maintainace
-                  </List.Item>
-                  <List.Item>
-                    <Icon name="wrench" />
-                    Plumbing
-                  </List.Item>
-                  <List.Item>
-                    <Icon name="gavel" />
-                    Carpentering
-                  </List.Item>
-                </Grid.Column>
-                <Grid.Column width={5}>
-                  <List.Item>
-                    <Icon name="truck" />
-                    Moving Services
-                  </List.Item>
-                  <List.Item>
-                    <Icon name="taxi" />
-                    Driving Services
-                  </List.Item>
-                  <List.Item>
-                    <Icon name="paint brush" />
-                    Painting Services
-                  </List.Item>
-                </Grid.Column>
-                <Grid.Column width={5}>
-                  <List.Item>
-                    <Icon name="tree" />
-                    Gardening Services
-                  </List.Item>
-                  <List.Item>
-                    <Icon name="stethoscope" />
-                    Nursing Services
-                  </List.Item>
-                  <List.Item>
-                    <List.Content>
-                      <Icon name="smile outline" />
-                      babysitting Services
-                    </List.Content>
-                  </List.Item>
-                </Grid.Column>
-              </Grid.Row>
-              <Grid.Row>
-                <Grid.Column width={5}>
-                  <List.Item>
-                    <Icon name="camera retro" />
-                    Photographers
-                  </List.Item>
-                  <List.Item>
-                    <Icon name="utensils" />
-                    Cooking Services
-                  </List.Item>
-                  <List.Item>
-                    <List.Content>
-                      <Icon name="cogs" />
-                      Builders Services
-                    </List.Content>
-                  </List.Item>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </List>
+          <Grid
+            container
+            // stackable
+            // verticalAlign="middle"
+            // style={{ margin: "1em 1em 1em 51em" }}
+          >
+            <Grid.Row centered>
+              <Card.Group itemsPerRow={4}>
+                <Card
+                  color="blue"
+                  image={satellite}
+                  size="small"
+                  header="Satellite"
+                  description="Satellite Dish, Installation, Satellite Maintenance "
+                />
+
+                <Card
+                  color="blue"
+                  image={Electricalmaintanance}
+                  header=" Electrical works"
+                  description="Electrician, Electrical Wiring"
+                />
+
+                <Card
+                  color="blue"
+                  image={cleaning}
+                  header="Cleaning services"
+                  description="Maids Cleaning, House Cleaning, Home Cleaning Services"
+                />
+
+                <Card
+                  color="blue"
+                  image={Plumming}
+                  header=" Plumming works"
+                  description="Plumming,Repair, Plumber, Household Sewage Systems"
+                />
+              </Card.Group>
+            </Grid.Row>
+
+            <Grid.Row centered>
+              <Card.Group itemsPerRow={4}>
+                <Card
+                  color="blue"
+                  image={homea}
+                  header="Home appliances"
+                  description="washing machine repair, fridge repair, microwave repair"
+                />
+
+                <Card
+                  color="blue"
+                  image={ac}
+                  header=" AC services "
+                  description="AC Technician, AC Maintenance, AC Repair "
+                />
+                <Card
+                  borderless
+                  color="blue"
+                  image={MovingServices1}
+                  header=" General maintenance"
+                  description="Handymen, General maintenance, Furniture Installation"
+                />
+
+                <Card
+                  borderless
+                  color="blue"
+                  image={more}
+                  header="And More "
+                  description="more Services"
+                />
+              </Card.Group>
+            </Grid.Row>
+          </Grid>
         </Segment>
-        <Segment inverted vertical id="contact" verticalAlign="middle">
-          <Grid divided inverted>
+        <Segment inverted id="contact" verticalAlign="middle">
+          <Grid inverted style={{ margin: "1em 1em 1em 24em" }}>
             <Grid.Row>
-              <Grid.Column width={5}>
+              <Grid.Column width={3}>
                 <Header inverted as="h4" content="About" />
                 <List link inverted>
                   <List.Item as="a">Contact Us</List.Item>
-                  <List.Item as="a">Religious Ceremonies</List.Item>
+                  <List.Item as="a">Github Organization</List.Item>
                   <List.Item as="a">Gazebo Plans</List.Item>
                 </List>
               </Grid.Column>
@@ -287,16 +297,18 @@ class HomepageLayout extends React.Component {
                 </p>
               </Grid.Column>
             </Grid.Row>
+            <Grid.Row>
+              <Segment vertical as="footer">
+                Thesis project RBK
+                <a href="http://rbk.org/apply/public/index.php">
+                  {" "}
+                  programing bootcamp
+                </a>
+                , by{" "}
+                <a href="https://github.com/semantic-ui-forest">DMMZ team</a>.
+              </Segment>
+            </Grid.Row>
           </Grid>
-
-          <Segment vertical as="footer">
-            Cover template for <a href="http://semantic-ui.com">Semantic-UI</a>,
-            by{" "}
-            <a href="https://github.com/semantic-ui-forest">
-              @Semantic-UI-Forest
-            </a>
-            .
-          </Segment>
         </Segment>
       </div>
     );

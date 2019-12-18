@@ -1,20 +1,19 @@
 #reviseMain {
-    background-color: #63b8d4;
+    background-color: white;
 }
 #reviseName {
-    text-align: left;
-    color: 	white;
-    margin-left: 20px;
+    color: 	#078CA9;
+    margin-left: 28px;
 }
-::placeholder {
+/* ::placeholder {
     color: #63b8d4;
     font-size: 1.5em;
-}
+} */
 #btn {
     border-radius: 8px;
-    background-color: white;
-    color:#63b8d4;
-    margin-left: 10px;
+    background-color: #078CA9;
+    color:white;
+    margin-left: 285px;
     margin-bottom: 10px;
     margin-top: 10px;
 }
@@ -23,18 +22,31 @@
 }
 
 #closeBtn1 {
-    color: #63b8d4;
+    color: #078CA9;
     font-weight: bold;
     float: right;
-    width: 0.05px;
     height: 40px;
     font-size: 20px;
     background-color: white;
-    margin-top: 10px;
 }
 
 #textareaDiv {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
+textarea::placeholder {
+    color: grey;
+    padding-left: 10px;
+    font-size: 1.3rem;  
+}
+
+input[type=text], textarea {
+    border-color: darkgray;
+    border-style: solid;
+    border-width: 3px;
+}
+
+textarea {
+    font-size: 1.3rem;
+}
