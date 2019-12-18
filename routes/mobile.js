@@ -190,7 +190,9 @@ mRouter.post("/addfavorite", (req, res) => {
     customerID: decoded._id
   });
   newfavorite.save().then(faves => {
-    res.json(faves);
+    res.status(200).json({ msg: true });
+  }).catch(err => {
+    res.status(200).json({ msg: false });
   });
 });
 
@@ -202,7 +204,9 @@ mRouter.post("/deletefavorite", (req, res) => {
     serviceProviderID: req.body.serviceproviderid,
     customerID: decoded._id
   }).then(deleted => {
-    res.json(deleted);
+    res.status(200).json({ msg: false });
+  }).catch(err => {
+    res.status(200).json({ msg: true });
   });
 });
 
