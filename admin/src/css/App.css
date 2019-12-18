@@ -41,9 +41,11 @@ nav.ui.container .ui.inverted.compact.menu .item {
   padding-bottom: 14px;
   margin-left: 12px;
   margin-right: 12px;
-  border-radius: 0;
+  
 }
-
+#logo{
+  width: 50px;
+}
 nav.ui.container .ui.inverted.compact.menu .active.item {
   background-color: inherit;
   border-bottom-color: white;
@@ -53,7 +55,9 @@ nav.ui.container .ui.inverted.compact.menu .active.item {
 
 .ui.inverted.vertical.segment {
   height: 100vh;
+  
   background-color: rgb(51, 51, 51);
+  
 }
 
 .ui.content.container {
@@ -69,7 +73,10 @@ nav.ui.container .ui.inverted.compact.menu .active.item {
 .ui.content.container h1.header {
   font-size: 40px;
 }
-
+.ui.content.container button{
+  padding: 10px;
+  opacity: 0.8;
+}
 .ui.content.container p {
   font-size: 30px;
   line-height: 1.6;

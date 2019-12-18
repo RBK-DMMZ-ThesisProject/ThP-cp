@@ -201,12 +201,13 @@ mRouter.post("/favorites", (req, res) => {
       await db.ServiceProvider.find({
         _id: faves[i].serviceProviderID
       })
-        .select("_id userName userImg")
+        .select("_id userName userImg ServiceCategory")
         .then(sProvider => {
           favorites.push({
             id: sProvider[0]._id,
             userName: sProvider[0].userName,
-            userImg: sProvider[0].userImg
+            userImg: sProvider[0].userImg,
+            ServiceCategory: sProvider[0].ServiceCategory
           });
         });
     }
