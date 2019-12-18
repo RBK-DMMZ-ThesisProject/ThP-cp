@@ -121,13 +121,14 @@ const Profiles = () => {
 
 
     return (
-            <div>
+            <div id='divMain'>
               <AppBar position="static" id="tabs">
                 <Tabs
                   value={value}
                   onChange={handleChange}
                   aria-label="simple tabs example"
                   className="Tab"
+                  TabIndicatorProps={{style: {backgroundColor: "#1E5162"}}}
                 >
                   <Tab label="New" {...a11yProps(0)} />
                   <Tab label="Accepted" {...a11yProps(1)} />

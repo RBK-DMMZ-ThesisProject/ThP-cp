@@ -28,7 +28,7 @@
     background-color: #c0e2ed;
 }
 .Tab {
-    color: #63b8d4;
+    color: black;
 }
 .listText {
     height: 10px;
@@ -54,12 +54,12 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    color: #63b8d4;
+    color: #078CA9;
     font-weight: bold;
     font-size: 20px;
 }
 #profiles td {
-    color: mediumseagreen;
+    color: black;
     font-size: 20px;
 }
 #modalBtn {
@@ -71,8 +71,18 @@
     font-weight: bold;
     background-color: #63b8d4;
     margin-top: 80px;
+    margin-left: 130px;
 }
 #dilog {
     height: 43rem;
 }
+
+#divMain {
+    padding-top: 30px;
+}
+
+#addBtn {
+    margin-left: 100px;
+}
+
 
