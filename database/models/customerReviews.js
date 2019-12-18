@@ -12,7 +12,7 @@ var customerReviewsSchema = new Schema({
   rate: Number, //from 1-5
   dataAdded: {
     type: Date,
-    default: Date.now
+    default: Date.now()
   }
 });
 
