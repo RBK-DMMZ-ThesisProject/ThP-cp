@@ -52,7 +52,7 @@ mRouter.post("/profil", (req, res) => {
 mRouter.post("/getProfiles", (req, res) => {
   let profil;
   let rates = [];
-  db.ServiceProvider.find({ ServiceCategory: req.body.ServiceCategory })
+  db.ServiceProvider.find({ ServiceCategory: req.body.ServiceCategory, ProfileState: 2 })
     .select("_id userName  userImg")
     .then(async profils => {
       profil = profils;
