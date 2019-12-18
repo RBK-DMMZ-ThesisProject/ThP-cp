@@ -65,7 +65,7 @@ nav.ui.container .ui.inverted.compact.menu .active.item {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
+  left: 5em;
   right: 0;
   margin: auto;
 }
@@ -91,7 +91,6 @@ nav.ui.container .ui.inverted.compact.menu .active.item {
   bottom: 0;
   color: gray;
 }
-
-.ui.inverted.vertical.segment footer.ui.segment a {
+.ui.footer {
   color: white;
 }
