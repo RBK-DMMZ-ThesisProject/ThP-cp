@@ -9,7 +9,7 @@ const config = require("../config");
 
 //Api that adds a new profile to the  ServiceProvider table
 mRouter.post("/addNewProfile", (req, res) => {
-  db.saveNewProfile(req.body, function (err, user) {
+  db.saveNewProfile(req.body, function(err, user) {
     if (err) {
       res.status(200).json({ msg: "not saved", err: err });
     }
@@ -35,7 +35,6 @@ mRouter.post("/profil", (req, res) => {
             response.favs = false;
           }
           res.json(response);
-
         });
       }
     );
@@ -86,12 +85,27 @@ mRouter.post("/getProfiles", (req, res) => {
 
 //Api that gets the reviews for specific service provider
 mRouter.post("/getReviews", (req, res) => {
+  var result = [];
   db.CustomerReviews.find({
-    serviceproviderid: req.body.serviceproviderid
+    serviceproviderid: "5deb985052803b0017c8686c"
   })
-    .select("review dataAdded")
-    .then(info => {
-      res.json(info);
+    .select("review dataAdded customerID rate")
+    .then(async info => {
+      console.log(info);
+      for (var i = 0; i < info.length; i++) {
+        var obj = { review: {}, name: "" };
+        obj.review = info[i];
+        await db.User.find({
+          _id: info[i].customerID
+        })
+          .select("userName")
+          .then(user => {
+            console.log(user);
+            obj.name = user[0].userName;
+          });
+        result.push(obj);
+      }
+      res.json(result);
     });
 });
 
