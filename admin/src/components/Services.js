@@ -279,9 +279,16 @@ class HomepageLayout extends React.Component {
               <Grid.Column width={3}>
                 <Header inverted as="h4" content="About" />
                 <List link inverted>
-                  <List.Item as="a">Contact Us</List.Item>
-                  <List.Item as="a">Github Organization</List.Item>
-                  <List.Item as="a">Gazebo Plans</List.Item>
+                  <List.Item as="a">Contact Us :</List.Item>
+                  <List.Item as="a">maysqunaibi2000@gmail.com</List.Item>
+                  <List.Item
+                    as="a"
+                    href={
+                      "https://github.com/RBK-DMMZ-ThesisProject/ThP-moible"
+                    }
+                  >
+                    Github Organization
+                  </List.Item>
                 </List>
               </Grid.Column>
 
@@ -298,7 +305,7 @@ class HomepageLayout extends React.Component {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-              <Segment vertical as="footer">
+              <Segment vertical>
                 Thesis project RBK
                 <a href="http://rbk.org/apply/public/index.php">
                   {" "}
