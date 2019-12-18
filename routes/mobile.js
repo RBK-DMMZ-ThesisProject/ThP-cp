@@ -116,7 +116,7 @@ mRouter.post("/addReviews", (req, res) => {
     serviceproviderid: req.body.serviceproviderid,
     review: req.body.review,
     customerID: decoded._id,
-    rating: req.body.rate
+    rate: req.body.rate
   });
   newReview.save().then(info => {
     res.json(info);
