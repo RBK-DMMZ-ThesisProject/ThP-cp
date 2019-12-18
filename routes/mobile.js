@@ -87,7 +87,7 @@ mRouter.post("/getProfiles", (req, res) => {
 mRouter.post("/getReviews", (req, res) => {
   var result = [];
   db.CustomerReviews.find({
-    serviceproviderid: "5deb985052803b0017c8686c"
+    serviceproviderid: req.body.serviceproviderid
   })
     .select("review dataAdded customerID rate")
     .then(async info => {
