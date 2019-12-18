@@ -9,7 +9,7 @@ const config = require("../config");
 
 //Api that adds a new profile to the  ServiceProvider table
 mRouter.post("/addNewProfile", (req, res) => {
-  db.saveNewProfile(req.body, function (err, user) {
+  db.saveNewProfile(req.body, function(err, user) {
     if (err) {
       res.status(200).json({ msg: "not saved", err: err });
     }
@@ -35,7 +35,6 @@ mRouter.post("/profil", (req, res) => {
             response.favs = false;
           }
           res.json(response);
-
         });
       }
     );
