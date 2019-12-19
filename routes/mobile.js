@@ -9,7 +9,7 @@ const config = require("../config");
 
 //Api that adds a new profile to the  ServiceProvider table
 mRouter.post("/addNewProfile", (req, res) => {
-  db.saveNewProfile(req.body, function(err, user) {
+  db.saveNewProfile(req.body, function (err, user) {
     if (err) {
       console.log("error");
     }
@@ -219,12 +219,15 @@ mRouter.post("/getUser", (req, res) => {
 //Api that delete from favorite for specific user
 mRouter.post("/deletefavorite", (req, res) => {
   var decoded = jwt.verify(req.body.customerID, config.JWT_SECRET);
-  console.log(decoded);
   db.Favorites.deleteOne({
     serviceProviderID: req.body.serviceproviderid,
     customerID: decoded._id
   })
     .then(deleted => {
+      res.status(200).json({
+        serviceProviderID: req.body.serviceproviderid,
+        customerID: decoded._id
+      });
       res.status(200).json({ msg: false });
     })
     .catch(err => {
