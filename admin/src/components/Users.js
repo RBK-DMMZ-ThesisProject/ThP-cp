@@ -57,8 +57,12 @@ const Users = () => {
     const [adminName, setAdminName] = React.useState("");
     const [mobileNO, setMobileNO] = React.useState("");
     const [email, setEmail] = React.useState("");
+    const [warning, setWarning] = React.useState("");
     const [openAddUser, setopenAddUser] = useState(false);
     const handleAddUserClose = () => {
+        setAdminName('');
+        setMobileNO('');
+        setEmail('');
         setopenAddUser(false);
       };
       const openAddUserModal = () => {
@@ -82,6 +86,12 @@ const Users = () => {
       };
     const addUser = () => {
         // update state database
+        if(adminName === '' || mobileNO === '' || email === '') {
+          setWarning('Please Make sure to fill all the information');
+        } else {
+          setAdminName('');
+          setMobileNO('');
+          setEmail('');
         axios.post('admins/addAdmin', {
           userName: adminName,
           mobileNO: mobileNO,
@@ -102,6 +112,7 @@ const Users = () => {
               console.log(error);
             }
           );
+        }
       };
     const onAdminNameChange = e => {
         setAdminName(e.target.value);
@@ -148,7 +159,7 @@ const Users = () => {
             ))}
           </tbody>
         </table>
-        <Button id="addAdmin" onClick={openAddUserModal}>
+        <Button id="addAdmin" onClick={openAddUserModal} style={{backgroundColor:'#078CA9'}}>
           ADD
         </Button>
       </div>
@@ -158,7 +169,7 @@ const Users = () => {
       onClose={handleAddUserClose}
       aria-labelledby="Add Admin"
     >
-      <DialogTitle id="form-dialog-title">Add Admin</DialogTitle>
+      <DialogTitle id="form-dialog-title" style={{color:'#078CA9'}}>Add Admin</DialogTitle>
       <DialogContent style={{ width: 500 }}>
         <form autoComplete="off">
           <TextField
@@ -171,10 +182,10 @@ const Users = () => {
           />
           <br />
           <TextField
-            margin="dense"
-            fullWidth
             id="mobileNO"
             label="Mobile No.:"
+            margin="dense"
+            fullWidth
             onChange={onMobileNOChange}
             value={mobileNO}
           />
@@ -193,6 +204,7 @@ const Users = () => {
           <br />
         </form>
       </DialogContent>
+      <h5 style={{color:'red', paddingLeft:'25px'}}>{warning}</h5>
       <DialogActions>
         <Button onClick={handleAddUserClose} color="primary">
           Cancel
