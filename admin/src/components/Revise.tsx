@@ -12,9 +12,13 @@ interface Props {
 //Revise modal (when you click on Revise button in profile Modal)
 const Revise: React.FC<Props> = (props) => {
   const [profileNotes, setProfileNotes] = React.useState('');
+  const [warning, setWarning] = React.useState('');
   const handleRevision = () => {
     // update state database
-    axios.post('messages/smsMessages', {
+    if(profileNotes === '' ) {
+      setWarning('Please put your notes');
+    } else {
+      axios.post('messages/smsMessages', {
       to: "+962790054364",
       msgText: profileNotes
     })
@@ -34,6 +38,8 @@ const Revise: React.FC<Props> = (props) => {
         console.log(error);
       });
 
+    }
+    
   }
   const onChange = (e: any) => {
     setProfileNotes(e.target.value)
@@ -47,6 +53,7 @@ const Revise: React.FC<Props> = (props) => {
       <div id="textareaDiv">
         <textarea aria-label="minimum height" onChange={onChange} rows={20} cols={90} placeholder="Write a reason for this to be sent to revision..." id='txt'/>
         <br></br>
+        <h5 style={{color:'red', paddingLeft:'25px'}}>{warning}</h5>
         <Button variant="contained" id="btn" onClick={handleRevision}>Send Revision</Button>
       </div>
     </div>
