@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import Handy from "../assets/Handy.png";
 import gpLogo from "../assets/gpLogo.png";
 // import "semantic-ui-css/semantic.min.css";
-
 import {
   Button,
   Container,
@@ -29,7 +28,7 @@ import more from "../assets/more.png";
 
 class HomepageLayout extends React.Component {
   state = { activeItem: "home" };
-
+  //controle the navbar apperence during scrolling the page .
   hideFixedMenu = () => this.setState({ fixed: false });
   showFixedMenu = () => this.setState({ fixed: true });
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -38,6 +37,7 @@ class HomepageLayout extends React.Component {
     const { fixed } = this.state;
     return (
       <div>
+        {/* cover heading segment  */}
         <Segment inverted vertical textAlign="center">
           <Visibility
             once={false}
@@ -98,7 +98,7 @@ class HomepageLayout extends React.Component {
               </Menu>
             </Container>
           </Visibility>
-          <Container className="content" id="home">
+          <Container className="content">
             <Header inverted as="h1">
               You Will Find What You Need Here
             </Header>
@@ -113,7 +113,7 @@ class HomepageLayout extends React.Component {
             </Button>
           </Container>
         </Segment>
-
+        {/* About segment */}
         <Segment
           style={{ padding: "8em 0em" }}
           vertical
@@ -125,7 +125,7 @@ class HomepageLayout extends React.Component {
               <Grid.Column width={8}>
                 <Header as="h3" style={{ fontSize: "2em" }}>
                   <Icon name="suitcase" />
-                  We Help Companies and Companions
+                  We Help Companies and Customers
                 </Header>
                 <p style={{ fontSize: "1.33em" }}>
                   Its a web and mobile platform for connecting service providers
@@ -149,6 +149,7 @@ class HomepageLayout extends React.Component {
             </Grid.Row>
           </Grid>
         </Segment>
+        {/* Features segment */}
         <Header as="h2" style={{ margin: "2em 2em 2em 15em  " }}>
           <Icon name="handshake" />
           Join Us as a service provider or customer
@@ -191,6 +192,7 @@ class HomepageLayout extends React.Component {
           </Grid>
           {/* </Container> */}
         </Segment>
+        {/* Services segment */}
         <Segment>
           <Divider
             id={"services"}
@@ -273,6 +275,7 @@ class HomepageLayout extends React.Component {
             </Grid.Row>
           </Grid>
         </Segment>
+        {/* Contact segment */}
         <Segment inverted id="contact" verticalAlign="middle">
           <Grid inverted style={{ margin: "1em 1em 1em 24em" }}>
             <Grid.Row>
