@@ -6,13 +6,13 @@ var customerReviewsSchema = new Schema({
   id: {
     type: Number
   },
-  customerID: Number,
+  customerID: String,
   serviceproviderid: String,
   review: String,
   rate: Number, //from 1-5
   dataAdded: {
     type: Date,
-    default: Date.now
+    default: Date.now()
   }
 });
 
