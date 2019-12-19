@@ -252,10 +252,10 @@ mRouter.post("/favorites", (req, res) => {
             userImg: sProvider[0].userImg,
             ServiceCategory: sProvider[0].ServiceCategory
           });
-        });
+        }).catch(err => res.status(200).json({ favorites: [] }));
     }
-    res.json(favorites);
-  });
+    res.status(200).json({ favorites: favorites });
+  }).catch(err => res.status(200).json({ favorites: [] }));
 });
 
 //Api that updates the hire state for specific service provider
