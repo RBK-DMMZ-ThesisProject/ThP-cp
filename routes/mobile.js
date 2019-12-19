@@ -201,6 +201,21 @@ mRouter.post("/addfavorite", (req, res) => {
     });
 });
 
+//Api that adds new favorite for specific user
+mRouter.post("/getUser", (req, res) => {
+  var decoded = jwt.verify(req.body.customerID, config.JWT_SECRET);
+  db.User.find({
+    _id: decoded._id
+  })
+    .select("userName mobileNO email")
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(err => {
+      res.status(200).json({ msg: false });
+    });
+});
+
 //Api that delete from favorite for specific user
 mRouter.post("/deletefavorite", (req, res) => {
   var decoded = jwt.verify(req.body.customerID, config.JWT_SECRET);
