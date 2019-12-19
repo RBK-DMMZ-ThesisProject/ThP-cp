@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/main.css";
 // import serviceWorker from "../assets/ma.png";
-import serviceWorker from "./../assets/Handy.png";
+import serviceWorker from "./../assets/Handy-white.png";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
