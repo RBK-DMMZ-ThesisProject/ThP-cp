@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import "../css/App.css";
 import React, { Component } from "react";
-import Handy from "../assets/Handy.png";
+import Handy from "../assets/Handy-white.png";
 import gpLogo from "../assets/gpLogo.png";
 // import "semantic-ui-css/semantic.min.css";
 
@@ -202,9 +202,9 @@ class HomepageLayout extends React.Component {
           </Divider>
           <Grid
             container
-            // stackable
-            // verticalAlign="middle"
-            // style={{ margin: "1em 1em 1em 51em" }}
+          // stackable
+          // verticalAlign="middle"
+          // style={{ margin: "1em 1em 1em 51em" }}
           >
             <Grid.Row centered>
               <Card.Group itemsPerRow={4}>
