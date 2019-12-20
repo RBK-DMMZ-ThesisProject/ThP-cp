@@ -41,12 +41,12 @@ textarea::placeholder {
     font-size: 1.3rem;  
 }
 
-input[type=text], textarea {
+#reviseMain input[type=text], textarea {
     border-color: darkgray;
     border-style: solid;
     border-width: 3px;
 }
 
-textarea {
+#reviseMain textarea {
     font-size: 1.3rem;
 }

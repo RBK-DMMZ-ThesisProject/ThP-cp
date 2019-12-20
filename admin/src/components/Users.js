@@ -24,7 +24,8 @@ import { purple } from '@material-ui/core/colors';
       color: "#63b8d4",
       fontWeight: "bold",
       "& > *": {
-        margin: theme.spacing(1)
+        margin: theme.spacing(1),
+        width: 200,
       }
     },
     paper: {
@@ -36,6 +37,16 @@ import { purple } from '@material-ui/core/colors';
       padding: theme.spacing(2, 4, 3)
     }
   }));
+
+  // const styles = {
+  //   backdrop: {
+  //     backgroundColor: 'black',
+  //     color: 'black',
+  //   },
+  //   action:{
+  //     justifyContent:'inherit',
+  //   }
+  // };
 
   const BlueSwitch = withStyles({
     switchBase: {
@@ -57,8 +68,12 @@ const Users = () => {
     const [adminName, setAdminName] = React.useState("");
     const [mobileNO, setMobileNO] = React.useState("");
     const [email, setEmail] = React.useState("");
+    const [warning, setWarning] = React.useState("");
     const [openAddUser, setopenAddUser] = useState(false);
     const handleAddUserClose = () => {
+        setAdminName('');
+        setMobileNO('');
+        setEmail('');
         setopenAddUser(false);
       };
       const openAddUserModal = () => {
@@ -82,6 +97,12 @@ const Users = () => {
       };
     const addUser = () => {
         // update state database
+        if(adminName === '' || mobileNO === '' || email === '') {
+          setWarning('Please Make sure to fill all the information');
+        } else {
+          setAdminName('');
+          setMobileNO('');
+          setEmail('');
         axios.post('admins/addAdmin', {
           userName: adminName,
           mobileNO: mobileNO,
@@ -102,6 +123,7 @@ const Users = () => {
               console.log(error);
             }
           );
+        }
       };
     const onAdminNameChange = e => {
         setAdminName(e.target.value);
@@ -148,19 +170,42 @@ const Users = () => {
             ))}
           </tbody>
         </table>
-        <Button id="addAdmin" onClick={openAddUserModal}>
+        <Button id="addAdmin" onClick={openAddUserModal} style={{backgroundColor:'#078CA9'}}>
           ADD
         </Button>
       </div>
       <div id="dilog">
       <Dialog
+      // BackdropProps={{
+      //   classes: {
+      //     root: styles.backdrop,
+      //   }
+      // }}
       open={openAddUser}
       onClose={handleAddUserClose}
       aria-labelledby="Add Admin"
     >
-      <DialogTitle id="form-dialog-title">Add Admin</DialogTitle>
+      <DialogTitle id="form-dialog-title" style={{color:'#078CA9'}}>Add Admin</DialogTitle>
       <DialogContent style={{ width: 500 }}>
-        <form autoComplete="off">
+        <form autoComplete="off" >
+        {/* <TextField
+            id="standard-basic"
+            label="User Name:"
+            margin="dense"
+            type="text"
+            fullWidth
+            onChange={onAdminNameChange}
+            value={adminName}
+          />
+                    <TextField
+            id="standard-basic"
+            label="Mobile No.:"
+            margin="dense"
+            type="text"
+            fullWidth
+            onChange={onMobileNOChange}
+            value={mobileNO}
+          /> */}
           <TextField
             margin="dense"
             fullWidth
@@ -171,10 +216,10 @@ const Users = () => {
           />
           <br />
           <TextField
-            margin="dense"
-            fullWidth
             id="mobileNO"
             label="Mobile No.:"
+            margin="dense"
+            fullWidth
             onChange={onMobileNOChange}
             value={mobileNO}
           />
@@ -193,6 +238,7 @@ const Users = () => {
           <br />
         </form>
       </DialogContent>
+      <h5 style={{color:'red', paddingLeft:'25px'}}>{warning}</h5>
       <DialogActions>
         <Button onClick={handleAddUserClose} color="primary">
           Cancel

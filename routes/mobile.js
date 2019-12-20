@@ -11,12 +11,11 @@ const config = require("../config");
 mRouter.post("/addNewProfile", (req, res) => {
   db.saveNewProfile(req.body, function(err, user) {
     if (err) {
-      res.status(200).json({ msg: "not saved", err: err });
+      console.log("error");
     }
-    res.status(200).json({ msg: "saved" });
+    res.status(200).json({ userId: user._id });
   });
 });
-
 //Api that gets the profil from the ServiceProvider table
 mRouter.post("/profil", (req, res) => {
   var response = {};
@@ -52,7 +51,10 @@ mRouter.post("/profil", (req, res) => {
 mRouter.post("/getProfiles", (req, res) => {
   let profil;
   let rates = [];
-  db.ServiceProvider.find({ ServiceCategory: req.body.ServiceCategory })
+  db.ServiceProvider.find({
+    ServiceCategory: req.body.ServiceCategory,
+    ProfileState: 2
+  })
     .select("_id userName  userImg")
     .then(async profils => {
       profil = profils;
@@ -87,7 +89,7 @@ mRouter.post("/getProfiles", (req, res) => {
 mRouter.post("/getReviews", (req, res) => {
   var result = [];
   db.CustomerReviews.find({
-    serviceproviderid: "5deb985052803b0017c8686c"
+    serviceproviderid: req.body.serviceproviderid
   })
     .select("review dataAdded customerID rate")
     .then(async info => {
@@ -116,11 +118,14 @@ mRouter.post("/addReviews", (req, res) => {
     serviceproviderid: req.body.serviceproviderid,
     review: req.body.review,
     customerID: decoded._id,
-    rating: req.body.rate
+    rate: req.body.rate
   });
-  newReview.save().then(info => {
-    res.json(info);
-  });
+  newReview
+    .save()
+    .then(info => {
+      res.json(info);
+    })
+    .catch(err => res.json({ errmsg: err }));
 });
 
 //Api that updates the hire state for specific service provider
@@ -186,9 +191,29 @@ mRouter.post("/addfavorite", (req, res) => {
     serviceProviderID: req.body.serviceproviderid,
     customerID: decoded._id
   });
-  newfavorite.save().then(faves => {
-    res.json(faves);
-  });
+  newfavorite
+    .save()
+    .then(faves => {
+      res.status(200).json({ msg: true });
+    })
+    .catch(err => {
+      res.status(200).json({ msg: false });
+    });
+});
+
+//Api that adds new favorite for specific user
+mRouter.post("/getUser", (req, res) => {
+  var decoded = jwt.verify(req.body.customerID, config.JWT_SECRET);
+  db.User.find({
+    _id: decoded._id
+  })
+    .select("userName mobileNO email")
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(err => {
+      res.status(200).json({ msg: false });
+    });
 });
 
 //Api that delete from favorite for specific user
@@ -198,9 +223,13 @@ mRouter.post("/deletefavorite", (req, res) => {
   db.Favorites.deleteOne({
     serviceProviderID: req.body.serviceproviderid,
     customerID: decoded._id
-  }).then(deleted => {
-    res.json(deleted);
-  });
+  })
+    .then(deleted => {
+      res.status(200).json({ msg: false });
+    })
+    .catch(err => {
+      res.status(200).json({ msg: true });
+    });
 });
 
 //Api that returns alist of  the favorites for specific user
