@@ -2,7 +2,7 @@ import React from "react";
 import "./css/App.css";
 import SignIn from "./components/SignIn";
 import Main from "./components/Main";
-import HomepageLayout from "./components/Services";
+import HomepageLayout from "./components/LandingPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {

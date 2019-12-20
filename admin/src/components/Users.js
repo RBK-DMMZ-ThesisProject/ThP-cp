@@ -24,7 +24,8 @@ import { purple } from '@material-ui/core/colors';
       color: "#63b8d4",
       fontWeight: "bold",
       "& > *": {
-        margin: theme.spacing(1)
+        margin: theme.spacing(1),
+        width: 200,
       }
     },
     paper: {
@@ -36,6 +37,16 @@ import { purple } from '@material-ui/core/colors';
       padding: theme.spacing(2, 4, 3)
     }
   }));
+
+  // const styles = {
+  //   backdrop: {
+  //     backgroundColor: 'black',
+  //     color: 'black',
+  //   },
+  //   action:{
+  //     justifyContent:'inherit',
+  //   }
+  // };
 
   const BlueSwitch = withStyles({
     switchBase: {
@@ -165,13 +176,36 @@ const Users = () => {
       </div>
       <div id="dilog">
       <Dialog
+      // BackdropProps={{
+      //   classes: {
+      //     root: styles.backdrop,
+      //   }
+      // }}
       open={openAddUser}
       onClose={handleAddUserClose}
       aria-labelledby="Add Admin"
     >
       <DialogTitle id="form-dialog-title" style={{color:'#078CA9'}}>Add Admin</DialogTitle>
       <DialogContent style={{ width: 500 }}>
-        <form autoComplete="off">
+        <form autoComplete="off" >
+        {/* <TextField
+            id="standard-basic"
+            label="User Name:"
+            margin="dense"
+            type="text"
+            fullWidth
+            onChange={onAdminNameChange}
+            value={adminName}
+          />
+                    <TextField
+            id="standard-basic"
+            label="Mobile No.:"
+            margin="dense"
+            type="text"
+            fullWidth
+            onChange={onMobileNOChange}
+            value={mobileNO}
+          /> */}
           <TextField
             margin="dense"
             fullWidth
