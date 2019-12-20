@@ -105,7 +105,7 @@ class HomepageLayout extends React.Component {
             <Header inverted as="h1">
               You Will Find What You Need Here
             </Header>
-            <p>A handfull set of service providers just btween your hands.</p>
+            <p>A handfull set of service providers at a click of a button.</p>
             <Button
               size="huge"
               style={{ padding: "8em 0em" }}
