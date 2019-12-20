@@ -99,6 +99,9 @@ class HomepageLayout extends React.Component {
             </Container>
           </Visibility>
           <Container className="content">
+            <Header inverted as="h1" style={{ fontSize: 70 }}>
+              Handy
+            </Header>
             <Header inverted as="h1">
               You Will Find What You Need Here
             </Header>
@@ -106,10 +109,10 @@ class HomepageLayout extends React.Component {
             <Button
               size="huge"
               style={{ padding: "8em 0em" }}
-              style={{ color: "#f2f2f2", backgroundColor: "#078CA9" }}
+              style={{ color: "#666", backgroundColor: "#f2f2f2" }}
             >
               <Image src={gpLogo} size="tiny" as={"logo"} id="logo" />
-              Get it On Google Play
+              <p style={{ display: 'inline-block', marginLeft: 10, fontSize: 20, fontWeight: '400', marginTop: 10, verticalAlign: -3 }}>Get it On Google Play</p>
             </Button>
           </Container>
         </Segment>
@@ -119,6 +122,7 @@ class HomepageLayout extends React.Component {
           vertical
           className="providsSeg"
           id={"about"}
+          borderless
         >
           <Grid container stackable verticalAlign="middle">
             <Grid.Row>
@@ -154,7 +158,7 @@ class HomepageLayout extends React.Component {
           <Icon name="handshake" />
           Join Us as a service provider or customer
         </Header>
-        <Segment id={"features"}>
+        <Segment id={"features"} borderless>
           <Grid columns={2}>
             <Divider vertical>Or</Divider>
             <Grid.Row>
@@ -193,7 +197,7 @@ class HomepageLayout extends React.Component {
           {/* </Container> */}
         </Segment>
         {/* Services segment */}
-        <Segment>
+        <Segment style={{ border: 0 }}>
           <Divider
             id={"services"}
             as="h4"
@@ -276,7 +280,7 @@ class HomepageLayout extends React.Component {
           </Grid>
         </Segment>
         {/* Contact segment */}
-        <Segment inverted id="contact" verticalAlign="middle">
+        <Segment inverted id="contact" verticalAlign="middle" style={{ border: 0 }}>
           <Grid inverted style={{ margin: "1em 1em 1em 24em" }}>
             <Grid.Row>
               <Grid.Column width={3}>
@@ -308,7 +312,7 @@ class HomepageLayout extends React.Component {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-              <Segment vertical>
+              <Segment inverted>
                 Thesis project RBK
                 <a href="http://rbk.org/apply/public/index.php">
                   {" "}
