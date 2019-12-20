@@ -2,7 +2,6 @@ const express = require("express");
 const mRouter = express.Router();
 const db = require("../database/db");
 const cors = require("cors");
-const jwt_decode = require("jwt-decode");
 mRouter.use(cors());
 const jwt = require("jsonwebtoken");
 const config = require("../config");
