@@ -2,8 +2,8 @@ const express = require("express");
 const smsRouter = express.Router();
 const cors = require("cors");
 const client = require("twilio")(
-  "AC23e0e92198924bdc7a97fd0e07d26d25",
-  "e98e253b573927e3e765dcced41039e3"
+  "ACd1361ffa0ccce1b9fae41dad66e843a3",
+  "05f9d68a24cc3185d45e1f95fcb33e8f"
 );
 
 smsRouter.use(cors());
@@ -24,7 +24,7 @@ const send = (pass, num, adminName) => {
 
   client.messages
     .create({
-      from: "+14259472026",
+      from: "+18329245647",
       to: num,
       body: "You have become an Admin. Your password is " + pass
     })
@@ -42,7 +42,7 @@ smsRouter.post("/smsMessages", (req, res) => {
   res.header("Content-Type", "application/json");
   client.messages
     .create({
-      from: "+12015142340",
+      from: "+18329245647",
       to: req.body.to,
       body: req.body.msgText
     })
